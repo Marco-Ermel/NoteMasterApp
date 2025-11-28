@@ -52,17 +52,32 @@ public static class MauiProgram
         builder.Services.AddTransient<ArchiveViewModel>();
         builder.Services.AddTransient<StoryScenesViewModel>();
 
-        // Register Views (Transient for navigation)
-        builder.Services.AddTransient<MainPage>();
-        builder.Services.AddTransient<DashboardView>();
-        builder.Services.AddTransient<NotesListView>();
-        builder.Services.AddTransient<NoteEditorView>();
-        builder.Services.AddTransient<SummaryView>();
-        builder.Services.AddTransient<CheatSheetView>();
-        builder.Services.AddTransient<StudyPlanView>();
-        builder.Services.AddTransient<TasksView>();
-        builder.Services.AddTransient<ArchiveView>();
-        builder.Services.AddTransient<StoryScenesView>();
+        // Register Views with ViewModel injection
+        // MainPage requires IServiceProvider for creating child views with DI
+        builder.Services.AddTransient<MainPage>(sp => new MainPage(
+            sp.GetRequiredService<MainViewModel>(),
+            sp
+        ));
+        
+        // Child ContentViews with ViewModel injection
+        builder.Services.AddTransient<DashboardView>(sp => new DashboardView(
+            sp.GetRequiredService<DashboardViewModel>()));
+        builder.Services.AddTransient<NotesListView>(sp => new NotesListView(
+            sp.GetRequiredService<NotesListViewModel>()));
+        builder.Services.AddTransient<NoteEditorView>(sp => new NoteEditorView(
+            sp.GetRequiredService<NoteEditorViewModel>()));
+        builder.Services.AddTransient<SummaryView>(sp => new SummaryView(
+            sp.GetRequiredService<SummaryViewModel>()));
+        builder.Services.AddTransient<CheatSheetView>(sp => new CheatSheetView(
+            sp.GetRequiredService<CheatSheetViewModel>()));
+        builder.Services.AddTransient<StudyPlanView>(sp => new StudyPlanView(
+            sp.GetRequiredService<StudyPlanViewModel>()));
+        builder.Services.AddTransient<TasksView>(sp => new TasksView(
+            sp.GetRequiredService<TasksViewModel>()));
+        builder.Services.AddTransient<ArchiveView>(sp => new ArchiveView(
+            sp.GetRequiredService<ArchiveViewModel>()));
+        builder.Services.AddTransient<StoryScenesView>(sp => new StoryScenesView(
+            sp.GetRequiredService<StoryScenesViewModel>()));
 
         return builder.Build();
     }

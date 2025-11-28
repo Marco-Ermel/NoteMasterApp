@@ -7,16 +7,27 @@ namespace SmartNote.Maui.Views;
 /// </summary>
 public partial class NoteEditorView : ContentView
 {
+    private NoteEditorViewModel? _viewModel;
+    
     public NoteEditorView()
     {
         InitializeComponent();
+    }
+    
+    public NoteEditorView(NoteEditorViewModel viewModel) : this()
+    {
+        _viewModel = viewModel;
+        BindingContext = viewModel;
+    }
+    
+    protected override void OnHandlerChanged()
+    {
+        base.OnHandlerChanged();
         
-        var viewModel = Application.Current?.Handler?.MauiContext?.Services
-            .GetService<NoteEditorViewModel>();
-        
-        if (viewModel != null)
+        if (_viewModel == null && Handler?.MauiContext?.Services != null)
         {
-            BindingContext = viewModel;
+            _viewModel = Handler.MauiContext.Services.GetService<NoteEditorViewModel>();
+            if (_viewModel != null) BindingContext = _viewModel;
         }
     }
 }

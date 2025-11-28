@@ -7,23 +7,43 @@ namespace SmartNote.Maui.Views;
 /// </summary>
 public partial class DashboardView : ContentView
 {
+    private DashboardViewModel? _viewModel;
+    
     public DashboardView()
     {
         InitializeComponent();
+    }
+    
+    /// <summary>
+    /// Constructor with dependency injection for proper MVVM pattern
+    /// </summary>
+    public DashboardView(DashboardViewModel viewModel) : this()
+    {
+        _viewModel = viewModel;
+        BindingContext = viewModel;
+    }
+    
+    /// <summary>
+    /// Handle view appearing - load data
+    /// </summary>
+    protected override void OnHandlerChanged()
+    {
+        base.OnHandlerChanged();
         
-        // Get ViewModel from DI container
-        var viewModel = Application.Current?.Handler?.MauiContext?.Services
-            .GetService<DashboardViewModel>();
-        
-        if (viewModel != null)
+        // If ViewModel wasn't injected, try to get it from DI
+        if (_viewModel == null && Handler?.MauiContext?.Services != null)
         {
-            BindingContext = viewModel;
-            
-            // Load data when view appears
-            Loaded += async (s, e) =>
+            _viewModel = Handler.MauiContext.Services.GetService<DashboardViewModel>();
+            if (_viewModel != null)
             {
-                await viewModel.LoadDataCommand.ExecuteAsync(null);
-            };
+                BindingContext = _viewModel;
+            }
+        }
+        
+        // Load data when the view is ready
+        if (_viewModel != null)
+        {
+            _ = _viewModel.LoadDataCommand.ExecuteAsync(null);
         }
     }
 }

@@ -5,18 +5,21 @@ namespace SmartNote.Maui.Views;
 /// <summary>
 /// MainPage - Primary container view
 /// Manages sidebar navigation and content area swapping
+/// Uses dependency injection for view creation
 /// </summary>
 public partial class MainPage : ContentPage
 {
     private readonly MainViewModel _viewModel;
+    private readonly IServiceProvider _serviceProvider;
     
     // Content views cache for smooth transitions
     private readonly Dictionary<string, View> _viewCache = new();
     
-    public MainPage(MainViewModel viewModel)
+    public MainPage(MainViewModel viewModel, IServiceProvider serviceProvider)
     {
         InitializeComponent();
         _viewModel = viewModel;
+        _serviceProvider = serviceProvider;
         BindingContext = viewModel;
         
         // Subscribe to navigation changes to swap content
@@ -36,7 +39,7 @@ public partial class MainPage : ContentPage
     
     /// <summary>
     /// Swap the content area based on active screen
-    /// Uses view caching for performance
+    /// Uses view caching for performance and DI for view creation
     /// </summary>
     private void UpdateContentView(string screen)
     {
@@ -45,19 +48,19 @@ public partial class MainPage : ContentPage
         // Check cache first
         if (!_viewCache.TryGetValue(screen, out contentView))
         {
-            // Create new view based on screen
+            // Create new view using DI to inject ViewModels
             contentView = screen switch
             {
-                "dashboard" => new DashboardView(),
-                "notes" => new NotesListView(),
-                "editor" => new NoteEditorView(),
-                "summary" => new SummaryView(),
-                "cheatsheet" => new CheatSheetView(),
-                "studyplan" => new StudyPlanView(),
-                "tasks" => new TasksView(),
-                "archive" => new ArchiveView(),
-                "story" => new StoryScenesView(),
-                _ => new DashboardView()
+                "dashboard" => CreateView<DashboardView, DashboardViewModel>(),
+                "notes" => CreateView<NotesListView, NotesListViewModel>(),
+                "editor" => CreateView<NoteEditorView, NoteEditorViewModel>(),
+                "summary" => CreateView<SummaryView, SummaryViewModel>(),
+                "cheatsheet" => CreateView<CheatSheetView, CheatSheetViewModel>(),
+                "studyplan" => CreateView<StudyPlanView, StudyPlanViewModel>(),
+                "tasks" => CreateView<TasksView, TasksViewModel>(),
+                "archive" => CreateView<ArchiveView, ArchiveViewModel>(),
+                "story" => CreateView<StoryScenesView, StoryScenesViewModel>(),
+                _ => CreateView<DashboardView, DashboardViewModel>()
             };
             
             // Cache the view for reuse
@@ -76,6 +79,30 @@ public partial class MainPage : ContentPage
             // Fade in
             await ContentArea.FadeTo(1, 150, Easing.CubicOut);
         });
+    }
+    
+    /// <summary>
+    /// Generic method to create views with proper DI
+    /// Falls back to parameterless constructor if DI fails
+    /// </summary>
+    private TView CreateView<TView, TViewModel>() 
+        where TView : ContentView, new()
+        where TViewModel : class
+    {
+        var viewModel = _serviceProvider.GetService<TViewModel>();
+        if (viewModel != null)
+        {
+            // Try to find constructor that accepts ViewModel
+            var viewType = typeof(TView);
+            var constructor = viewType.GetConstructor(new[] { typeof(TViewModel) });
+            if (constructor != null)
+            {
+                return (TView)constructor.Invoke(new object[] { viewModel });
+            }
+        }
+        
+        // Fallback to parameterless constructor
+        return new TView();
     }
     
     protected override void OnDisappearing()

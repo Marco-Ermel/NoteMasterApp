@@ -7,21 +7,32 @@ namespace SmartNote.Maui.Views;
 /// </summary>
 public partial class NotesListView : ContentView
 {
+    private NotesListViewModel? _viewModel;
+    
     public NotesListView()
     {
         InitializeComponent();
+    }
+    
+    public NotesListView(NotesListViewModel viewModel) : this()
+    {
+        _viewModel = viewModel;
+        BindingContext = viewModel;
+    }
+    
+    protected override void OnHandlerChanged()
+    {
+        base.OnHandlerChanged();
         
-        var viewModel = Application.Current?.Handler?.MauiContext?.Services
-            .GetService<NotesListViewModel>();
-        
-        if (viewModel != null)
+        if (_viewModel == null && Handler?.MauiContext?.Services != null)
         {
-            BindingContext = viewModel;
-            
-            Loaded += async (s, e) =>
-            {
-                await viewModel.LoadDataCommand.ExecuteAsync(null);
-            };
+            _viewModel = Handler.MauiContext.Services.GetService<NotesListViewModel>();
+            if (_viewModel != null) BindingContext = _viewModel;
+        }
+        
+        if (_viewModel != null)
+        {
+            _ = _viewModel.LoadDataCommand.ExecuteAsync(null);
         }
     }
 }
