@@ -1,0 +1,35 @@
+using SmartNote.Maui.ViewModels;
+
+namespace SmartNote.Maui.Views;
+
+public partial class StudyPlanView : ContentView
+{
+    private StudyPlanViewModel? _viewModel;
+    
+    public StudyPlanView()
+    {
+        InitializeComponent();
+    }
+    
+    public StudyPlanView(StudyPlanViewModel viewModel) : this()
+    {
+        _viewModel = viewModel;
+        BindingContext = viewModel;
+    }
+    
+    protected override void OnHandlerChanged()
+    {
+        base.OnHandlerChanged();
+        
+        if (_viewModel == null && Handler?.MauiContext?.Services != null)
+        {
+            _viewModel = Handler.MauiContext.Services.GetService<StudyPlanViewModel>();
+            if (_viewModel != null) BindingContext = _viewModel;
+        }
+        
+        if (_viewModel != null)
+        {
+            _ = _viewModel.LoadDataCommand.ExecuteAsync(null);
+        }
+    }
+}

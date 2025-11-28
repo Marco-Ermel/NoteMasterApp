@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    
+    <!-- 
+        SmartNote Color Palette
+        Extracted from original React/TypeScript implementation
+        Teal-based color scheme for modern, professional appearance
+    -->
+    
+    <!-- Primary Brand Colors (from original design) -->
+    <Color x:Key="PrimaryDark">#012326</Color>
+    <Color x:Key="Primary">#103B40</Color>
+    <Color x:Key="PrimaryMedium">#346C73</Color>
+    <Color x:Key="PrimaryLight">#6A9BA6</Color>
+    <Color x:Key="PrimaryLightest">#A3C9D9</Color>
+    
+    <!-- Background Colors -->
+    <Color x:Key="BackgroundLight">#FFFFFF</Color>
+    <Color x:Key="BackgroundMuted">#F5F5F5</Color>
+    <Color x:Key="SidebarBackground">#103B40</Color>
+    <Color x:Key="SidebarBorder">#346C73</Color>
+    <Color x:Key="InfoPanelBackground">#A3C9D9</Color>
+    
+    <!-- Text Colors -->
+    <Color x:Key="TextPrimary">#012326</Color>
+    <Color x:Key="TextSecondary">#346C73</Color>
+    <Color x:Key="TextMuted">#6A9BA6</Color>
+    <Color x:Key="TextLight">#A3C9D9</Color>
+    <Color x:Key="TextOnDark">#FFFFFF</Color>
+    
+    <!-- Button Colors -->
+    <Color x:Key="ButtonPrimary">#346C73</Color>
+    <Color x:Key="ButtonSecondary">#6A9BA6</Color>
+    <Color x:Key="ButtonAccent">#A3C9D9</Color>
+    
+    <!-- Border Colors -->
+    <Color x:Key="BorderLight">#A3C9D9</Color>
+    <Color x:Key="BorderMedium">#6A9BA6</Color>
+    <Color x:Key="BorderDark">#346C73</Color>
+    
+    <!-- Priority Colors (for Tasks) -->
+    <Color x:Key="PriorityHigh">#346C73</Color>
+    <Color x:Key="PriorityMedium">#6A9BA6</Color>
+    <Color x:Key="PriorityLow">#A3C9D9</Color>
+    
+    <!-- Status Colors -->
+    <Color x:Key="SuccessColor">#2E7D32</Color>
+    <Color x:Key="WarningColor">#ED6C02</Color>
+    <Color x:Key="ErrorColor">#D32F2F</Color>
+    
+    <!-- Semantic Colors for Light Mode -->
+    <Color x:Key="PageBackground">#FFFFFF</Color>
+    <Color x:Key="CardBackground">#FFFFFF</Color>
+    <Color x:Key="SeparatorColor">#A3C9D9</Color>
+    
+    <!-- Brushes for gradient and complex fills -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
+    <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource PrimaryLightest}" />
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimary}" />
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundLight}" />
+    
+    <!-- Sidebar Gradient (for premium feel) -->
+    <LinearGradientBrush x:Key="SidebarGradientBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="#103B40" Offset="0.0" />
+        <GradientStop Color="#0D3035" Offset="1.0" />
+    </LinearGradientBrush>
+    
+    <!-- Card Shadow (for depth and premium appearance) -->
+    <Color x:Key="ShadowColor">#1A000000</Color>
+    
+</ResourceDictionary>

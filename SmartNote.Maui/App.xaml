@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:SmartNote.Maui.Converters"
+             x:Class="SmartNote.Maui.App">
+    
+    <!-- 
+        SmartNote MAUI Application
+        Merged resource dictionaries for consistent theming across all platforms
+    -->
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Import color palette and style definitions -->
+                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <!-- Value Converters for data binding -->
+            <converters:ActiveNavConverter x:Key="ActiveNavConverter" />
+            <converters:PriorityHighConverter x:Key="PriorityHighConverter" />
+            <converters:DarkThemeColorConverter x:Key="DarkThemeColorConverter" />
+            <converters:DarkThemeTextConverter x:Key="DarkThemeTextConverter" />
+            <converters:DarkThemeSecondaryTextConverter x:Key="DarkThemeSecondaryTextConverter" />
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+    
+</Application>

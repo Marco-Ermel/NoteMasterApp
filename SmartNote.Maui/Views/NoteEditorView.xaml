@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SmartNote.Maui.ViewModels"
+             x:Class="SmartNote.Maui.Views.NoteEditorView"
+             x:DataType="vm:NoteEditorViewModel">
+    
+    <!--
+        NoteEditorView - Rich text note editing
+        Matches the original React NoteEditor component
+    -->
+    
+    <Grid ColumnDefinitions="*,320">
+        
+        <!-- Main Editor Area -->
+        <ScrollView Grid.Column="0" Padding="48">
+            <VerticalStackLayout Spacing="24">
+                
+                <!-- Back Button -->
+                <HorizontalStackLayout Spacing="8">
+                    <Button Text="← Zurück zu Notizen"
+                            Command="{Binding CancelCommand}"
+                            BackgroundColor="Transparent"
+                            TextColor="{StaticResource PrimaryMedium}"
+                            FontFamily="InterMedium"
+                            FontSize="15" />
+                </HorizontalStackLayout>
+                
+                <!-- Title Input -->
+                <Entry Text="{Binding NoteTitle}"
+                       Placeholder="Notiz Titel"
+                       FontFamily="InterBold"
+                       FontSize="32"
+                       TextColor="{StaticResource TextPrimary}"
+                       BackgroundColor="Transparent" />
+                
+                <BoxView Color="{StaticResource BorderLight}"
+                         HeightRequest="2" />
+                
+                <!-- Toolbar -->
+                <Border BackgroundColor="{StaticResource PrimaryLightest}"
+                        Stroke="{StaticResource PrimaryLight}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="12">
+                    <HorizontalStackLayout Spacing="8">
+                        <Button Text="B"
+                                Command="{Binding ToggleBoldCommand}"
+                                Style="{StaticResource IconButtonStyle}"
+                                FontAttributes="Bold" />
+                        <Button Text="I"
+                                Command="{Binding ToggleItalicCommand}"
+                                Style="{StaticResource IconButtonStyle}"
+                                FontAttributes="Italic" />
+                        <BoxView Color="{StaticResource PrimaryLight}"
+                                 WidthRequest="1"
+                                 HeightRequest="24" />
+                        <Button Text="☰"
+                                Command="{Binding ToggleListCommand}"
+                                Style="{StaticResource IconButtonStyle}" />
+                        <Button Text="🖍️"
+                                Command="{Binding ToggleHighlightCommand}"
+                                Style="{StaticResource IconButtonStyle}" />
+                        <BoxView Color="{StaticResource PrimaryLight}"
+                                 WidthRequest="1"
+                                 HeightRequest="24" />
+                        <Button Text="🖼️"
+                                Command="{Binding InsertImageCommand}"
+                                Style="{StaticResource IconButtonStyle}" />
+                    </HorizontalStackLayout>
+                </Border>
+                
+                <!-- Editor Area -->
+                <Border BackgroundColor="{StaticResource BackgroundLight}"
+                        Stroke="{StaticResource BorderLight}"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="32"
+                        MinimumHeightRequest="400">
+                    <Editor Text="{Binding NoteContent}"
+                            Placeholder="Beginne hier mit deiner Notiz..."
+                            Style="{StaticResource EditorStyle}"
+                            AutoSize="TextChanges" />
+                </Border>
+                
+                <!-- Action Buttons -->
+                <HorizontalStackLayout Spacing="16">
+                    <Button Text="💾 Speichern"
+                            Command="{Binding SaveNoteCommand}"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                    <Button Text="✕ Abbrechen"
+                            Command="{Binding CancelCommand}"
+                            Style="{StaticResource SecondaryButtonStyle}" />
+                </HorizontalStackLayout>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Right Panel: Metadata -->
+        <Border Grid.Column="1"
+                BackgroundColor="{StaticResource InfoPanelBackground}"
+                Stroke="{StaticResource PrimaryLight}"
+                StrokeThickness="1,0,0,0"
+                Padding="32">
+            <ScrollView>
+                <VerticalStackLayout Spacing="24">
+                    
+                    <Label Text="Metadaten"
+                           Style="{StaticResource CardTitleStyle}" />
+                    
+                    <!-- Date -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="📅 Datum"
+                               FontFamily="InterMedium"
+                               FontSize="14"
+                               TextColor="{StaticResource TextPrimary}" />
+                        <DatePicker Date="{Binding NoteDate}"
+                                    BackgroundColor="{StaticResource BackgroundLight}" />
+                    </VerticalStackLayout>
+                    
+                    <!-- Category -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Kategorie / Fach"
+                               FontFamily="InterMedium"
+                               FontSize="14"
+                               TextColor="{StaticResource TextPrimary}" />
+                        <Picker ItemsSource="{Binding AvailableSubjects}"
+                                SelectedItem="{Binding SelectedSubject}"
+                                BackgroundColor="{StaticResource BackgroundLight}" />
+                    </VerticalStackLayout>
+                    
+                    <!-- Tags -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="🏷️ Tags"
+                               FontFamily="InterMedium"
+                               FontSize="14"
+                               TextColor="{StaticResource TextPrimary}" />
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Entry Grid.Column="0"
+                                   Text="{Binding NewTagText}"
+                                   Placeholder="Tags hinzufügen..."
+                                   BackgroundColor="{StaticResource BackgroundLight}" />
+                            <Button Grid.Column="1"
+                                    Text="+"
+                                    Command="{Binding AddTagCommand}"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    Margin="8,0,0,0" />
+                        </Grid>
+                        <FlexLayout Wrap="Wrap"
+                                    BindableLayout.ItemsSource="{Binding NoteTags}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="12,8"
+                                            Margin="0,8,8,0">
+                                        <HorizontalStackLayout Spacing="8">
+                                            <Label Text="{Binding}"
+                                                   TextColor="{StaticResource TextOnDark}"
+                                                   FontFamily="InterMedium"
+                                                   FontSize="13" />
+                                            <Label Text="×"
+                                                   TextColor="{StaticResource TextOnDark}"
+                                                   FontSize="14">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NoteEditorViewModel}}, Path=RemoveTagCommand}"
+                                                                          CommandParameter="{Binding}" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                        </HorizontalStackLayout>
+                                    </Border>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                    
+                    <!-- Priority -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Priorität"
+                               FontFamily="InterMedium"
+                               FontSize="14"
+                               TextColor="{StaticResource TextPrimary}" />
+                        <Picker BackgroundColor="{StaticResource BackgroundLight}">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Hoch</x:String>
+                                    <x:String>Mittel</x:String>
+                                    <x:String>Niedrig</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </VerticalStackLayout>
+                    
+                    <!-- Quick Actions -->
+                    <Border BackgroundColor="{StaticResource PrimaryMedium}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="20">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Schnellaktionen"
+                                   FontFamily="InterBold"
+                                   FontSize="16"
+                                   TextColor="{StaticResource TextOnDark}" />
+                            <Button Text="Zusammenfassung erstellen"
+                                    Command="{Binding GenerateSummaryCommand}"
+                                    BackgroundColor="{StaticResource BackgroundLight}"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    FontFamily="InterMedium"
+                                    FontSize="14"
+                                    CornerRadius="8" />
+                            <Button Text="Spickzettel generieren"
+                                    Command="{Binding GenerateCheatSheetCommand}"
+                                    BackgroundColor="{StaticResource BackgroundLight}"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    FontFamily="InterMedium"
+                                    FontSize="14"
+                                    CornerRadius="8" />
+                            <Button Text="Lernplan erstellen"
+                                    Command="{Binding CreateStudyPlanCommand}"
+                                    BackgroundColor="{StaticResource BackgroundLight}"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    FontFamily="InterMedium"
+                                    FontSize="14"
+                                    CornerRadius="8" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+        
+    </Grid>
+    
+</ContentView>

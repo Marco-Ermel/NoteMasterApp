@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SmartNote.Maui.ViewModels"
+             xmlns:models="clr-namespace:SmartNote.Maui.Models"
+             x:Class="SmartNote.Maui.Views.SummaryView"
+             x:DataType="vm:SummaryViewModel">
+    
+    <!--
+        SummaryView - AI-generated summary display
+        Matches the original React Summary component
+    -->
+    
+    <Grid ColumnDefinitions="*,320">
+        
+        <!-- Main Content -->
+        <ScrollView Grid.Column="0" Padding="48">
+            <VerticalStackLayout Spacing="32">
+                
+                <!-- Back Button -->
+                <Button Text="← Zurück zu Notizen"
+                        Command="{Binding BackToNotesCommand}"
+                        BackgroundColor="Transparent"
+                        TextColor="{StaticResource PrimaryMedium}"
+                        FontFamily="InterMedium"
+                        FontSize="15"
+                        HorizontalOptions="Start" />
+                
+                <!-- Header -->
+                <VerticalStackLayout Spacing="16">
+                    <HorizontalStackLayout Spacing="12">
+                        <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16,8">
+                            <Label Text="{Binding Subject}"
+                                   TextColor="{StaticResource TextOnDark}"
+                                   FontFamily="InterMedium"
+                                   FontSize="14" />
+                        </Border>
+                        <Label Text="{Binding Date}"
+                               Style="{StaticResource SecondaryTextStyle}"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Label Text="{Binding NoteTitle}"
+                           Style="{StaticResource LargeTitleStyle}" />
+                    <Label Text="KI-generierte Zusammenfassung deiner Notiz"
+                           Style="{StaticResource BodyStyle}" />
+                </VerticalStackLayout>
+                
+                <!-- Short Summary Card -->
+                <Border BackgroundColor="{StaticResource PrimaryLightest}"
+                        Stroke="{StaticResource PrimaryLight}"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="32">
+                    <VerticalStackLayout Spacing="16">
+                        <Label Text="📝 Kurzfassung"
+                               Style="{StaticResource SectionTitleStyle}" />
+                        <Label Text="{Binding ShortSummary}"
+                               FontFamily="InterRegular"
+                               FontSize="16"
+                               LineHeight="1.6"
+                               TextColor="{StaticResource TextPrimary}" />
+                    </VerticalStackLayout>
+                </Border>
+                
+                <!-- Key Points -->
+                <VerticalStackLayout Spacing="24">
+                    <Label Text="⭐ Wichtige Punkte"
+                           Style="{StaticResource SectionTitleStyle}" />
+                    
+                    <CollectionView ItemsSource="{Binding KeyPoints}"
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="x:String">
+                                <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                        Stroke="{StaticResource BorderLight}"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 12"
+                                        Padding="20"
+                                        Margin="0,0,0,16">
+                                    <HorizontalStackLayout Spacing="16">
+                                        <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                                StrokeThickness="0"
+                                                WidthRequest="32"
+                                                HeightRequest="32"
+                                                StrokeShape="RoundRectangle 16">
+                                            <Label Text="✓"
+                                                   TextColor="{StaticResource TextOnDark}"
+                                                   FontFamily="InterBold"
+                                                   FontSize="14"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center" />
+                                        </Border>
+                                        <Label Text="{Binding}"
+                                               Style="{StaticResource SecondaryTextStyle}"
+                                               VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+                
+                <!-- Important Terms -->
+                <VerticalStackLayout Spacing="24">
+                    <Label Text="📚 Wichtige Begriffe"
+                           Style="{StaticResource SectionTitleStyle}" />
+                    
+                    <FlexLayout Wrap="Wrap"
+                                BindableLayout.ItemsSource="{Binding Terms}"
+                                JustifyContent="Start">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="models:TermDefinition">
+                                <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                        Stroke="{StaticResource BorderLight}"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 12"
+                                        Padding="20"
+                                        Margin="0,0,24,24"
+                                        WidthRequest="280">
+                                    <VerticalStackLayout Spacing="8">
+                                        <Label Text="{Binding Term}"
+                                               FontFamily="InterBold"
+                                               FontSize="16"
+                                               TextColor="{StaticResource TextPrimary}" />
+                                        <Label Text="{Binding Definition}"
+                                               Style="{StaticResource CaptionStyle}" />
+                                    </VerticalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+                </VerticalStackLayout>
+                
+                <!-- Action Buttons -->
+                <HorizontalStackLayout Spacing="16">
+                    <Button Text="📄 Als PDF exportieren"
+                            Command="{Binding ExportPdfCommand}"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                    <Button Text="🖍️ Zum Spickzettel hinzufügen"
+                            Command="{Binding ViewCheatSheetCommand}"
+                            Style="{StaticResource SecondaryButtonStyle}" />
+                    <Button Text="📖 Lernplan erstellen"
+                            Command="{Binding CreateStudyPlanCommand}"
+                            Style="{StaticResource SecondaryButtonStyle}" />
+                </HorizontalStackLayout>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Right Panel -->
+        <Border Grid.Column="1"
+                BackgroundColor="{StaticResource InfoPanelBackground}"
+                Stroke="{StaticResource PrimaryLight}"
+                StrokeThickness="1,0,0,0"
+                Padding="32">
+            <ScrollView>
+                <VerticalStackLayout Spacing="24">
+                    
+                    <Label Text="Zusammenfassungs-Info"
+                           Style="{StaticResource CardTitleStyle}" />
+                    
+                    <!-- Stats -->
+                    <VerticalStackLayout Spacing="16">
+                        <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Umfang"
+                                       FontFamily="InterMedium"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TextMuted}" />
+                                <Label Text="{Binding CompressionPercent, StringFormat='{0}% komprimiert'}"
+                                       FontFamily="InterBold"
+                                       FontSize="16"
+                                       TextColor="{StaticResource TextPrimary}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        
+                        <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Lesezeit"
+                                       FontFamily="InterMedium"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TextMuted}" />
+                                <Label Text="{Binding ReadingTimeMinutes, StringFormat='{0} Minuten'}"
+                                       FontFamily="InterBold"
+                                       FontSize="16"
+                                       TextColor="{StaticResource TextPrimary}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        
+                        <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Wichtige Begriffe"
+                                       FontFamily="InterMedium"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TextMuted}" />
+                                <Label Text="{Binding TermsCount, StringFormat='{0} identifiziert'}"
+                                       FontFamily="InterBold"
+                                       FontSize="16"
+                                       TextColor="{StaticResource TextPrimary}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                    
+                    <!-- AI Tip -->
+                    <Border BackgroundColor="{StaticResource PrimaryMedium}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="20">
+                        <VerticalStackLayout Spacing="8">
+                            <HorizontalStackLayout Spacing="8">
+                                <Label Text="💡"
+                                       FontSize="20" />
+                                <Label Text="KI-Tipp"
+                                       FontFamily="InterBold"
+                                       FontSize="16"
+                                       TextColor="{StaticResource TextOnDark}" />
+                            </HorizontalStackLayout>
+                            <Label Text="Diese Zusammenfassung deckt die Grundlagen ab. Für Prüfungen solltest du auch Isomerie und Nomenklatur lernen."
+                                   FontFamily="InterRegular"
+                                   FontSize="14"
+                                   LineHeight="1.45"
+                                   TextColor="{StaticResource TextOnDark}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <!-- Related Notes -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Ähnliche Notizen"
+                               Style="{StaticResource CardTitleStyle}" />
+                        
+                        <CollectionView ItemsSource="{Binding RelatedNotes}"
+                                        SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="16"
+                                            Margin="0,0,0,8">
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SummaryViewModel}}, Path=OpenRelatedNoteCommand}"
+                                                                  CommandParameter="{Binding}" />
+                                        </Border.GestureRecognizers>
+                                        <Label Text="{Binding}"
+                                               FontFamily="InterMedium"
+                                               FontSize="14"
+                                               TextColor="{StaticResource TextPrimary}" />
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+        
+    </Grid>
+    
+</ContentView>

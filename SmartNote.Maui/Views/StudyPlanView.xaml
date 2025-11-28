@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SmartNote.Maui.ViewModels"
+             xmlns:models="clr-namespace:SmartNote.Maui.Models"
+             x:Class="SmartNote.Maui.Views.StudyPlanView"
+             x:DataType="vm:StudyPlanViewModel">
+    
+    <!-- StudyPlanView - AI-generated study schedule -->
+    
+    <Grid ColumnDefinitions="*,320">
+        
+        <!-- Main Content -->
+        <ScrollView Grid.Column="0" Padding="48">
+            <VerticalStackLayout Spacing="32">
+                
+                <Button Text="← Zurück zum Dashboard"
+                        Command="{Binding BackToDashboardCommand}"
+                        BackgroundColor="Transparent"
+                        TextColor="{StaticResource PrimaryMedium}"
+                        FontFamily="InterMedium"
+                        FontSize="15"
+                        HorizontalOptions="Start" />
+                
+                <!-- Header -->
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Lernplan: Prüfungsvorbereitung"
+                           Style="{StaticResource LargeTitleStyle}" />
+                    <Label Text="KI-generierter Lernplan für deine kommenden Prüfungen"
+                           Style="{StaticResource BodyStyle}" />
+                </VerticalStackLayout>
+                
+                <!-- Overview Cards -->
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="24">
+                    <Border Grid.Column="0"
+                            BackgroundColor="{StaticResource PrimaryLightest}"
+                            Stroke="{StaticResource PrimaryLight}"
+                            StrokeThickness="2"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="24">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="📅" FontSize="32" />
+                            <Label Text="Zeitraum"
+                                   FontFamily="InterMedium"
+                                   FontSize="14"
+                                   TextColor="{StaticResource TextMuted}" />
+                            <Label Text="{Binding TotalDays, StringFormat='{0} Tage'}"
+                                   FontFamily="InterBold"
+                                   FontSize="20"
+                                   TextColor="{StaticResource TextPrimary}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <Border Grid.Column="1"
+                            BackgroundColor="{StaticResource PrimaryLightest}"
+                            Stroke="{StaticResource PrimaryLight}"
+                            StrokeThickness="2"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="24">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="⏱️" FontSize="32" />
+                            <Label Text="Gesamt-Lernzeit"
+                                   FontFamily="InterMedium"
+                                   FontSize="14"
+                                   TextColor="{StaticResource TextMuted}" />
+                            <Label Text="{Binding TotalStudyTime}"
+                                   FontFamily="InterBold"
+                                   FontSize="20"
+                                   TextColor="{StaticResource TextPrimary}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <Border Grid.Column="2"
+                            BackgroundColor="{StaticResource PrimaryLightest}"
+                            Stroke="{StaticResource PrimaryLight}"
+                            StrokeThickness="2"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="24">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="✅" FontSize="32" />
+                            <Label Text="Aufgaben"
+                                   FontFamily="InterMedium"
+                                   FontSize="14"
+                                   TextColor="{StaticResource TextMuted}" />
+                            <Label FontFamily="InterBold"
+                                   FontSize="20"
+                                   TextColor="{StaticResource TextPrimary}">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}{0}/{1} erledigt">
+                                        <Binding Path="CompletedSessions" />
+                                        <Binding Path="TotalSessions" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+                
+                <!-- Daily Schedule -->
+                <CollectionView ItemsSource="{Binding StudyDays}" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:StudyDay">
+                            <VerticalStackLayout Spacing="16" Margin="0,0,0,32">
+                                <Label Text="{Binding FormattedDayName}"
+                                       FontFamily="InterBold"
+                                       FontSize="24"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                
+                                <VerticalStackLayout BindableLayout.ItemsSource="{Binding Sessions}" Spacing="12">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate x:DataType="models:StudySession">
+                                            <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                                    Stroke="{StaticResource BorderLight}"
+                                                    StrokeThickness="2"
+                                                    StrokeShape="RoundRectangle 12"
+                                                    Padding="20">
+                                                <Grid ColumnDefinitions="Auto,*">
+                                                    <CheckBox Grid.Column="0"
+                                                              IsChecked="{Binding IsCompleted}"
+                                                              Color="{StaticResource PrimaryMedium}"
+                                                              VerticalOptions="Center" />
+                                                    <VerticalStackLayout Grid.Column="1" Spacing="8" Margin="16,0,0,0">
+                                                        <HorizontalStackLayout Spacing="16">
+                                                            <HorizontalStackLayout Spacing="4">
+                                                                <Label Text="🕐"
+                                                                       FontSize="14" />
+                                                                <Label Text="{Binding TimeSlot}"
+                                                                       FontFamily="InterMedium"
+                                                                       FontSize="14"
+                                                                       TextColor="{StaticResource TextMuted}" />
+                                                            </HorizontalStackLayout>
+                                                            <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                                                    StrokeThickness="0"
+                                                                    StrokeShape="RoundRectangle 4"
+                                                                    Padding="12,4">
+                                                                <Label Text="{Binding Subject}"
+                                                                       TextColor="{StaticResource TextOnDark}"
+                                                                       FontFamily="InterMedium"
+                                                                       FontSize="13" />
+                                                            </Border>
+                                                        </HorizontalStackLayout>
+                                                        <Label Text="{Binding Topic}"
+                                                               FontFamily="InterBold"
+                                                               FontSize="17"
+                                                               TextColor="{StaticResource TextPrimary}" />
+                                                    </VerticalStackLayout>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </VerticalStackLayout>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+                <!-- Action Buttons -->
+                <HorizontalStackLayout Spacing="16">
+                    <Button Text="💾 Plan speichern"
+                            Command="{Binding SavePlanCommand}"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                    <Button Text="📄 Als PDF exportieren"
+                            Command="{Binding ExportPdfCommand}"
+                            Style="{StaticResource SecondaryButtonStyle}" />
+                </HorizontalStackLayout>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Right Panel -->
+        <Border Grid.Column="1"
+                BackgroundColor="{StaticResource InfoPanelBackground}"
+                Stroke="{StaticResource PrimaryLight}"
+                StrokeThickness="1,0,0,0"
+                Padding="32">
+            <ScrollView>
+                <VerticalStackLayout Spacing="24">
+                    
+                    <Label Text="Fächer-Übersicht"
+                           Style="{StaticResource CardTitleStyle}" />
+                    
+                    <CollectionView ItemsSource="{Binding Subjects}" SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="vm:SubjectInfo">
+                                <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="16"
+                                        Margin="0,0,0,12">
+                                    <Grid RowDefinitions="Auto,Auto">
+                                        <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+                                            <Label Grid.Column="0"
+                                                   Text="{Binding Subject}"
+                                                   FontFamily="InterBold"
+                                                   FontSize="15"
+                                                   TextColor="{StaticResource TextPrimary}" />
+                                            <Label Grid.Column="1"
+                                                   Text="{Binding Hours}"
+                                                   FontFamily="InterBold"
+                                                   FontSize="15"
+                                                   TextColor="{StaticResource PrimaryMedium}" />
+                                        </Grid>
+                                        <Label Grid.Row="1"
+                                               Text="{Binding Sessions, StringFormat='{0} Lernsessions'}"
+                                               FontFamily="InterRegular"
+                                               FontSize="13"
+                                               TextColor="{StaticResource TextMuted}" />
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+                    <!-- AI Tips -->
+                    <Border BackgroundColor="{StaticResource PrimaryMedium}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="20">
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="KI-Empfehlungen"
+                                   FontFamily="InterBold"
+                                   FontSize="16"
+                                   TextColor="{StaticResource TextOnDark}" />
+                            <VerticalStackLayout BindableLayout.ItemsSource="{Binding AiTips}" Spacing="8">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate x:DataType="x:String">
+                                        <HorizontalStackLayout Spacing="8">
+                                            <Label Text="•"
+                                                   TextColor="{StaticResource TextOnDark}" />
+                                            <Label Text="{Binding}"
+                                                   TextColor="{StaticResource TextOnDark}"
+                                                   FontFamily="InterRegular"
+                                                   FontSize="14"
+                                                   LineHeight="1.45" />
+                                        </HorizontalStackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <!-- Exam Dates -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Prüfungstermine"
+                               Style="{StaticResource CardTitleStyle}" />
+                        
+                        <CollectionView ItemsSource="{Binding UpcomingExams}" SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="vm:ExamInfo">
+                                    <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="16"
+                                            Margin="0,0,0,8">
+                                        <VerticalStackLayout Spacing="4">
+                                            <Label Text="{Binding Subject}"
+                                                   FontFamily="InterBold"
+                                                   FontSize="14"
+                                                   TextColor="{StaticResource TextPrimary}" />
+                                            <Label Text="{Binding Date}"
+                                                   FontFamily="InterRegular"
+                                                   FontSize="13"
+                                                   TextColor="{StaticResource TextMuted}" />
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+        
+    </Grid>
+    
+</ContentView>

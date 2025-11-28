@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SmartNote.Maui.ViewModels"
+             xmlns:models="clr-namespace:SmartNote.Maui.Models"
+             x:Class="SmartNote.Maui.Views.ArchiveView"
+             x:DataType="vm:ArchiveViewModel">
+    
+    <!-- ArchiveView - Archived notes management -->
+    
+    <Grid ColumnDefinitions="*,320">
+        
+        <!-- Main Content -->
+        <ScrollView Grid.Column="0" Padding="48">
+            <VerticalStackLayout Spacing="32">
+                
+                <!-- Header -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Archiv"
+                           Style="{StaticResource LargeTitleStyle}" />
+                    <Label Text="{Binding ArchivedCount, StringFormat='{0} archivierte Notizen'}"
+                           Style="{StaticResource BodyStyle}" />
+                </VerticalStackLayout>
+                
+                <!-- Search Bar -->
+                <Border BackgroundColor="{StaticResource PrimaryLightest}"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="16">
+                    <HorizontalStackLayout Spacing="16">
+                        <Label Text="🔍" FontSize="20" VerticalOptions="Center" />
+                        <Entry Text="{Binding SearchQuery}"
+                               Placeholder="Archiv durchsuchen..."
+                               BackgroundColor="{StaticResource BackgroundLight}"
+                               HorizontalOptions="FillAndExpand" />
+                    </HorizontalStackLayout>
+                </Border>
+                
+                <!-- Info Box -->
+                <Border BackgroundColor="{StaticResource PrimaryLightest}"
+                        Stroke="{StaticResource PrimaryLight}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="20">
+                    <Label Text="💡 Archivierte Notizen werden nicht gelöscht und können jederzeit wiederhergestellt werden. Sie erscheinen nicht mehr in deiner Hauptliste."
+                           FontFamily="InterMedium"
+                           FontSize="15"
+                           LineHeight="1.45"
+                           TextColor="{StaticResource TextPrimary}" />
+                </Border>
+                
+                <!-- Archived Notes List -->
+                <CollectionView ItemsSource="{Binding ArchivedNotes}" SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Note">
+                            <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                    Stroke="{StaticResource BorderLight}"
+                                    StrokeThickness="2"
+                                    StrokeShape="RoundRectangle 12"
+                                    Padding="24"
+                                    Margin="0,0,0,16">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <VerticalStackLayout Grid.Column="0" Spacing="12">
+                                        <HorizontalStackLayout Spacing="12">
+                                            <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                                    StrokeThickness="0"
+                                                    StrokeShape="RoundRectangle 4"
+                                                    Padding="12,4">
+                                                <Label Text="{Binding Subject}"
+                                                       TextColor="{StaticResource TextOnDark}"
+                                                       FontFamily="InterMedium"
+                                                       FontSize="13" />
+                                            </Border>
+                                            <Label Text="{Binding FormattedArchivedDate, StringFormat='Archiviert: {0}'}"
+                                                   Style="{StaticResource CaptionStyle}" />
+                                        </HorizontalStackLayout>
+                                        <Label Text="{Binding Title}"
+                                               FontFamily="InterBold"
+                                               FontSize="22"
+                                               TextColor="{StaticResource TextPrimary}" />
+                                        <Label Text="{Binding Preview}"
+                                               Style="{StaticResource SecondaryTextStyle}"
+                                               MaxLines="2" />
+                                        <Label Text="{Binding FormattedDate, StringFormat='Erstellt: {0}'}"
+                                               Style="{StaticResource CaptionStyle}" />
+                                    </VerticalStackLayout>
+                                    
+                                    <HorizontalStackLayout Grid.Column="1" Spacing="8">
+                                        <Button Text="🔄 Wiederherstellen"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ArchiveViewModel}}, Path=RestoreNoteCommand}"
+                                                CommandParameter="{Binding}"
+                                                BackgroundColor="{StaticResource PrimaryMedium}"
+                                                TextColor="{StaticResource TextOnDark}"
+                                                FontFamily="InterMedium"
+                                                FontSize="14"
+                                                CornerRadius="8"
+                                                Padding="20,12" />
+                                        <Button Text="🗑️ Löschen"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ArchiveViewModel}}, Path=DeleteNoteCommand}"
+                                                CommandParameter="{Binding}"
+                                                BackgroundColor="{StaticResource BackgroundLight}"
+                                                TextColor="{StaticResource PrimaryMedium}"
+                                                BorderColor="{StaticResource PrimaryMedium}"
+                                                BorderWidth="2"
+                                                FontFamily="InterMedium"
+                                                FontSize="14"
+                                                CornerRadius="8"
+                                                Padding="20,12" />
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+                <!-- Warning Box -->
+                <Border BackgroundColor="{StaticResource PrimaryLightest}"
+                        Stroke="{StaticResource PrimaryMedium}"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="24">
+                    <HorizontalStackLayout Spacing="12">
+                        <Label Text="🗑️" FontSize="24" VerticalOptions="Start" />
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Achtung beim Löschen"
+                                   FontFamily="InterBold"
+                                   FontSize="18"
+                                   TextColor="{StaticResource TextPrimary}" />
+                            <Label Text="Das endgültige Löschen einer Notiz kann nicht rückgängig gemacht werden. Stelle sicher, dass du die Notiz wirklich nicht mehr benötigst."
+                                   FontFamily="InterRegular"
+                                   FontSize="15"
+                                   LineHeight="1.45"
+                                   TextColor="{StaticResource TextMuted}" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </Border>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Right Panel -->
+        <Border Grid.Column="1"
+                BackgroundColor="{StaticResource InfoPanelBackground}"
+                Stroke="{StaticResource PrimaryLight}"
+                StrokeThickness="1,0,0,0"
+                Padding="32">
+            <ScrollView>
+                <VerticalStackLayout Spacing="24">
+                    
+                    <Label Text="Archiv-Statistik"
+                           Style="{StaticResource CardTitleStyle}" />
+                    
+                    <VerticalStackLayout Spacing="16">
+                        <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Gesamt archiviert"
+                                       FontFamily="InterMedium"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TextMuted}" />
+                                <Label Text="{Binding ArchivedCount}"
+                                       FontFamily="InterBold"
+                                       FontSize="24"
+                                       TextColor="{StaticResource TextPrimary}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        
+                        <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Diesen Monat"
+                                       FontFamily="InterMedium"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TextMuted}" />
+                                <Label Text="{Binding ArchivedThisMonth}"
+                                       FontFamily="InterBold"
+                                       FontSize="24"
+                                       TextColor="{StaticResource TextPrimary}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        
+                        <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Speicherplatz"
+                                       FontFamily="InterMedium"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TextMuted}" />
+                                <Label Text="{Binding StorageUsed}"
+                                       FontFamily="InterBold"
+                                       FontSize="24"
+                                       TextColor="{StaticResource TextPrimary}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                    
+                    <!-- By Subject -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Nach Fach"
+                               Style="{StaticResource CardTitleStyle}" />
+                        
+                        <CollectionView ItemsSource="{Binding BySubject}" SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="vm:ArchiveSubjectCount">
+                                    <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="16"
+                                            Margin="0,0,0,8">
+                                        <Grid ColumnDefinitions="*,Auto">
+                                            <Label Grid.Column="0"
+                                                   Text="{Binding Subject}"
+                                                   FontFamily="InterMedium"
+                                                   FontSize="15"
+                                                   TextColor="{StaticResource TextPrimary}" />
+                                            <Border Grid.Column="1"
+                                                    BackgroundColor="{StaticResource PrimaryLight}"
+                                                    StrokeThickness="0"
+                                                    WidthRequest="28"
+                                                    HeightRequest="28"
+                                                    StrokeShape="RoundRectangle 14">
+                                                <Label Text="{Binding Count}"
+                                                       TextColor="{StaticResource TextOnDark}"
+                                                       FontFamily="InterBold"
+                                                       FontSize="13"
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center" />
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                    
+                    <!-- Tip -->
+                    <Border BackgroundColor="{StaticResource PrimaryMedium}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="20">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Tipp"
+                                   FontFamily="InterBold"
+                                   FontSize="16"
+                                   TextColor="{StaticResource TextOnDark}" />
+                            <Label Text="Archiviere alte Notizen regelmäßig, um deine Hauptliste übersichtlich zu halten. Du kannst sie jederzeit wiederherstellen."
+                                   FontFamily="InterRegular"
+                                   FontSize="14"
+                                   LineHeight="1.45"
+                                   TextColor="{StaticResource TextOnDark}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+        
+    </Grid>
+    
+</ContentView>

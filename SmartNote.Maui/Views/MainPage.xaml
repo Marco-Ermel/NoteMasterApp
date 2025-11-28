@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SmartNote.Maui.ViewModels"
+             xmlns:views="clr-namespace:SmartNote.Maui.Views"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="SmartNote.Maui.Views.MainPage"
+             x:DataType="vm:MainViewModel"
+             BackgroundColor="{StaticResource BackgroundLight}">
+    
+    <!--
+        MainPage - Primary container with sidebar and content area
+        Matches the original React app's flex layout with sidebar
+        Uses Grid for responsive layout with fixed sidebar width
+    -->
+    
+    <Grid ColumnDefinitions="288,*">
+        
+        <!-- Sidebar (matching original 72 spacing = 288px) -->
+        <Grid Grid.Column="0" 
+              BackgroundColor="{StaticResource SidebarBackground}"
+              RowDefinitions="Auto,*,Auto">
+            
+            <!-- Logo Header -->
+            <Border Grid.Row="0" 
+                    Padding="32"
+                    StrokeThickness="0,0,0,1"
+                    Stroke="{StaticResource SidebarBorder}">
+                <HorizontalStackLayout Spacing="12">
+                    <!-- App Icon -->
+                    <Image Source="scan_icon.png" 
+                           WidthRequest="32" 
+                           HeightRequest="32" />
+                    <Label Text="SmartNote"
+                           TextColor="{StaticResource TextOnDark}"
+                           FontFamily="InterBold"
+                           FontSize="28"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+            
+            <!-- Navigation Menu -->
+            <ScrollView Grid.Row="1" Padding="24">
+                <VerticalStackLayout Spacing="8">
+                    
+                    <!-- Dashboard -->
+                    <Button Text="Dashboard"
+                            Command="{Binding SelectMenuItemCommand}"
+                            CommandParameter="{Binding MenuItems[0]}"
+                            Style="{StaticResource NavButtonStyle}"
+                            BackgroundColor="{Binding ActiveScreen, Converter={StaticResource ActiveNavConverter}, ConverterParameter=dashboard}" />
+                    
+                    <!-- Notizen -->
+                    <Button Text="Notizen"
+                            Command="{Binding SelectMenuItemCommand}"
+                            CommandParameter="{Binding MenuItems[1]}"
+                            Style="{StaticResource NavButtonStyle}" />
+                    
+                    <!-- Aufgaben -->
+                    <Button Text="Aufgaben"
+                            Command="{Binding SelectMenuItemCommand}"
+                            CommandParameter="{Binding MenuItems[2]}"
+                            Style="{StaticResource NavButtonStyle}" />
+                    
+                    <!-- Zusammenfassungen -->
+                    <Button Text="Zusammenfassungen"
+                            Command="{Binding SelectMenuItemCommand}"
+                            CommandParameter="{Binding MenuItems[3]}"
+                            Style="{StaticResource NavButtonStyle}" />
+                    
+                    <!-- Spickzettel -->
+                    <Button Text="Spickzettel"
+                            Command="{Binding SelectMenuItemCommand}"
+                            CommandParameter="{Binding MenuItems[4]}"
+                            Style="{StaticResource NavButtonStyle}" />
+                    
+                    <!-- Lernpläne -->
+                    <Button Text="Lernpläne"
+                            Command="{Binding SelectMenuItemCommand}"
+                            CommandParameter="{Binding MenuItems[5]}"
+                            Style="{StaticResource NavButtonStyle}" />
+                    
+                    <!-- Archiv -->
+                    <Button Text="Archiv"
+                            Command="{Binding SelectMenuItemCommand}"
+                            CommandParameter="{Binding MenuItems[6]}"
+                            Style="{StaticResource NavButtonStyle}" />
+                    
+                    <!-- Story-Szenen -->
+                    <Button Text="Story-Szenen"
+                            Command="{Binding SelectMenuItemCommand}"
+                            CommandParameter="{Binding MenuItems[7]}"
+                            Style="{StaticResource NavButtonStyle}" />
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+            
+            <!-- New Note Button -->
+            <Border Grid.Row="2" 
+                    Padding="24"
+                    StrokeThickness="0,1,0,0"
+                    Stroke="{StaticResource SidebarBorder}">
+                <Button Text="+ Neue Notiz erstellen"
+                        Command="{Binding CreateNewNoteCommand}"
+                        BackgroundColor="{StaticResource PrimaryLight}"
+                        TextColor="{StaticResource TextOnDark}"
+                        FontFamily="InterMedium"
+                        FontSize="15"
+                        CornerRadius="8"
+                        Padding="24,16" />
+            </Border>
+            
+        </Grid>
+        
+        <!-- Main Content Area -->
+        <ContentView Grid.Column="1" x:Name="ContentArea">
+            <!-- Content is swapped based on ActiveScreen -->
+            <views:DashboardView />
+        </ContentView>
+        
+    </Grid>
+    
+</ContentPage>

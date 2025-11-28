@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SmartNote.Maui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:SmartNote.Maui.Views"
+    Title="SmartNote"
+    FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
+    
+    <!-- 
+        AppShell - Main navigation container
+        Uses Shell for modern navigation with route-based navigation
+        FlyoutBehavior is disabled since we use a custom sidebar
+    -->
+    
+    <!-- Route Registrations for navigation -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <!-- Shell styling to match app theme -->
+            <Style TargetType="Shell">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource BackgroundLight}" />
+                <Setter Property="Shell.ForegroundColor" Value="{StaticResource TextPrimary}" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+    
+    <!-- Main content uses TabBar with single Tab containing all views -->
+    <!-- This allows us to use custom sidebar navigation -->
+    <ShellContent Route="main" ContentTemplate="{DataTemplate views:MainPage}" />
+    
+</Shell>
