@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SmartNote.Maui.ViewModels"
+             xmlns:models="clr-namespace:SmartNote.Maui.Models"
+             x:Class="SmartNote.Maui.Views.TasksView"
+             x:DataType="vm:TasksViewModel">
+    
+    <!-- TasksView - Task management with filtering -->
+    
+    <Grid ColumnDefinitions="*,320">
+        
+        <!-- Main Content -->
+        <ScrollView Grid.Column="0" Padding="48">
+            <VerticalStackLayout Spacing="32">
+                
+                <!-- Header -->
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Grid.Column="0" Spacing="8">
+                        <Label Text="Aufgaben"
+                               Style="{StaticResource LargeTitleStyle}" />
+                        <Label Style="{StaticResource BodyStyle}">
+                            <Label.Text>
+                                <MultiBinding StringFormat="{}{0} offene Aufgaben, {1} erledigt">
+                                    <Binding Path="ActiveTasksCount" />
+                                    <Binding Path="CompletedTasksCount" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                    </VerticalStackLayout>
+                    <Button Grid.Column="1"
+                            Text="+ Neue Aufgabe hinzufügen"
+                            Command="{Binding AddTaskCommand}"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                </Grid>
+                
+                <!-- Filter Bar -->
+                <Border BackgroundColor="{StaticResource PrimaryLightest}"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 12"
+                        Padding="16">
+                    <HorizontalStackLayout Spacing="16">
+                        <Label Text="🔍" FontSize="20" VerticalOptions="Center" />
+                        <Picker ItemsSource="{Binding SubjectFilters}"
+                                SelectedItem="{Binding SelectedSubjectFilter}"
+                                BackgroundColor="{StaticResource BackgroundLight}"
+                                WidthRequest="150" />
+                        <Picker ItemsSource="{Binding PriorityFilters}"
+                                SelectedItem="{Binding SelectedPriorityFilter}"
+                                BackgroundColor="{StaticResource BackgroundLight}"
+                                WidthRequest="150" />
+                        <Picker ItemsSource="{Binding SortOptions}"
+                                SelectedItem="{Binding SelectedSortOption}"
+                                BackgroundColor="{StaticResource BackgroundLight}"
+                                WidthRequest="150" />
+                    </HorizontalStackLayout>
+                </Border>
+                
+                <!-- Active Tasks -->
+                <VerticalStackLayout Spacing="24">
+                    <Label Text="Offene Aufgaben"
+                           FontFamily="InterBold"
+                           FontSize="24"
+                           TextColor="{StaticResource TextPrimary}" />
+                    
+                    <CollectionView ItemsSource="{Binding ActiveTasks}" SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:TaskItem">
+                                <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                        Stroke="{StaticResource BorderLight}"
+                                        StrokeThickness="2"
+                                        StrokeShape="RoundRectangle 12"
+                                        Padding="24"
+                                        Margin="0,0,0,16">
+                                    <Grid ColumnDefinitions="Auto,*">
+                                        <CheckBox Grid.Column="0"
+                                                  IsChecked="{Binding IsCompleted}"
+                                                  Color="{StaticResource PrimaryMedium}" />
+                                        <VerticalStackLayout Grid.Column="1" Spacing="12" Margin="16,0,0,0">
+                                            <HorizontalStackLayout Spacing="12">
+                                                <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                                        StrokeThickness="0"
+                                                        StrokeShape="RoundRectangle 4"
+                                                        Padding="12,4">
+                                                    <Label Text="{Binding Subject}"
+                                                           TextColor="{StaticResource TextOnDark}"
+                                                           FontFamily="InterMedium"
+                                                           FontSize="13" />
+                                                </Border>
+                                                <Border BackgroundColor="{StaticResource PrimaryMedium}"
+                                                        StrokeThickness="0"
+                                                        StrokeShape="RoundRectangle 4"
+                                                        Padding="12,4">
+                                                    <HorizontalStackLayout Spacing="4">
+                                                        <Label Text="⚠️" FontSize="12" IsVisible="{Binding Priority, Converter={StaticResource PriorityHighConverter}}" />
+                                                        <Label Text="{Binding PriorityText}"
+                                                               TextColor="{StaticResource TextOnDark}"
+                                                               FontFamily="InterMedium"
+                                                               FontSize="13" />
+                                                    </HorizontalStackLayout>
+                                                </Border>
+                                                <HorizontalStackLayout Spacing="4">
+                                                    <Label Text="📅" FontSize="14" />
+                                                    <Label Text="{Binding FormattedDueDate}"
+                                                           Style="{StaticResource CaptionStyle}" />
+                                                </HorizontalStackLayout>
+                                            </HorizontalStackLayout>
+                                            <Label Text="{Binding Title}"
+                                                   FontFamily="InterBold"
+                                                   FontSize="18"
+                                                   TextColor="{StaticResource TextPrimary}" />
+                                            <Label Text="{Binding Description}"
+                                                   Style="{StaticResource SecondaryTextStyle}" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+                
+                <!-- Completed Tasks -->
+                <VerticalStackLayout Spacing="24">
+                    <Label Text="Erledigte Aufgaben"
+                           FontFamily="InterBold"
+                           FontSize="24"
+                           TextColor="{StaticResource TextPrimary}" />
+                    
+                    <CollectionView ItemsSource="{Binding CompletedTasks}" SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:TaskItem">
+                                <Border BackgroundColor="{StaticResource PrimaryLightest}"
+                                        Stroke="{StaticResource PrimaryLight}"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 12"
+                                        Padding="24"
+                                        Margin="0,0,0,16"
+                                        Opacity="0.6">
+                                    <Grid ColumnDefinitions="Auto,*">
+                                        <CheckBox Grid.Column="0"
+                                                  IsChecked="{Binding IsCompleted}"
+                                                  Color="{StaticResource PrimaryMedium}" />
+                                        <VerticalStackLayout Grid.Column="1" Spacing="12" Margin="16,0,0,0">
+                                            <HorizontalStackLayout Spacing="12">
+                                                <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                                        StrokeThickness="0"
+                                                        StrokeShape="RoundRectangle 4"
+                                                        Padding="12,4">
+                                                    <Label Text="{Binding Subject}"
+                                                           TextColor="{StaticResource TextPrimary}"
+                                                           FontFamily="InterMedium"
+                                                           FontSize="13" />
+                                                </Border>
+                                                <HorizontalStackLayout Spacing="4">
+                                                    <Label Text="📅" FontSize="14" />
+                                                    <Label Text="{Binding FormattedDueDate}"
+                                                           Style="{StaticResource CaptionStyle}" />
+                                                </HorizontalStackLayout>
+                                            </HorizontalStackLayout>
+                                            <Label Text="{Binding Title}"
+                                                   FontFamily="InterBold"
+                                                   FontSize="18"
+                                                   TextColor="{StaticResource TextPrimary}"
+                                                   TextDecorations="Strikethrough" />
+                                            <Label Text="{Binding Description}"
+                                                   Style="{StaticResource SecondaryTextStyle}" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Right Panel -->
+        <Border Grid.Column="1"
+                BackgroundColor="{StaticResource InfoPanelBackground}"
+                Stroke="{StaticResource PrimaryLight}"
+                StrokeThickness="1,0,0,0"
+                Padding="32">
+            <ScrollView>
+                <VerticalStackLayout Spacing="24">
+                    
+                    <Label Text="Aufgaben nach Fach"
+                           Style="{StaticResource CardTitleStyle}" />
+                    
+                    <CollectionView ItemsSource="{Binding TasksBySubject}" SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="vm:TaskSubjectCount">
+                                <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 8"
+                                        Padding="16"
+                                        Margin="0,0,0,12">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Label Grid.Column="0"
+                                               Text="{Binding Subject}"
+                                               FontFamily="InterMedium"
+                                               FontSize="15"
+                                               TextColor="{StaticResource TextPrimary}" />
+                                        <Border Grid.Column="1"
+                                                BackgroundColor="{StaticResource PrimaryMedium}"
+                                                StrokeThickness="0"
+                                                WidthRequest="28"
+                                                HeightRequest="28"
+                                                StrokeShape="RoundRectangle 14">
+                                            <Label Text="{Binding Count}"
+                                                   TextColor="{StaticResource TextOnDark}"
+                                                   FontFamily="InterBold"
+                                                   FontSize="13"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center" />
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    
+                    <!-- Due This Week -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Diese Woche fällig"
+                               Style="{StaticResource CardTitleStyle}" />
+                        
+                        <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Heute"
+                                       FontFamily="InterBold"
+                                       FontSize="15"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="{Binding DueTodayCount, StringFormat='{0} Aufgabe(n)'}"
+                                       FontFamily="InterRegular"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TextSecondary}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        
+                        <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Diese Woche"
+                                       FontFamily="InterBold"
+                                       FontSize="15"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="{Binding DueThisWeekCount, StringFormat='{0} Aufgaben'}"
+                                       FontFamily="InterRegular"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TextSecondary}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                    
+                    <!-- Productivity Tip -->
+                    <Border BackgroundColor="{StaticResource PrimaryMedium}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="20">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Produktivitäts-Tipp"
+                                   FontFamily="InterBold"
+                                   FontSize="16"
+                                   TextColor="{StaticResource TextOnDark}" />
+                            <Label Text="Beginne mit den wichtigsten Aufgaben am Morgen, wenn deine Konzentration am höchsten ist."
+                                   FontFamily="InterRegular"
+                                   FontSize="14"
+                                   LineHeight="1.45"
+                                   TextColor="{StaticResource TextOnDark}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+        
+    </Grid>
+    
+</ContentView>

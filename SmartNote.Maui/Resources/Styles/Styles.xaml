@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    
+    <!-- 
+        SmartNote Global Styles
+        Modern MAUI styling matching original React design
+        Uses Inter font family with consistent sizing and weights
+    -->
+    
+    <!-- Typography Styles (matching original Inter font specs) -->
+    
+    <!-- Large Title - 32px, Bold -->
+    <Style x:Key="LargeTitleStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterBold" />
+        <Setter Property="FontSize" Value="32" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+    </Style>
+    
+    <!-- Section Title - 26px, Bold -->
+    <Style x:Key="SectionTitleStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterBold" />
+        <Setter Property="FontSize" Value="26" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+    </Style>
+    
+    <!-- Card Title - 22px, Bold -->
+    <Style x:Key="CardTitleStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterBold" />
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+    
+    <!-- Subtitle - 18px, Bold -->
+    <Style x:Key="SubtitleStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterBold" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+    
+    <!-- Body Text - 16px, Regular -->
+    <Style x:Key="BodyStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+    </Style>
+    
+    <!-- Secondary Text - 15px, Regular -->
+    <Style x:Key="SecondaryTextStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
+    </Style>
+    
+    <!-- Caption - 14px, Regular -->
+    <Style x:Key="CaptionStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
+    </Style>
+    
+    <!-- Small Caption - 13px, Medium -->
+    <Style x:Key="SmallCaptionStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
+    </Style>
+    
+    <!-- Navigation Label (Sidebar) - 15px, Medium -->
+    <Style x:Key="NavLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="{StaticResource TextLight}" />
+    </Style>
+    
+    <!-- Navigation Label Active -->
+    <Style x:Key="NavLabelActiveStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="{StaticResource TextOnDark}" />
+    </Style>
+    
+    <!-- Button Styles -->
+    
+    <!-- Primary Button (filled teal) -->
+    <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource ButtonPrimary}" />
+        <Setter Property="TextColor" Value="{StaticResource TextOnDark}" />
+        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="24,16" />
+        <Setter Property="HeightRequest" Value="56" />
+        <Setter Property="BorderWidth" Value="0" />
+    </Style>
+    
+    <!-- Secondary Button (outlined) -->
+    <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundLight}" />
+        <Setter Property="TextColor" Value="{StaticResource ButtonPrimary}" />
+        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="24,16" />
+        <Setter Property="HeightRequest" Value="56" />
+        <Setter Property="BorderColor" Value="{StaticResource ButtonPrimary}" />
+        <Setter Property="BorderWidth" Value="2" />
+    </Style>
+    
+    <!-- Icon Button (small, square) -->
+    <Style x:Key="IconButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryLightest}" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="12" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="WidthRequest" Value="44" />
+        <Setter Property="BorderWidth" Value="0" />
+    </Style>
+    
+    <!-- Navigation Button (sidebar) -->
+    <Style x:Key="NavButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource TextLight}" />
+        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="20,16" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="BorderWidth" Value="0" />
+    </Style>
+    
+    <!-- Card Styles -->
+    
+    <!-- Standard Card -->
+    <Style x:Key="CardStyle" TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderLight}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="24" />
+        <Setter Property="HasShadow" Value="True" />
+    </Style>
+    
+    <!-- Accent Card (light teal background) -->
+    <Style x:Key="AccentCardStyle" TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryLightest}" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderMedium}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="24" />
+        <Setter Property="HasShadow" Value="False" />
+    </Style>
+    
+    <!-- Dark Card (for tips and highlights) -->
+    <Style x:Key="DarkCardStyle" TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryMedium}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="HasShadow" Value="False" />
+    </Style>
+    
+    <!-- Input Styles -->
+    
+    <!-- Standard Entry -->
+    <Style x:Key="EntryStyle" TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundLight}" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource TextMuted}" />
+        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontSize" Value="15" />
+    </Style>
+    
+    <!-- Standard Editor (multiline text) -->
+    <Style x:Key="EditorStyle" TargetType="Editor">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource TextMuted}" />
+        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+    
+    <!-- Tag/Badge Styles -->
+    
+    <!-- Subject Badge -->
+    <Style x:Key="SubjectBadgeStyle" TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryLight}" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Padding" Value="12,4" />
+        <Setter Property="HasShadow" Value="False" />
+    </Style>
+    
+    <!-- Tag Style -->
+    <Style x:Key="TagStyle" TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryLightest}" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Padding" Value="8,4" />
+        <Setter Property="HasShadow" Value="False" />
+    </Style>
+    
+    <!-- Progress Bar -->
+    <Style x:Key="ProgressBarStyle" TargetType="ProgressBar">
+        <Setter Property="ProgressColor" Value="{StaticResource PrimaryMedium}" />
+        <Setter Property="HeightRequest" Value="8" />
+    </Style>
+    
+    <!-- Checkbox -->
+    <Style x:Key="CheckBoxStyle" TargetType="CheckBox">
+        <Setter Property="Color" Value="{StaticResource PrimaryMedium}" />
+        <Setter Property="WidthRequest" Value="24" />
+        <Setter Property="HeightRequest" Value="24" />
+    </Style>
+    
+    <!-- Separator -->
+    <Style x:Key="SeparatorStyle" TargetType="BoxView">
+        <Setter Property="Color" Value="{StaticResource SeparatorColor}" />
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+    </Style>
+    
+    <!-- Animations duration constants (referenced in code-behind) -->
+    <!-- Note: Actual animations are applied via CommunityToolkit.Maui behaviors -->
+    
+</ResourceDictionary>

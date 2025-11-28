@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SmartNote.Maui.ViewModels"
+             xmlns:models="clr-namespace:SmartNote.Maui.Models"
+             x:Class="SmartNote.Maui.Views.NotesListView"
+             x:DataType="vm:NotesListViewModel">
+    
+    <!--
+        NotesListView - Displays all notes with filtering
+        Matches the original React NotesList component
+    -->
+    
+    <Grid ColumnDefinitions="*,320">
+        
+        <!-- Main Content -->
+        <ScrollView Grid.Column="0" Padding="48">
+            <VerticalStackLayout Spacing="32">
+                
+                <!-- Header with Add Button -->
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Grid.Column="0" Spacing="8">
+                        <Label Text="Meine Notizen"
+                               Style="{StaticResource LargeTitleStyle}" />
+                        <Label Text="{Binding NotesCount, StringFormat='{0} Notizen gespeichert'}"
+                               Style="{StaticResource BodyStyle}" />
+                    </VerticalStackLayout>
+                    
+                    <Button Grid.Column="1"
+                            Text="+ Neue Notiz hinzufügen"
+                            Command="{Binding CreateNoteCommand}"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                </Grid>
+                
+                <!-- Notes List -->
+                <CollectionView ItemsSource="{Binding Notes}"
+                                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Note">
+                            <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                    Stroke="{StaticResource BorderLight}"
+                                    StrokeThickness="2"
+                                    StrokeShape="RoundRectangle 12"
+                                    Padding="24"
+                                    Margin="0,0,0,24">
+                                <VerticalStackLayout Spacing="16">
+                                    
+                                    <!-- Top Row: Subject, Date, Actions -->
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <HorizontalStackLayout Grid.Column="0" Spacing="12">
+                                            <!-- Subject Badge -->
+                                            <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                                    StrokeThickness="0"
+                                                    StrokeShape="RoundRectangle 4"
+                                                    Padding="12,4">
+                                                <Label Text="{Binding Subject}"
+                                                       TextColor="{StaticResource TextOnDark}"
+                                                       FontFamily="InterMedium"
+                                                       FontSize="13" />
+                                            </Border>
+                                            <!-- Date -->
+                                            <HorizontalStackLayout Spacing="4">
+                                                <Image Source="clock_icon.png"
+                                                       WidthRequest="14"
+                                                       HeightRequest="14" />
+                                                <Label Text="{Binding FormattedDate}"
+                                                       Style="{StaticResource CaptionStyle}" />
+                                            </HorizontalStackLayout>
+                                        </HorizontalStackLayout>
+                                        
+                                        <!-- Action Buttons -->
+                                        <HorizontalStackLayout Grid.Column="1" Spacing="8">
+                                            <Button Text="✏️"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesListViewModel}}, Path=EditNoteCommand}"
+                                                    CommandParameter="{Binding}"
+                                                    Style="{StaticResource IconButtonStyle}" />
+                                            <Button Text="🗑️"
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesListViewModel}}, Path=DeleteNoteCommand}"
+                                                    CommandParameter="{Binding}"
+                                                    Style="{StaticResource IconButtonStyle}" />
+                                        </HorizontalStackLayout>
+                                    </Grid>
+                                    
+                                    <!-- Title -->
+                                    <Label Text="{Binding Title}"
+                                           Style="{StaticResource CardTitleStyle}" />
+                                    
+                                    <!-- Preview -->
+                                    <Label Text="{Binding Preview}"
+                                           Style="{StaticResource SecondaryTextStyle}"
+                                           MaxLines="2"
+                                           LineBreakMode="TailTruncation" />
+                                    
+                                    <!-- Tags -->
+                                    <HorizontalStackLayout Spacing="8">
+                                        <Image Source="tag_icon.png"
+                                               WidthRequest="14"
+                                               HeightRequest="14" />
+                                        <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Tags}"
+                                                               Spacing="8">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate x:DataType="x:String">
+                                                    <Border BackgroundColor="{StaticResource PrimaryLightest}"
+                                                            StrokeThickness="0"
+                                                            StrokeShape="RoundRectangle 4"
+                                                            Padding="8,4">
+                                                        <Label Text="{Binding}"
+                                                               FontFamily="InterRegular"
+                                                               FontSize="13"
+                                                               TextColor="{StaticResource TextPrimary}" />
+                                                    </Border>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </HorizontalStackLayout>
+                                    </HorizontalStackLayout>
+                                    
+                                    <!-- Action Buttons Row -->
+                                    <BoxView Color="{StaticResource BorderLight}"
+                                             HeightRequest="1"
+                                             Margin="0,8,0,0" />
+                                    
+                                    <HorizontalStackLayout Spacing="12">
+                                        <Button Text="Öffnen"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesListViewModel}}, Path=OpenNoteCommand}"
+                                                CommandParameter="{Binding}"
+                                                Style="{StaticResource PrimaryButtonStyle}"
+                                                Padding="20,8"
+                                                HeightRequest="40" />
+                                        <Button Text="Zusammenfassung"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesListViewModel}}, Path=ViewSummaryCommand}"
+                                                CommandParameter="{Binding}"
+                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                Padding="20,8"
+                                                HeightRequest="40" />
+                                        <Button Text="Spickzettel"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesListViewModel}}, Path=ViewCheatSheetCommand}"
+                                                CommandParameter="{Binding}"
+                                                Style="{StaticResource SecondaryButtonStyle}"
+                                                Padding="20,8"
+                                                HeightRequest="40" />
+                                    </HorizontalStackLayout>
+                                    
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Right Panel: Filters -->
+        <Border Grid.Column="1"
+                BackgroundColor="{StaticResource InfoPanelBackground}"
+                Stroke="{StaticResource PrimaryLight}"
+                StrokeThickness="1,0,0,0"
+                Padding="32">
+            <ScrollView>
+                <VerticalStackLayout Spacing="32">
+                    
+                    <!-- Subjects Filter -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Fächer"
+                               Style="{StaticResource CardTitleStyle}" />
+                        
+                        <CollectionView ItemsSource="{Binding Subjects}"
+                                        SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="12"
+                                            Margin="0,0,0,8">
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesListViewModel}}, Path=FilterBySubjectCommand}"
+                                                                  CommandParameter="{Binding}" />
+                                        </Border.GestureRecognizers>
+                                        <Label Text="{Binding}"
+                                               FontFamily="InterMedium"
+                                               FontSize="15"
+                                               TextColor="{StaticResource TextPrimary}" />
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                    
+                    <!-- Tags Filter -->
+                    <VerticalStackLayout Spacing="16">
+                        <Label Text="Häufige Tags"
+                               Style="{StaticResource CardTitleStyle}" />
+                        
+                        <FlexLayout Wrap="Wrap"
+                                    BindableLayout.ItemsSource="{Binding Tags}"
+                                    JustifyContent="Start">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="12,8"
+                                            Margin="0,0,8,8">
+                                        <Border.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:NotesListViewModel}}, Path=FilterByTagCommand}"
+                                                                  CommandParameter="{Binding}" />
+                                        </Border.GestureRecognizers>
+                                        <Label Text="{Binding}"
+                                               TextColor="{StaticResource TextOnDark}"
+                                               FontFamily="InterMedium"
+                                               FontSize="13" />
+                                    </Border>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                    </VerticalStackLayout>
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+        
+    </Grid>
+    
+</ContentView>

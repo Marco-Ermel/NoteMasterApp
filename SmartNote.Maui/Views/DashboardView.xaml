@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SmartNote.Maui.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="SmartNote.Maui.Views.DashboardView"
+             x:DataType="vm:DashboardViewModel">
+    
+    <!--
+        DashboardView - Home screen with quick actions and overview
+        Matches the original React Dashboard component layout
+        Grid layout with main content and right info panel
+    -->
+    
+    <Grid ColumnDefinitions="*,320">
+        
+        <!-- Main Content Area -->
+        <ScrollView Grid.Column="0" Padding="48">
+            <VerticalStackLayout Spacing="32">
+                
+                <!-- Header -->
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="SmartNote – Dein digitaler Lernassistent"
+                           Style="{StaticResource LargeTitleStyle}" />
+                    <Label Text="Digitalisiere deine handschriftlichen Notizen und erstelle automatisch Zusammenfassungen, Spickzettel und Lernpläne"
+                           Style="{StaticResource BodyStyle}" />
+                </VerticalStackLayout>
+                
+                <!-- Action Buttons (3 columns) -->
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="24">
+                    
+                    <!-- New Note Button -->
+                    <Border Grid.Column="0"
+                            BackgroundColor="{StaticResource PrimaryLightest}"
+                            Stroke="{StaticResource PrimaryLight}"
+                            StrokeThickness="2"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="32">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CreateNoteCommand}" />
+                        </Border.GestureRecognizers>
+                        <VerticalStackLayout Spacing="8">
+                            <Image Source="plus_icon.png" 
+                                   WidthRequest="32" 
+                                   HeightRequest="32" 
+                                   HorizontalOptions="Start" />
+                            <Label Text="Neue Notiz erstellen"
+                                   Style="{StaticResource SubtitleStyle}"
+                                   Margin="0,8,0,0" />
+                            <Label Text="Erstelle eine neue digitale Notiz am PC"
+                                   Style="{StaticResource CaptionStyle}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <!-- View Notes Button -->
+                    <Border Grid.Column="1"
+                            BackgroundColor="{StaticResource BackgroundLight}"
+                            Stroke="{StaticResource PrimaryMedium}"
+                            StrokeThickness="2"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="32">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ViewNotesCommand}" />
+                        </Border.GestureRecognizers>
+                        <VerticalStackLayout Spacing="8">
+                            <Image Source="file_text_icon.png" 
+                                   WidthRequest="32" 
+                                   HeightRequest="32" 
+                                   HorizontalOptions="Start" />
+                            <Label Text="Notizen anzeigen"
+                                   Style="{StaticResource SubtitleStyle}"
+                                   Margin="0,8,0,0" />
+                            <Label Text="Alle deine gespeicherten Notizen"
+                                   Style="{StaticResource CaptionStyle}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <!-- View Tasks Button -->
+                    <Border Grid.Column="2"
+                            BackgroundColor="{StaticResource BackgroundLight}"
+                            Stroke="{StaticResource PrimaryMedium}"
+                            StrokeThickness="2"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="32">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ViewTasksCommand}" />
+                        </Border.GestureRecognizers>
+                        <VerticalStackLayout Spacing="8">
+                            <Image Source="check_square_icon.png" 
+                                   WidthRequest="32" 
+                                   HeightRequest="32" 
+                                   HorizontalOptions="Start" />
+                            <Label Text="Aufgaben ansehen"
+                                   Style="{StaticResource SubtitleStyle}"
+                                   Margin="0,8,0,0" />
+                            <Label Text="Verwalte deine Lernaufgaben"
+                                   Style="{StaticResource CaptionStyle}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                </Grid>
+                
+                <!-- Recent Notes Section -->
+                <VerticalStackLayout Spacing="24">
+                    <Label Text="Zuletzt bearbeitet"
+                           Style="{StaticResource SectionTitleStyle}" />
+                    
+                    <CollectionView ItemsSource="{Binding RecentNotes}"
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                        Stroke="{StaticResource BorderLight}"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 12"
+                                        Padding="24"
+                                        Margin="0,0,0,16">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <VerticalStackLayout Grid.Column="0" Spacing="8">
+                                            <Label Text="{Binding Title}"
+                                                   Style="{StaticResource SubtitleStyle}" />
+                                            <Label Text="{Binding Preview}"
+                                                   Style="{StaticResource SecondaryTextStyle}"
+                                                   MaxLines="2"
+                                                   LineBreakMode="TailTruncation" />
+                                            <Label Text="{Binding FormattedDate}"
+                                                   Style="{StaticResource CaptionStyle}" />
+                                        </VerticalStackLayout>
+                                        <Image Grid.Column="1"
+                                               Source="clock_icon.png"
+                                               WidthRequest="16"
+                                               HeightRequest="16"
+                                               VerticalOptions="Start" />
+                                    </Grid>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:DashboardViewModel}}, Path=OpenNoteCommand}"
+                                                              CommandParameter="{Binding}" />
+                                    </Border.GestureRecognizers>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+                
+                <!-- Recommended Summaries -->
+                <VerticalStackLayout Spacing="24">
+                    <Label Text="Empfohlene Zusammenfassungen"
+                           Style="{StaticResource SectionTitleStyle}" />
+                    
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="24">
+                        
+                        <!-- Summary Card 1 -->
+                        <Border Grid.Column="0"
+                                BackgroundColor="{StaticResource PrimaryLightest}"
+                                Stroke="{StaticResource PrimaryLight}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="24">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ViewSummaryCommand}" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout Spacing="16">
+                                <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 4"
+                                        Padding="12,4"
+                                        HorizontalOptions="Start">
+                                    <Label Text="Chemie"
+                                           TextColor="{StaticResource TextOnDark}"
+                                           FontFamily="InterMedium"
+                                           FontSize="13" />
+                                </Border>
+                                <Label Text="Organische Chemie Zusammenfassung"
+                                       Style="{StaticResource SubtitleStyle}" />
+                                <ProgressBar Progress="0.85"
+                                             ProgressColor="{StaticResource PrimaryMedium}"
+                                             HeightRequest="8" />
+                            </VerticalStackLayout>
+                        </Border>
+                        
+                        <!-- Summary Card 2 -->
+                        <Border Grid.Column="1"
+                                BackgroundColor="{StaticResource PrimaryLightest}"
+                                Stroke="{StaticResource PrimaryLight}"
+                                StrokeThickness="1"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="24">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ViewSummaryCommand}" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout Spacing="16">
+                                <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                        StrokeThickness="0"
+                                        StrokeShape="RoundRectangle 4"
+                                        Padding="12,4"
+                                        HorizontalOptions="Start">
+                                    <Label Text="Geschichte"
+                                           TextColor="{StaticResource TextOnDark}"
+                                           FontFamily="InterMedium"
+                                           FontSize="13" />
+                                </Border>
+                                <Label Text="Weimarer Republik Spickzettel"
+                                       Style="{StaticResource SubtitleStyle}" />
+                                <ProgressBar Progress="1.0"
+                                             ProgressColor="{StaticResource PrimaryMedium}"
+                                             HeightRequest="8" />
+                            </VerticalStackLayout>
+                        </Border>
+                        
+                    </Grid>
+                </VerticalStackLayout>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Right Info Panel -->
+        <Border Grid.Column="1"
+                BackgroundColor="{StaticResource InfoPanelBackground}"
+                Stroke="{StaticResource PrimaryLight}"
+                StrokeThickness="1,0,0,0"
+                Padding="32">
+            <ScrollView>
+                <VerticalStackLayout Spacing="32">
+                    
+                    <!-- Today's Tasks -->
+                    <VerticalStackLayout Spacing="16">
+                        <Label Text="Heute anstehend"
+                               Style="{StaticResource CardTitleStyle}" />
+                        
+                        <CollectionView ItemsSource="{Binding TodaysTasks}"
+                                        SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="16"
+                                            Margin="0,0,0,12">
+                                        <VerticalStackLayout Spacing="8">
+                                            <HorizontalStackLayout Spacing="8">
+                                                <CheckBox IsChecked="{Binding IsCompleted}"
+                                                          Color="{StaticResource PrimaryMedium}" />
+                                                <Label Text="{Binding Title}"
+                                                       FontFamily="InterMedium"
+                                                       FontSize="15"
+                                                       TextColor="{StaticResource TextPrimary}"
+                                                       VerticalOptions="Center" />
+                                            </HorizontalStackLayout>
+                                            <Label Text="{Binding Description}"
+                                                   FontFamily="InterRegular"
+                                                   FontSize="13"
+                                                   TextColor="{StaticResource TextSecondary}"
+                                                   Margin="32,0,0,0" />
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                    
+                    <!-- Statistics -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Statistik"
+                               Style="{StaticResource CardTitleStyle}" />
+                        
+                        <!-- Stat Row 1 -->
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   Text="Notizen diese Woche"
+                                   Style="{StaticResource SecondaryTextStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding NotesThisWeek}"
+                                   FontFamily="InterBold"
+                                   FontSize="15"
+                                   TextColor="{StaticResource TextPrimary}" />
+                        </Grid>
+                        
+                        <!-- Stat Row 2 -->
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   Text="Erledigte Aufgaben"
+                                   Style="{StaticResource SecondaryTextStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding CompletedTasks, StringFormat='{0}'}/{Binding TotalTasks}"
+                                   FontFamily="InterBold"
+                                   FontSize="15"
+                                   TextColor="{StaticResource TextPrimary}" />
+                        </Grid>
+                        
+                        <!-- Stat Row 3 -->
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Grid.Column="0"
+                                   Text="Lernzeit heute"
+                                   Style="{StaticResource SecondaryTextStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding StudyTimeToday}"
+                                   FontFamily="InterBold"
+                                   FontSize="15"
+                                   TextColor="{StaticResource TextPrimary}" />
+                        </Grid>
+                    </VerticalStackLayout>
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+        
+    </Grid>
+    
+</ContentView>

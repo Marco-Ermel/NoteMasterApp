@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SmartNote.Maui.ViewModels"
+             x:Class="SmartNote.Maui.Views.CheatSheetView"
+             x:DataType="vm:CheatSheetViewModel">
+    
+    <!-- CheatSheetView - Compact learning reference -->
+    
+    <Grid ColumnDefinitions="*,320">
+        
+        <!-- Main Content -->
+        <ScrollView Grid.Column="0" Padding="48">
+            <VerticalStackLayout Spacing="32">
+                
+                <Button Text="← Zurück zu Notizen"
+                        Command="{Binding BackToNoteCommand}"
+                        BackgroundColor="Transparent"
+                        TextColor="{StaticResource PrimaryMedium}"
+                        FontFamily="InterMedium"
+                        FontSize="15"
+                        HorizontalOptions="Start" />
+                
+                <!-- Header -->
+                <VerticalStackLayout Spacing="16">
+                    <Border BackgroundColor="{StaticResource PrimaryLight}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 8"
+                            Padding="16,8"
+                            HorizontalOptions="Start">
+                        <Label Text="{Binding Subject}"
+                               TextColor="{StaticResource TextOnDark}"
+                               FontFamily="InterMedium"
+                               FontSize="14" />
+                    </Border>
+                    <Label Text="{Binding CheatSheetTitle}"
+                           Style="{StaticResource LargeTitleStyle}" />
+                    <Label Text="Kompakte Übersicht für schnelles Lernen"
+                           Style="{StaticResource BodyStyle}" />
+                </VerticalStackLayout>
+                
+                <!-- Cheat Sheet Card -->
+                <Border BackgroundColor="{StaticResource BackgroundLight}"
+                        Stroke="{StaticResource PrimaryMedium}"
+                        StrokeThickness="4"
+                        StrokeShape="RoundRectangle 16"
+                        Padding="40">
+                    <VerticalStackLayout Spacing="32">
+                        
+                        <!-- Title Section -->
+                        <VerticalStackLayout Spacing="8"
+                                             HorizontalOptions="Center">
+                            <Label Text="{Binding CheatSheetTitle}"
+                                   FontFamily="InterBold"
+                                   FontSize="28"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource TextPrimary}" />
+                            <Label Text="{Binding Subtitle}"
+                                   FontFamily="InterMedium"
+                                   FontSize="15"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource TextMuted}" />
+                            <BoxView Color="{StaticResource BorderLight}"
+                                     HeightRequest="2"
+                                     Margin="0,16" />
+                        </VerticalStackLayout>
+                        
+                        <!-- Two Column Content -->
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="32">
+                            
+                            <!-- Left Column -->
+                            <VerticalStackLayout Grid.Column="0" Spacing="24">
+                                
+                                <!-- Definition -->
+                                <VerticalStackLayout Spacing="12">
+                                    <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="16,8"
+                                            HorizontalOptions="Start">
+                                        <Label Text="DEFINITION"
+                                               TextColor="{StaticResource TextOnDark}"
+                                               FontFamily="InterBold"
+                                               FontSize="16" />
+                                    </Border>
+                                    <Label Text="{Binding Definition}"
+                                           Style="{StaticResource SecondaryTextStyle}"
+                                           LineHeight="1.5" />
+                                </VerticalStackLayout>
+                                
+                                <!-- Formula -->
+                                <VerticalStackLayout Spacing="12">
+                                    <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="16,8"
+                                            HorizontalOptions="Start">
+                                        <Label Text="SUMMENFORMEL"
+                                               TextColor="{StaticResource TextOnDark}"
+                                               FontFamily="InterBold"
+                                               FontSize="16" />
+                                    </Border>
+                                    <Border BackgroundColor="{StaticResource PrimaryLightest}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="16">
+                                        <Label Text="{Binding Formula}"
+                                               FontFamily="InterBold"
+                                               FontSize="20"
+                                               HorizontalOptions="Center"
+                                               TextColor="{StaticResource TextPrimary}" />
+                                    </Border>
+                                </VerticalStackLayout>
+                                
+                                <!-- Properties -->
+                                <VerticalStackLayout Spacing="12">
+                                    <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="16,8"
+                                            HorizontalOptions="Start">
+                                        <Label Text="EIGENSCHAFTEN"
+                                               TextColor="{StaticResource TextOnDark}"
+                                               FontFamily="InterBold"
+                                               FontSize="16" />
+                                    </Border>
+                                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding Properties}"
+                                                         Spacing="8">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate x:DataType="x:String">
+                                                <HorizontalStackLayout Spacing="8">
+                                                    <Label Text="•"
+                                                           TextColor="{StaticResource PrimaryLight}"
+                                                           FontSize="14" />
+                                                    <Label Text="{Binding}"
+                                                           Style="{StaticResource SecondaryTextStyle}" />
+                                                </HorizontalStackLayout>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </VerticalStackLayout>
+                                </VerticalStackLayout>
+                                
+                            </VerticalStackLayout>
+                            
+                            <!-- Right Column -->
+                            <VerticalStackLayout Grid.Column="1" Spacing="24">
+                                
+                                <!-- Alkanes -->
+                                <VerticalStackLayout Spacing="12">
+                                    <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="16,8"
+                                            HorizontalOptions="Start">
+                                        <Label Text="WICHTIGE ALKANE"
+                                               TextColor="{StaticResource TextOnDark}"
+                                               FontFamily="InterBold"
+                                               FontSize="16" />
+                                    </Border>
+                                    <VerticalStackLayout BindableLayout.ItemsSource="{Binding Alkanes}"
+                                                         Spacing="8">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate x:DataType="vm:AlkaneItem">
+                                                <Border BackgroundColor="{StaticResource PrimaryLightest}"
+                                                        StrokeThickness="0"
+                                                        StrokeShape="RoundRectangle 8"
+                                                        Padding="12">
+                                                    <VerticalStackLayout Spacing="4">
+                                                        <Grid ColumnDefinitions="*,Auto">
+                                                            <Label Grid.Column="0"
+                                                                   Text="{Binding Name}"
+                                                                   FontFamily="InterBold"
+                                                                   FontSize="15"
+                                                                   TextColor="{StaticResource TextPrimary}" />
+                                                            <Label Grid.Column="1"
+                                                                   Text="{Binding Formula}"
+                                                                   FontFamily="InterMedium"
+                                                                   FontSize="14"
+                                                                   TextColor="{StaticResource TextSecondary}" />
+                                                        </Grid>
+                                                        <Label Text="{Binding Note}"
+                                                               FontFamily="InterRegular"
+                                                               FontSize="12"
+                                                               TextColor="{StaticResource TextMuted}" />
+                                                    </VerticalStackLayout>
+                                                </Border>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </VerticalStackLayout>
+                                </VerticalStackLayout>
+                                
+                                <!-- Reactions -->
+                                <VerticalStackLayout Spacing="12">
+                                    <Border BackgroundColor="{StaticResource PrimaryLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="16,8"
+                                            HorizontalOptions="Start">
+                                        <Label Text="REAKTIONEN"
+                                               TextColor="{StaticResource TextOnDark}"
+                                               FontFamily="InterBold"
+                                               FontSize="16" />
+                                    </Border>
+                                    <Label Text="{Binding Reactions}"
+                                           Style="{StaticResource SecondaryTextStyle}"
+                                           LineHeight="1.5" />
+                                </VerticalStackLayout>
+                                
+                            </VerticalStackLayout>
+                            
+                        </Grid>
+                        
+                        <!-- Memory Tip -->
+                        <Border BackgroundColor="{StaticResource PrimaryMedium}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 12"
+                                Padding="20">
+                            <Label Text="{Binding MemoryTip}"
+                                   FontFamily="InterBold"
+                                   FontSize="16"
+                                   LineHeight="1.5"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource TextOnDark}" />
+                        </Border>
+                        
+                    </VerticalStackLayout>
+                </Border>
+                
+                <!-- Action Buttons -->
+                <HorizontalStackLayout Spacing="16">
+                    <Button Text="📄 Spickzettel exportieren"
+                            Command="{Binding ExportPdfCommand}"
+                            Style="{StaticResource PrimaryButtonStyle}" />
+                    <Button Text="✏️ Bearbeiten"
+                            Command="{Binding EditCommand}"
+                            Style="{StaticResource SecondaryButtonStyle}" />
+                    <Button Text="📝 Zurück zur Notiz"
+                            Command="{Binding BackToNoteCommand}"
+                            Style="{StaticResource SecondaryButtonStyle}" />
+                </HorizontalStackLayout>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+        
+        <!-- Right Panel -->
+        <Border Grid.Column="1"
+                BackgroundColor="{StaticResource InfoPanelBackground}"
+                Stroke="{StaticResource PrimaryLight}"
+                StrokeThickness="1,0,0,0"
+                Padding="32">
+            <ScrollView>
+                <VerticalStackLayout Spacing="24">
+                    
+                    <Label Text="Spickzettel-Info"
+                           Style="{StaticResource CardTitleStyle}" />
+                    
+                    <!-- Info Cards -->
+                    <VerticalStackLayout Spacing="16">
+                        <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Format"
+                                       FontFamily="InterMedium"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TextMuted}" />
+                                <Label Text="{Binding Format}"
+                                       FontFamily="InterBold"
+                                       FontSize="16"
+                                       TextColor="{StaticResource TextPrimary}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        
+                        <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Komprimierung"
+                                       FontFamily="InterMedium"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TextMuted}" />
+                                <Label Text="{Binding Compression}"
+                                       FontFamily="InterBold"
+                                       FontSize="16"
+                                       TextColor="{StaticResource TextPrimary}" />
+                            </VerticalStackLayout>
+                        </Border>
+                        
+                        <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8"
+                                Padding="16">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Lesbarkeit"
+                                       FontFamily="InterMedium"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TextMuted}" />
+                                <Label Text="{Binding Readability}"
+                                       FontFamily="InterBold"
+                                       FontSize="16"
+                                       TextColor="{StaticResource TextPrimary}" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                    
+                    <!-- Export Options -->
+                    <Border BackgroundColor="{StaticResource PrimaryMedium}"
+                            StrokeThickness="0"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="20">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Export-Optionen"
+                                   FontFamily="InterBold"
+                                   FontSize="16"
+                                   TextColor="{StaticResource TextOnDark}" />
+                            <Button Text="Als PDF speichern"
+                                    Command="{Binding ExportPdfCommand}"
+                                    BackgroundColor="{StaticResource BackgroundLight}"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    FontFamily="InterMedium"
+                                    FontSize="14"
+                                    CornerRadius="8" />
+                            <Button Text="Als Bild exportieren"
+                                    Command="{Binding ExportImageCommand}"
+                                    BackgroundColor="{StaticResource BackgroundLight}"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    FontFamily="InterMedium"
+                                    FontSize="14"
+                                    CornerRadius="8" />
+                            <Button Text="Drucken"
+                                    Command="{Binding PrintCommand}"
+                                    BackgroundColor="{StaticResource BackgroundLight}"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    FontFamily="InterMedium"
+                                    FontSize="14"
+                                    CornerRadius="8" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <!-- Other Cheat Sheets -->
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Weitere Spickzettel"
+                               Style="{StaticResource CardTitleStyle}" />
+                        
+                        <VerticalStackLayout BindableLayout.ItemsSource="{Binding OtherCheatSheets}"
+                                             Spacing="8">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <Border BackgroundColor="{StaticResource BackgroundLight}"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="16">
+                                        <Label Text="{Binding}"
+                                               FontFamily="InterMedium"
+                                               FontSize="14"
+                                               TextColor="{StaticResource TextPrimary}" />
+                                    </Border>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                    
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+        
+    </Grid>
+    
+</ContentView>
