@@ -117,6 +117,7 @@
                                                 <Grid ColumnDefinitions="Auto,*">
                                                     <CheckBox Grid.Column="0"
                                                               IsChecked="{Binding IsCompleted}"
+                                                              CheckedChanged="OnSessionCheckedChanged"
                                                               Color="{StaticResource PrimaryMedium}"
                                                               VerticalOptions="Center" />
                                                     <VerticalStackLayout Grid.Column="1" Spacing="8" Margin="16,0,0,0">

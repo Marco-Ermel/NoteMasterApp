@@ -1,4 +1,5 @@
 using SmartNote.Maui.ViewModels;
+using SmartNote.Maui.Models;
 
 namespace SmartNote.Maui.Views;
 
@@ -30,6 +31,15 @@ public partial class StudyPlanView : ContentView
         if (_viewModel != null)
         {
             _ = _viewModel.LoadDataCommand.ExecuteAsync(null);
+        }
+    }
+    
+    private void OnSessionCheckedChanged(object? sender, CheckedChangedEventArgs e)
+    {
+        if (sender is CheckBox checkBox && checkBox.BindingContext is StudySession session && _viewModel != null)
+        {
+            // Execute the toggle command
+            _ = _viewModel.ToggleSessionCommand.ExecuteAsync(session);
         }
     }
 }
