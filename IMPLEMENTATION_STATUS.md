@@ -185,17 +185,17 @@ SmartNote.Maui/
 ## Fehlende Features (Optional/Nice-to-Have):
 
 ### Export-Funktionalität (teilweise):
-- ⚠️ UI-Buttons vorhanden für PDF/Text Export
-- ❌ Backend-Logik für tatsächlichen PDF-Export fehlt
+- ⚠️  UI-Buttons vorhanden für PDF/Text Export
+- ⚠️  Backend-Logik für tatsächlichen PDF-Export fehlt
 - **Hinweis:** Würde externe Libraries benötigen (z.B. QuestPDF, iTextSharp)
 
 ### Cloud-Synchronisation:
-- ❌ Nicht implementiert (war nicht in Anforderungen)
+- ℹ️  Nicht implementiert (war nicht in Anforderungen)
 - **Alternative:** Lokale JSON-Dateien (einfach erweiterbar)
 
 ### Erweiterte KI-Features:
-- ⚠️ Mock AI-Generierung vorhanden
-- ❌ Echte KI-Integration fehlt
+- ⚠️  Mock AI-Generierung vorhanden
+- ℹ️  Echte KI-Integration fehlt
 - **Hinweis:** Würde externe API benötigen (OpenAI, Azure AI)
 
 ## Qualitätssicherung:

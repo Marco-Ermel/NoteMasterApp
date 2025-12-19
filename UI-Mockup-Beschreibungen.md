@@ -16,7 +16,7 @@ Dieses Dokument enthält präzise Beschreibungen aller UI-Screens der SmartNote-
 **Struktur:** Zwei-Spalten-Layout
 - **Linke Sidebar:** 220px Breite, dunkler Teal-Hintergrund (#103B40)
 - **Hauptbereich:** ~900px Breite, weißer Hintergrund
-- **Rechte Info-Sidebar:** 320px Breite, hellgrauer Hintergrund (#F9F9F9)
+- **Rechte Info-Sidebar:** 320px Breite, hellgrauer Hintergrund (#F9F9F9 / #FAFAFA)
 
 ### 1.2 Linke Navigation Sidebar
 **Position:** Fest links, volle Höhe
