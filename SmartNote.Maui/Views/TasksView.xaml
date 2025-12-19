@@ -139,6 +139,7 @@
                                     <Grid ColumnDefinitions="Auto,*">
                                         <CheckBox Grid.Column="0"
                                                   IsChecked="{Binding IsCompleted}"
+                                                  CheckedChanged="OnTaskCheckedChanged"
                                                   Color="{StaticResource PrimaryMedium}" />
                                         <VerticalStackLayout Grid.Column="1" Spacing="12" Margin="16,0,0,0">
                                             <HorizontalStackLayout Spacing="12">
