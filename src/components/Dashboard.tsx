@@ -1,438 +1,265 @@
-import { Plus, CheckSquare, Clock, Star } from 'lucide-react';
-import { FileText } from 'lucide-react';
+import { Camera, FileText, BookOpen, Calendar, Layers, CheckSquare } from 'lucide-react';
 
 interface DashboardProps {
   onNavigate: (screen: string) => void;
 }
 
 export function Dashboard({ onNavigate }: DashboardProps) {
-  const recentNotes = [
-    { id: 1, title: 'Organische Chemie - Kapitel 3', date: '22. Nov 2025', preview: 'Alkane, Alkene und Alkine - Strukturformeln und Reaktionen...' },
-    { id: 2, title: 'Geschichte - Weimarer Republik', date: '21. Nov 2025', preview: 'Entstehung, Krisenjahre und kulturelle Blüte der 1920er Jahre...' },
-    { id: 3, title: 'Mathematik - Integralrechnung', date: '20. Nov 2025', preview: 'Stammfunktionen, bestimmte und unbestimmte Integrale...' },
-  ];
-
-  const recommendedSummaries = [
-    { id: 1, title: 'Organische Chemie Zusammenfassung', subject: 'Chemie', progress: 85 },
-    { id: 2, title: 'Weimarer Republik Spickzettel', subject: 'Geschichte', progress: 100 },
-  ];
-
   return (
-    <div className="flex">
-      {/* Main Content */}
-      <div className="flex-1 p-12">
-        <div className="mb-12">
+    <div 
+      className="flex items-center justify-center min-h-screen"
+      style={{ backgroundColor: '#103B40' }}
+    >
+      <div className="w-full max-w-6xl p-12">
+        {/* Logo and Title */}
+        <div className="flex flex-col items-center mb-16">
+          <div 
+            className="flex items-center justify-center mb-8 rounded-2xl"
+            style={{ 
+              width: '96px',
+              height: '96px',
+              backgroundColor: '#346C73'
+            }}
+          >
+            <FileText size={48} style={{ color: '#FFFFFF' }} />
+          </div>
           <h1 
-            className="mb-3"
+            className="mb-4 text-center"
             style={{ 
               fontFamily: 'Inter, sans-serif',
               fontWeight: 700,
               fontSize: '32px',
               lineHeight: '140%',
-              color: '#012326'
+              color: '#FFFFFF'
             }}
           >
-            SmartNote – Dein digitaler Lernassistent
+            SmartNote
           </h1>
           <p 
+            className="text-center"
             style={{ 
               fontFamily: 'Inter, sans-serif',
               fontWeight: 400,
-              fontSize: '16px',
+              fontSize: '18px',
               lineHeight: '145%',
-              color: '#346C73'
+              color: '#A3C9D9'
             }}
           >
-            Digitalisiere deine handschriftlichen Notizen und erstelle automatisch Zusammenfassungen, Spickzettel und Lernpläne
+            Dein digitaler Lernassistent für intelligente Notizen
           </p>
         </div>
 
-        {/* Action Buttons */}
-        <div className="grid grid-cols-3 gap-6 mb-12">
+        {/* Feature Cards Grid */}
+        <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {/* Notiz scannen - Large Card (Left, Row 1) */}
           <button
-            onClick={() => onNavigate('editor')}
-            className="p-8 rounded-xl border-2 transition-all hover:shadow-lg"
+            onClick={() => onNavigate('scan')}
+            className="p-10 rounded-2xl transition-all hover:shadow-2xl flex flex-col items-center justify-center"
             style={{
-              backgroundColor: '#A3C9D9',
-              borderColor: '#6A9BA6',
+              backgroundColor: '#6A9BA6',
+              minHeight: '200px'
             }}
           >
-            <Plus size={32} style={{ color: '#012326', marginBottom: '16px' }} />
+            <div 
+              className="flex items-center justify-center mb-6 rounded-xl"
+              style={{ 
+                width: '72px',
+                height: '72px',
+                backgroundColor: '#FFFFFF33'
+              }}
+            >
+              <Camera size={36} style={{ color: '#FFFFFF' }} />
+            </div>
             <h3 
               style={{ 
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: 700,
-                fontSize: '18px',
+                fontSize: '20px',
                 lineHeight: '140%',
-                color: '#012326',
-                marginBottom: '8px'
+                color: '#FFFFFF',
+                textAlign: 'center'
               }}
             >
-              Neue Notiz erstellen
+              Notiz scannen
             </h3>
-            <p 
-              style={{ 
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 400,
-                fontSize: '14px',
-                lineHeight: '140%',
-                color: '#103B40'
-              }}
-            >
-              Erstelle eine neue digitale Notiz am PC
-            </p>
           </button>
 
+          {/* Notizen anzeigen - Small Card (Right, Row 1) */}
           <button
             onClick={() => onNavigate('notes')}
-            className="p-8 rounded-xl border-2 transition-all hover:shadow-lg"
+            className="p-8 rounded-2xl transition-all hover:shadow-2xl flex flex-col items-center justify-center"
             style={{
-              backgroundColor: '#FFFFFF',
-              borderColor: '#346C73',
+              backgroundColor: '#103B40',
+              border: '2px solid #346C73'
             }}
           >
-            <FileText size={32} style={{ color: '#346C73', marginBottom: '16px' }} />
+            <div 
+              className="flex items-center justify-center mb-4 rounded-xl"
+              style={{ 
+                width: '56px',
+                height: '56px',
+                backgroundColor: '#FFFFFF33'
+              }}
+            >
+              <FileText size={28} style={{ color: '#FFFFFF' }} />
+            </div>
             <h3 
               style={{ 
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: 700,
                 fontSize: '18px',
                 lineHeight: '140%',
-                color: '#012326',
-                marginBottom: '8px'
+                color: '#FFFFFF',
+                textAlign: 'center'
               }}
             >
               Notizen anzeigen
             </h3>
-            <p 
-              style={{ 
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 400,
-                fontSize: '14px',
-                lineHeight: '140%',
-                color: '#103B40'
-              }}
-            >
-              Alle deine gespeicherten Notizen
-            </p>
           </button>
 
+          {/* Zusammenfassungen - Card (Left, Row 2) */}
           <button
-            onClick={() => onNavigate('tasks')}
-            className="p-8 rounded-xl border-2 transition-all hover:shadow-lg"
+            onClick={() => onNavigate('summary')}
+            className="p-8 rounded-2xl transition-all hover:shadow-2xl flex flex-col items-center justify-center"
             style={{
-              backgroundColor: '#FFFFFF',
-              borderColor: '#346C73',
+              backgroundColor: '#6A9BA6'
             }}
           >
-            <CheckSquare size={32} style={{ color: '#346C73', marginBottom: '16px' }} />
+            <div 
+              className="flex items-center justify-center mb-4 rounded-xl"
+              style={{ 
+                width: '56px',
+                height: '56px',
+                backgroundColor: '#FFFFFF33'
+              }}
+            >
+              <BookOpen size={28} style={{ color: '#FFFFFF' }} />
+            </div>
             <h3 
               style={{ 
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: 700,
                 fontSize: '18px',
                 lineHeight: '140%',
-                color: '#012326',
-                marginBottom: '8px'
+                color: '#FFFFFF',
+                textAlign: 'center'
               }}
             >
-              Aufgaben ansehen
+              Zusammenfassungen
             </h3>
-            <p 
+          </button>
+
+          {/* Lernpläne - Card (Right, Row 2) */}
+          <button
+            onClick={() => onNavigate('studyplan')}
+            className="p-8 rounded-2xl transition-all hover:shadow-2xl flex flex-col items-center justify-center"
+            style={{
+              backgroundColor: '#A3C9D9'
+            }}
+          >
+            <div 
+              className="flex items-center justify-center mb-4 rounded-xl"
+              style={{ 
+                width: '56px',
+                height: '56px',
+                backgroundColor: '#FFFFFF33'
+              }}
+            >
+              <Calendar size={28} style={{ color: '#103B40' }} />
+            </div>
+            <h3 
               style={{ 
                 fontFamily: 'Inter, sans-serif',
-                fontWeight: 400,
-                fontSize: '14px',
+                fontWeight: 700,
+                fontSize: '18px',
                 lineHeight: '140%',
-                color: '#103B40'
+                color: '#103B40',
+                textAlign: 'center'
               }}
             >
-              Verwalte deine Lernaufgaben
-            </p>
+              Lernpläne
+            </h3>
+          </button>
+
+          {/* Spickzettel - Card (Left, Row 3) */}
+          <button
+            onClick={() => onNavigate('cheatsheet')}
+            className="p-8 rounded-2xl transition-all hover:shadow-2xl flex flex-col items-center justify-center"
+            style={{
+              backgroundColor: '#A3C9D9'
+            }}
+          >
+            <div 
+              className="flex items-center justify-center mb-4 rounded-xl"
+              style={{ 
+                width: '56px',
+                height: '56px',
+                backgroundColor: '#FFFFFF33'
+              }}
+            >
+              <Layers size={28} style={{ color: '#103B40' }} />
+            </div>
+            <h3 
+              style={{ 
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 700,
+                fontSize: '18px',
+                lineHeight: '140%',
+                color: '#103B40',
+                textAlign: 'center'
+              }}
+            >
+              Spickzettel
+            </h3>
+          </button>
+
+          {/* Aufgaben - Card (Right, Row 3) */}
+          <button
+            onClick={() => onNavigate('tasks')}
+            className="p-8 rounded-2xl transition-all hover:shadow-2xl flex flex-col items-center justify-center"
+            style={{
+              backgroundColor: '#103B40',
+              border: '2px solid #346C73'
+            }}
+          >
+            <div 
+              className="flex items-center justify-center mb-4 rounded-xl"
+              style={{ 
+                width: '56px',
+                height: '56px',
+                backgroundColor: '#FFFFFF33'
+              }}
+            >
+              <CheckSquare size={28} style={{ color: '#FFFFFF' }} />
+            </div>
+            <h3 
+              style={{ 
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 700,
+                fontSize: '18px',
+                lineHeight: '140%',
+                color: '#FFFFFF',
+                textAlign: 'center'
+              }}
+            >
+              Aufgaben
+            </h3>
           </button>
         </div>
 
-        {/* Recent Notes */}
-        <div className="mb-10">
-          <h2 
-            className="mb-6"
+        {/* Bottom Text */}
+        <div className="mt-16 text-center">
+          <p 
             style={{ 
               fontFamily: 'Inter, sans-serif',
-              fontWeight: 700,
-              fontSize: '26px',
+              fontWeight: 400,
+              fontSize: '14px',
               lineHeight: '140%',
-              color: '#012326'
+              color: '#6A9BA6'
             }}
           >
-            Zuletzt bearbeitet
-          </h2>
-          <div className="space-y-4">
-            {recentNotes.map((note) => (
-              <button
-                key={note.id}
-                onClick={() => onNavigate('editor')}
-                className="w-full p-6 rounded-xl border transition-all hover:shadow-md text-left"
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  borderColor: '#A3C9D9',
-                }}
-              >
-                <div className="flex items-start justify-between mb-2">
-                  <h3 
-                    style={{ 
-                      fontFamily: 'Inter, sans-serif',
-                      fontWeight: 700,
-                      fontSize: '18px',
-                      lineHeight: '140%',
-                      color: '#012326'
-                    }}
-                  >
-                    {note.title}
-                  </h3>
-                  <Clock size={16} style={{ color: '#6A9BA6' }} />
-                </div>
-                <p 
-                  className="mb-3"
-                  style={{ 
-                    fontFamily: 'Inter, sans-serif',
-                    fontWeight: 400,
-                    fontSize: '15px',
-                    lineHeight: '145%',
-                    color: '#346C73'
-                  }}
-                >
-                  {note.preview}
-                </p>
-                <p 
-                  style={{ 
-                    fontFamily: 'Inter, sans-serif',
-                    fontWeight: 400,
-                    fontSize: '14px',
-                    lineHeight: '140%',
-                    color: '#6A9BA6'
-                  }}
-                >
-                  {note.date}
-                </p>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Recommended Summaries */}
-        <div>
-          <h2 
-            className="mb-6"
-            style={{ 
-              fontFamily: 'Inter, sans-serif',
-              fontWeight: 700,
-              fontSize: '26px',
-              lineHeight: '140%',
-              color: '#012326'
-            }}
-          >
-            Empfohlene Zusammenfassungen
-          </h2>
-          <div className="grid grid-cols-2 gap-6">
-            {recommendedSummaries.map((summary) => (
-              <button
-                key={summary.id}
-                onClick={() => onNavigate('summary')}
-                className="p-6 rounded-xl border transition-all hover:shadow-md text-left"
-                style={{
-                  backgroundColor: '#A3C9D9',
-                  borderColor: '#6A9BA6',
-                }}
-              >
-                <div className="flex items-center gap-2 mb-4">
-                  <span 
-                    className="px-3 py-1 rounded"
-                    style={{
-                      backgroundColor: '#6A9BA6',
-                      fontFamily: 'Inter, sans-serif',
-                      fontWeight: 500,
-                      fontSize: '13px',
-                      color: '#FFFFFF'
-                    }}
-                  >
-                    {summary.subject}
-                  </span>
-                </div>
-                <h3 
-                  className="mb-4"
-                  style={{ 
-                    fontFamily: 'Inter, sans-serif',
-                    fontWeight: 700,
-                    fontSize: '18px',
-                    lineHeight: '140%',
-                    color: '#012326'
-                  }}
-                >
-                  {summary.title}
-                </h3>
-                <div className="w-full h-2 rounded-full" style={{ backgroundColor: '#FFFFFF' }}>
-                  <div 
-                    className="h-full rounded-full" 
-                    style={{ 
-                      width: `${summary.progress}%`,
-                      backgroundColor: '#346C73'
-                    }}
-                  />
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Right Info Panel */}
-      <div className="w-80 p-8 border-l" style={{ backgroundColor: '#A3C9D9', borderColor: '#6A9BA6' }}>
-        <h3 
-          className="mb-6"
-          style={{ 
-            fontFamily: 'Inter, sans-serif',
-            fontWeight: 700,
-            fontSize: '20px',
-            lineHeight: '140%',
-            color: '#012326'
-          }}
-        >
-          Heute anstehend
-        </h3>
-        <div className="space-y-4">
-          <div className="p-4 rounded-lg" style={{ backgroundColor: '#FFFFFF' }}>
-            <div className="flex items-center gap-2 mb-2">
-              <input type="checkbox" className="w-4 h-4" />
-              <span 
-                style={{ 
-                  fontFamily: 'Inter, sans-serif',
-                  fontWeight: 500,
-                  fontSize: '15px',
-                  color: '#012326'
-                }}
-              >
-                Chemie Kapitel 4 lernen
-              </span>
-            </div>
-            <p 
-              style={{ 
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 400,
-                fontSize: '13px',
-                color: '#346C73'
-              }}
-            >
-              Fällig: Heute, 18:00
-            </p>
-          </div>
-          <div className="p-4 rounded-lg" style={{ backgroundColor: '#FFFFFF' }}>
-            <div className="flex items-center gap-2 mb-2">
-              <input type="checkbox" className="w-4 h-4" />
-              <span 
-                style={{ 
-                  fontFamily: 'Inter, sans-serif',
-                  fontWeight: 500,
-                  fontSize: '15px',
-                  color: '#012326'
-                }}
-              >
-                Geschichte Essay überarbeiten
-              </span>
-            </div>
-            <p 
-              style={{ 
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 400,
-                fontSize: '13px',
-                color: '#346C73'
-              }}
-            >
-              Fällig: Morgen
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-10">
-          <h3 
-            className="mb-4"
-            style={{ 
-              fontFamily: 'Inter, sans-serif',
-              fontWeight: 700,
-              fontSize: '20px',
-              lineHeight: '140%',
-              color: '#012326'
-            }}
-          >
-            Statistik
-          </h3>
-          <div className="space-y-3">
-            <div className="flex justify-between">
-              <span 
-                style={{ 
-                  fontFamily: 'Inter, sans-serif',
-                  fontWeight: 400,
-                  fontSize: '15px',
-                  color: '#103B40'
-                }}
-              >
-                Notizen diese Woche
-              </span>
-              <span 
-                style={{ 
-                  fontFamily: 'Inter, sans-serif',
-                  fontWeight: 700,
-                  fontSize: '15px',
-                  color: '#012326'
-                }}
-              >
-                12
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span 
-                style={{ 
-                  fontFamily: 'Inter, sans-serif',
-                  fontWeight: 400,
-                  fontSize: '15px',
-                  color: '#103B40'
-                }}
-              >
-                Erledigte Aufgaben
-              </span>
-              <span 
-                style={{ 
-                  fontFamily: 'Inter, sans-serif',
-                  fontWeight: 700,
-                  fontSize: '15px',
-                  color: '#012326'
-                }}
-              >
-                8/15
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span 
-                style={{ 
-                  fontFamily: 'Inter, sans-serif',
-                  fontWeight: 400,
-                  fontSize: '15px',
-                  color: '#103B40'
-                }}
-              >
-                Lernzeit heute
-              </span>
-              <span 
-                style={{ 
-                  fontFamily: 'Inter, sans-serif',
-                  fontWeight: 700,
-                  fontSize: '15px',
-                  color: '#012326'
-                }}
-              >
-                2h 45min
-              </span>
-            </div>
-          </div>
+            Scanne handschriftliche Notizen • Erstelle Zusammenfassungen • Generiere Lernpläne
+          </p>
         </div>
       </div>
     </div>
