@@ -1,4 +1,5 @@
 import { ArrowLeft, Save, X, Bold, Italic, List, Highlighter, Image as ImageIcon, Calendar, Tag } from 'lucide-react';
+import React from 'react';
 
 interface NoteEditorProps {
   note: any;
@@ -6,6 +7,16 @@ interface NoteEditorProps {
 }
 
 export function NoteEditor({ note, onNavigate }: NoteEditorProps) {
+  const [tags, setTags] = React.useState(['Alkane', 'Kohlenwasserstoffe', 'gesättigt']);
+  
+  const removeTag = (tagToRemove: string) => {
+    setTags(tags.filter(tag => tag !== tagToRemove));
+  };
+
+  const handleToolbarAction = (action: string) => {
+    alert(`${action}-Formatierung würde hier angewendet.\n\nIn einer vollständigen Version würde der ausgewählte Text formatiert werden.`);
+  };
+
   return (
     <div className="flex">
       {/* Main Content */}
@@ -51,6 +62,7 @@ export function NoteEditor({ note, onNavigate }: NoteEditorProps) {
           }}
         >
           <button
+            onClick={() => handleToolbarAction('Fett')}
             className="p-2 rounded-lg transition-all hover:shadow"
             style={{
               backgroundColor: '#FFFFFF',
@@ -61,6 +73,7 @@ export function NoteEditor({ note, onNavigate }: NoteEditorProps) {
             <Bold size={18} />
           </button>
           <button
+            onClick={() => handleToolbarAction('Kursiv')}
             className="p-2 rounded-lg transition-all hover:shadow"
             style={{
               backgroundColor: '#FFFFFF',
@@ -72,6 +85,7 @@ export function NoteEditor({ note, onNavigate }: NoteEditorProps) {
           </button>
           <div className="w-px h-6" style={{ backgroundColor: '#6A9BA6' }} />
           <button
+            onClick={() => handleToolbarAction('Liste')}
             className="p-2 rounded-lg transition-all hover:shadow"
             style={{
               backgroundColor: '#FFFFFF',
@@ -82,6 +96,7 @@ export function NoteEditor({ note, onNavigate }: NoteEditorProps) {
             <List size={18} />
           </button>
           <button
+            onClick={() => handleToolbarAction('Markieren')}
             className="p-2 rounded-lg transition-all hover:shadow"
             style={{
               backgroundColor: '#FFFFFF',
@@ -93,6 +108,7 @@ export function NoteEditor({ note, onNavigate }: NoteEditorProps) {
           </button>
           <div className="w-px h-6" style={{ backgroundColor: '#6A9BA6' }} />
           <button
+            onClick={() => alert('Bild einfügen...\n\nIn einer vollständigen Version würde hier ein Datei-Dialog geöffnet werden.')}
             className="p-2 rounded-lg transition-all hover:shadow"
             style={{
               backgroundColor: '#FFFFFF',
@@ -147,7 +163,10 @@ Merksatz: "Alkane sind die Basis der organischen Chemie - stabil und gesättigt"
         {/* Action Buttons */}
         <div className="flex gap-4 mt-8">
           <button
-            onClick={() => onNavigate('notes')}
+            onClick={() => {
+              alert('Notiz gespeichert!\n\nDeine Notiz wurde erfolgreich gespeichert.');
+              onNavigate('notes');
+            }}
             className="flex items-center gap-2 px-8 py-4 rounded-xl transition-all hover:shadow-lg"
             style={{
               backgroundColor: '#346C73',
@@ -283,7 +302,7 @@ Merksatz: "Alkane sind die Basis der organischen Chemie - stabil und gesättigt"
             }}
           />
           <div className="flex flex-wrap gap-2 mt-3">
-            {['Alkane', 'Kohlenwasserstoffe', 'gesättigt'].map((tag) => (
+            {tags.map((tag) => (
               <span 
                 key={tag}
                 className="px-3 py-2 rounded-lg flex items-center gap-2"
@@ -296,7 +315,10 @@ Merksatz: "Alkane sind die Basis der organischen Chemie - stabil und gesättigt"
                 }}
               >
                 {tag}
-                <button className="hover:opacity-70">
+                <button 
+                  onClick={() => removeTag(tag)}
+                  className="hover:opacity-70"
+                >
                   <X size={14} />
                 </button>
               </span>

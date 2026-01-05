@@ -10,12 +10,21 @@ export function Sidebar({ activeScreen, onNavigate }: SidebarProps) {
     { id: 'dashboard', label: 'Dashboard', icon: Home },
     { id: 'notes', label: 'Notizen', icon: FileText },
     { id: 'tasks', label: 'Aufgaben', icon: CheckSquare },
-    { id: 'summary', label: 'Zusammenfassungen', icon: FileCheck },
-    { id: 'cheatsheet', label: 'Spickzettel', icon: BookOpen },
+    { id: 'summary', label: 'Zusammenfassungen', icon: FileCheck, requiresNote: true },
+    { id: 'cheatsheet', label: 'Spickzettel', icon: BookOpen, requiresNote: true },
     { id: 'studyplan', label: 'Lernpläne', icon: BookOpen },
     { id: 'archive', label: 'Archiv', icon: Archive },
     { id: 'story', label: 'Story-Szenen', icon: Presentation },
   ];
+  
+  const handleNavigation = (itemId: string, requiresNote?: boolean) => {
+    // For items that require a note, navigate to notes first to select one
+    if (requiresNote && !['summary', 'cheatsheet'].includes(activeScreen)) {
+      onNavigate('notes');
+    } else {
+      onNavigate(itemId);
+    }
+  };
 
   return (
     <div 
@@ -47,7 +56,7 @@ export function Sidebar({ activeScreen, onNavigate }: SidebarProps) {
           return (
             <button
               key={item.id}
-              onClick={() => onNavigate(item.id)}
+              onClick={() => handleNavigation(item.id, item.requiresNote)}
               className="w-full flex items-center gap-4 px-5 py-4 rounded-lg mb-2 transition-all"
               style={{
                 backgroundColor: isActive ? '#346C73' : 'transparent',

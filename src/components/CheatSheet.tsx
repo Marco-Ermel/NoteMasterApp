@@ -334,6 +334,7 @@ export function CheatSheet({ note, onNavigate }: CheatSheetProps) {
         {/* Action Buttons */}
         <div className="flex gap-4 mt-8">
           <button
+            onClick={() => alert('Spickzettel Export wird vorbereitet...\n\nIn einer vollständigen Version würde hier der Spickzettel als PDF heruntergeladen werden.')}
             className="flex items-center gap-2 px-8 py-4 rounded-xl transition-all hover:shadow-lg"
             style={{
               backgroundColor: '#346C73',
@@ -348,6 +349,7 @@ export function CheatSheet({ note, onNavigate }: CheatSheetProps) {
           </button>
 
           <button
+            onClick={() => alert('Bearbeitungsmodus aktiviert.\n\nHier könntest du den Spickzettel anpassen.')}
             className="flex items-center gap-2 px-8 py-4 rounded-xl border-2 transition-all"
             style={{
               backgroundColor: '#FFFFFF',
@@ -482,6 +484,7 @@ export function CheatSheet({ note, onNavigate }: CheatSheetProps) {
             Export-Optionen
           </h4>
           <button
+            onClick={() => alert('Als PDF speichern...\n\nIn einer vollständigen Version würde der Spickzettel als PDF gespeichert werden.')}
             className="w-full px-4 py-3 rounded-lg mb-2 transition-all hover:shadow"
             style={{
               backgroundColor: '#FFFFFF',
@@ -494,6 +497,7 @@ export function CheatSheet({ note, onNavigate }: CheatSheetProps) {
             Als PDF speichern
           </button>
           <button
+            onClick={() => alert('Als Bild exportieren...\n\nIn einer vollständigen Version würde der Spickzettel als Bild exportiert werden.')}
             className="w-full px-4 py-3 rounded-lg mb-2 transition-all hover:shadow"
             style={{
               backgroundColor: '#FFFFFF',
@@ -506,6 +510,7 @@ export function CheatSheet({ note, onNavigate }: CheatSheetProps) {
             Als Bild exportieren
           </button>
           <button
+            onClick={() => alert('Drucken wird vorbereitet...\n\nIn einer vollständigen Version würde der Druckdialog geöffnet werden.')}
             className="w-full px-4 py-3 rounded-lg transition-all hover:shadow"
             style={{
               backgroundColor: '#FFFFFF',
@@ -535,6 +540,7 @@ export function CheatSheet({ note, onNavigate }: CheatSheetProps) {
           {['Alkene - Ungesättigte KW', 'Chemische Bindungen', 'Reaktionsmechanismen'].map((title) => (
             <button
               key={title}
+              onClick={() => onNavigate('notes')}
               className="w-full p-4 rounded-lg text-left transition-all hover:shadow"
               style={{
                 backgroundColor: '#FFFFFF',
