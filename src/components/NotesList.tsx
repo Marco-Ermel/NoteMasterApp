@@ -53,11 +53,13 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
   const [selectedSubject, setSelectedSubject] = React.useState<string | null>(null);
   const [selectedTag, setSelectedTag] = React.useState<string | null>(null);
 
-  const filteredNotes = notes.filter(note => {
-    if (selectedSubject && note.subject !== selectedSubject) return false;
-    if (selectedTag && !note.tags.includes(selectedTag)) return false;
-    return true;
-  });
+  const filteredNotes = React.useMemo(() => {
+    return notes.filter(note => {
+      if (selectedSubject && note.subject !== selectedSubject) return false;
+      if (selectedTag && !note.tags.includes(selectedTag)) return false;
+      return true;
+    });
+  }, [selectedSubject, selectedTag]);
 
   return (
     <div className="flex">
