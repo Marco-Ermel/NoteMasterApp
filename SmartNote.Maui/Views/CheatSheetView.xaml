@@ -17,7 +17,7 @@
                         Command="{Binding BackToNoteCommand}"
                         BackgroundColor="Transparent"
                         TextColor="{StaticResource PrimaryMedium}"
-                        FontFamily="InterMedium"
+                        FontFamily="Arial"
                         FontSize="15"
                         HorizontalOptions="Start" />
                 
@@ -30,7 +30,7 @@
                             HorizontalOptions="Start">
                         <Label Text="{Binding Subject}"
                                TextColor="{StaticResource TextOnDark}"
-                               FontFamily="InterMedium"
+                               FontFamily="Arial"
                                FontSize="14" />
                     </Border>
                     <Label Text="{Binding CheatSheetTitle}"
@@ -51,12 +51,12 @@
                         <VerticalStackLayout Spacing="8"
                                              HorizontalOptions="Center">
                             <Label Text="{Binding CheatSheetTitle}"
-                                   FontFamily="InterBold"
+                                   FontFamily="Arial"
                                    FontSize="28"
                                    HorizontalOptions="Center"
                                    TextColor="{StaticResource TextPrimary}" />
                             <Label Text="{Binding Subtitle}"
-                                   FontFamily="InterMedium"
+                                   FontFamily="Arial"
                                    FontSize="15"
                                    HorizontalOptions="Center"
                                    TextColor="{StaticResource TextMuted}" />
@@ -80,7 +80,7 @@
                                             HorizontalOptions="Start">
                                         <Label Text="DEFINITION"
                                                TextColor="{StaticResource TextOnDark}"
-                                               FontFamily="InterBold"
+                                               FontFamily="Arial"
                                                FontSize="16" />
                                     </Border>
                                     <Label Text="{Binding Definition}"
@@ -97,7 +97,7 @@
                                             HorizontalOptions="Start">
                                         <Label Text="SUMMENFORMEL"
                                                TextColor="{StaticResource TextOnDark}"
-                                               FontFamily="InterBold"
+                                               FontFamily="Arial"
                                                FontSize="16" />
                                     </Border>
                                     <Border BackgroundColor="{StaticResource PrimaryLightest}"
@@ -105,7 +105,7 @@
                                             StrokeShape="RoundRectangle 8"
                                             Padding="16">
                                         <Label Text="{Binding Formula}"
-                                               FontFamily="InterBold"
+                                               FontFamily="Arial"
                                                FontSize="20"
                                                HorizontalOptions="Center"
                                                TextColor="{StaticResource TextPrimary}" />
@@ -121,7 +121,7 @@
                                             HorizontalOptions="Start">
                                         <Label Text="EIGENSCHAFTEN"
                                                TextColor="{StaticResource TextOnDark}"
-                                               FontFamily="InterBold"
+                                               FontFamily="Arial"
                                                FontSize="16" />
                                     </Border>
                                     <VerticalStackLayout BindableLayout.ItemsSource="{Binding Properties}"
@@ -154,7 +154,7 @@
                                             HorizontalOptions="Start">
                                         <Label Text="WICHTIGE ALKANE"
                                                TextColor="{StaticResource TextOnDark}"
-                                               FontFamily="InterBold"
+                                               FontFamily="Arial"
                                                FontSize="16" />
                                     </Border>
                                     <VerticalStackLayout BindableLayout.ItemsSource="{Binding Alkanes}"
@@ -169,17 +169,17 @@
                                                         <Grid ColumnDefinitions="*,Auto">
                                                             <Label Grid.Column="0"
                                                                    Text="{Binding Name}"
-                                                                   FontFamily="InterBold"
+                                                                   FontFamily="Arial"
                                                                    FontSize="15"
                                                                    TextColor="{StaticResource TextPrimary}" />
                                                             <Label Grid.Column="1"
                                                                    Text="{Binding Formula}"
-                                                                   FontFamily="InterMedium"
+                                                                   FontFamily="Arial"
                                                                    FontSize="14"
                                                                    TextColor="{StaticResource TextSecondary}" />
                                                         </Grid>
                                                         <Label Text="{Binding Note}"
-                                                               FontFamily="InterRegular"
+                                                               FontFamily="Arial"
                                                                FontSize="12"
                                                                TextColor="{StaticResource TextMuted}" />
                                                     </VerticalStackLayout>
@@ -198,7 +198,7 @@
                                             HorizontalOptions="Start">
                                         <Label Text="REAKTIONEN"
                                                TextColor="{StaticResource TextOnDark}"
-                                               FontFamily="InterBold"
+                                               FontFamily="Arial"
                                                FontSize="16" />
                                     </Border>
                                     <Label Text="{Binding Reactions}"
@@ -216,7 +216,7 @@
                                 StrokeShape="RoundRectangle 12"
                                 Padding="20">
                             <Label Text="{Binding MemoryTip}"
-                                   FontFamily="InterBold"
+                                   FontFamily="Arial"
                                    FontSize="16"
                                    LineHeight="1.5"
                                    HorizontalOptions="Center"
@@ -262,11 +262,11 @@
                                 Padding="16">
                             <VerticalStackLayout Spacing="4">
                                 <Label Text="Format"
-                                       FontFamily="InterMedium"
+                                       FontFamily="Arial"
                                        FontSize="14"
                                        TextColor="{StaticResource TextMuted}" />
                                 <Label Text="{Binding Format}"
-                                       FontFamily="InterBold"
+                                       FontFamily="Arial"
                                        FontSize="16"
                                        TextColor="{StaticResource TextPrimary}" />
                             </VerticalStackLayout>
@@ -278,11 +278,11 @@
                                 Padding="16">
                             <VerticalStackLayout Spacing="4">
                                 <Label Text="Komprimierung"
-                                       FontFamily="InterMedium"
+                                       FontFamily="Arial"
                                        FontSize="14"
                                        TextColor="{StaticResource TextMuted}" />
                                 <Label Text="{Binding Compression}"
-                                       FontFamily="InterBold"
+                                       FontFamily="Arial"
                                        FontSize="16"
                                        TextColor="{StaticResource TextPrimary}" />
                             </VerticalStackLayout>
@@ -294,11 +294,11 @@
                                 Padding="16">
                             <VerticalStackLayout Spacing="4">
                                 <Label Text="Lesbarkeit"
-                                       FontFamily="InterMedium"
+                                       FontFamily="Arial"
                                        FontSize="14"
                                        TextColor="{StaticResource TextMuted}" />
                                 <Label Text="{Binding Readability}"
-                                       FontFamily="InterBold"
+                                       FontFamily="Arial"
                                        FontSize="16"
                                        TextColor="{StaticResource TextPrimary}" />
                             </VerticalStackLayout>
@@ -312,28 +312,28 @@
                             Padding="20">
                         <VerticalStackLayout Spacing="8">
                             <Label Text="Export-Optionen"
-                                   FontFamily="InterBold"
+                                   FontFamily="Arial"
                                    FontSize="16"
                                    TextColor="{StaticResource TextOnDark}" />
                             <Button Text="Als PDF speichern"
                                     Command="{Binding ExportPdfCommand}"
                                     BackgroundColor="{StaticResource BackgroundLight}"
                                     TextColor="{StaticResource TextPrimary}"
-                                    FontFamily="InterMedium"
+                                    FontFamily="Arial"
                                     FontSize="14"
                                     CornerRadius="8" />
                             <Button Text="Als Bild exportieren"
                                     Command="{Binding ExportImageCommand}"
                                     BackgroundColor="{StaticResource BackgroundLight}"
                                     TextColor="{StaticResource TextPrimary}"
-                                    FontFamily="InterMedium"
+                                    FontFamily="Arial"
                                     FontSize="14"
                                     CornerRadius="8" />
                             <Button Text="Drucken"
                                     Command="{Binding PrintCommand}"
                                     BackgroundColor="{StaticResource BackgroundLight}"
                                     TextColor="{StaticResource TextPrimary}"
-                                    FontFamily="InterMedium"
+                                    FontFamily="Arial"
                                     FontSize="14"
                                     CornerRadius="8" />
                         </VerticalStackLayout>
@@ -353,7 +353,7 @@
                                             StrokeShape="RoundRectangle 8"
                                             Padding="16">
                                         <Label Text="{Binding}"
-                                               FontFamily="InterMedium"
+                                               FontFamily="Arial"
                                                FontSize="14"
                                                TextColor="{StaticResource TextPrimary}" />
                                     </Border>
@@ -369,3 +369,4 @@
     </Grid>
     
 </ContentView>
+

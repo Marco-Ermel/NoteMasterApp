@@ -59,7 +59,7 @@
                 <!-- Active Tasks -->
                 <VerticalStackLayout Spacing="24">
                     <Label Text="Offene Aufgaben"
-                           FontFamily="InterBold"
+                           FontFamily="Arial"
                            FontSize="24"
                            TextColor="{StaticResource TextPrimary}" />
                     
@@ -84,7 +84,7 @@
                                                         Padding="12,4">
                                                     <Label Text="{Binding Subject}"
                                                            TextColor="{StaticResource TextOnDark}"
-                                                           FontFamily="InterMedium"
+                                                           FontFamily="Arial"
                                                            FontSize="13" />
                                                 </Border>
                                                 <Border BackgroundColor="{StaticResource PrimaryMedium}"
@@ -95,7 +95,7 @@
                                                         <Label Text="⚠️" FontSize="12" IsVisible="{Binding Priority, Converter={StaticResource PriorityHighConverter}}" />
                                                         <Label Text="{Binding PriorityText}"
                                                                TextColor="{StaticResource TextOnDark}"
-                                                               FontFamily="InterMedium"
+                                                               FontFamily="Arial"
                                                                FontSize="13" />
                                                     </HorizontalStackLayout>
                                                 </Border>
@@ -106,7 +106,7 @@
                                                 </HorizontalStackLayout>
                                             </HorizontalStackLayout>
                                             <Label Text="{Binding Title}"
-                                                   FontFamily="InterBold"
+                                                   FontFamily="Arial"
                                                    FontSize="18"
                                                    TextColor="{StaticResource TextPrimary}" />
                                             <Label Text="{Binding Description}"
@@ -122,7 +122,7 @@
                 <!-- Completed Tasks -->
                 <VerticalStackLayout Spacing="24">
                     <Label Text="Erledigte Aufgaben"
-                           FontFamily="InterBold"
+                           FontFamily="Arial"
                            FontSize="24"
                            TextColor="{StaticResource TextPrimary}" />
                     
@@ -149,7 +149,7 @@
                                                         Padding="12,4">
                                                     <Label Text="{Binding Subject}"
                                                            TextColor="{StaticResource TextPrimary}"
-                                                           FontFamily="InterMedium"
+                                                           FontFamily="Arial"
                                                            FontSize="13" />
                                                 </Border>
                                                 <HorizontalStackLayout Spacing="4">
@@ -159,7 +159,7 @@
                                                 </HorizontalStackLayout>
                                             </HorizontalStackLayout>
                                             <Label Text="{Binding Title}"
-                                                   FontFamily="InterBold"
+                                                   FontFamily="Arial"
                                                    FontSize="18"
                                                    TextColor="{StaticResource TextPrimary}"
                                                    TextDecorations="Strikethrough" />
@@ -199,7 +199,7 @@
                                     <Grid ColumnDefinitions="*,Auto">
                                         <Label Grid.Column="0"
                                                Text="{Binding Subject}"
-                                               FontFamily="InterMedium"
+                                               FontFamily="Arial"
                                                FontSize="15"
                                                TextColor="{StaticResource TextPrimary}" />
                                         <Border Grid.Column="1"
@@ -210,7 +210,7 @@
                                                 StrokeShape="RoundRectangle 14">
                                             <Label Text="{Binding Count}"
                                                    TextColor="{StaticResource TextOnDark}"
-                                                   FontFamily="InterBold"
+                                                   FontFamily="Arial"
                                                    FontSize="13"
                                                    HorizontalOptions="Center"
                                                    VerticalOptions="Center" />
@@ -232,11 +232,11 @@
                                 Padding="16">
                             <VerticalStackLayout Spacing="4">
                                 <Label Text="Heute"
-                                       FontFamily="InterBold"
+                                       FontFamily="Arial"
                                        FontSize="15"
                                        TextColor="{StaticResource TextPrimary}" />
                                 <Label Text="{Binding DueTodayCount, StringFormat='{0} Aufgabe(n)'}"
-                                       FontFamily="InterRegular"
+                                       FontFamily="Arial"
                                        FontSize="14"
                                        TextColor="{StaticResource TextSecondary}" />
                             </VerticalStackLayout>
@@ -248,11 +248,11 @@
                                 Padding="16">
                             <VerticalStackLayout Spacing="4">
                                 <Label Text="Diese Woche"
-                                       FontFamily="InterBold"
+                                       FontFamily="Arial"
                                        FontSize="15"
                                        TextColor="{StaticResource TextPrimary}" />
                                 <Label Text="{Binding DueThisWeekCount, StringFormat='{0} Aufgaben'}"
-                                       FontFamily="InterRegular"
+                                       FontFamily="Arial"
                                        FontSize="14"
                                        TextColor="{StaticResource TextSecondary}" />
                             </VerticalStackLayout>
@@ -266,11 +266,11 @@
                             Padding="20">
                         <VerticalStackLayout Spacing="8">
                             <Label Text="Produktivitäts-Tipp"
-                                   FontFamily="InterBold"
+                                   FontFamily="Arial"
                                    FontSize="16"
                                    TextColor="{StaticResource TextOnDark}" />
                             <Label Text="Beginne mit den wichtigsten Aufgaben am Morgen, wenn deine Konzentration am höchsten ist."
-                                   FontFamily="InterRegular"
+                                   FontFamily="Arial"
                                    FontSize="14"
                                    LineHeight="1.45"
                                    TextColor="{StaticResource TextOnDark}" />
@@ -284,3 +284,4 @@
     </Grid>
     
 </ContentView>
+

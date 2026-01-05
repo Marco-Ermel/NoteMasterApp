@@ -55,14 +55,12 @@
                                                     Padding="12,4">
                                                 <Label Text="{Binding Subject}"
                                                        TextColor="{StaticResource TextOnDark}"
-                                                       FontFamily="InterMedium"
+                                                       FontFamily="Arial"
                                                        FontSize="13" />
                                             </Border>
                                             <!-- Date -->
                                             <HorizontalStackLayout Spacing="4">
-                                                <Image Source="clock_icon.png"
-                                                       WidthRequest="14"
-                                                       HeightRequest="14" />
+                                                <Label Text="🕐" FontSize="14" />
                                                 <Label Text="{Binding FormattedDate}"
                                                        Style="{StaticResource CaptionStyle}" />
                                             </HorizontalStackLayout>
@@ -93,9 +91,7 @@
                                     
                                     <!-- Tags -->
                                     <HorizontalStackLayout Spacing="8">
-                                        <Image Source="tag_icon.png"
-                                               WidthRequest="14"
-                                               HeightRequest="14" />
+                                        <Label Text="🏷️" FontSize="14" />
                                         <HorizontalStackLayout BindableLayout.ItemsSource="{Binding Tags}"
                                                                Spacing="8">
                                             <BindableLayout.ItemTemplate>
@@ -105,7 +101,7 @@
                                                             StrokeShape="RoundRectangle 4"
                                                             Padding="8,4">
                                                         <Label Text="{Binding}"
-                                                               FontFamily="InterRegular"
+                                                               FontFamily="Arial"
                                                                FontSize="13"
                                                                TextColor="{StaticResource TextPrimary}" />
                                                     </Border>
@@ -177,7 +173,7 @@
                                                                   CommandParameter="{Binding}" />
                                         </Border.GestureRecognizers>
                                         <Label Text="{Binding}"
-                                               FontFamily="InterMedium"
+                                               FontFamily="Arial"
                                                FontSize="15"
                                                TextColor="{StaticResource TextPrimary}" />
                                     </Border>
@@ -207,7 +203,7 @@
                                         </Border.GestureRecognizers>
                                         <Label Text="{Binding}"
                                                TextColor="{StaticResource TextOnDark}"
-                                               FontFamily="InterMedium"
+                                               FontFamily="Arial"
                                                FontSize="13" />
                                     </Border>
                                 </DataTemplate>
@@ -222,3 +218,4 @@
     </Grid>
     
 </ContentView>
+

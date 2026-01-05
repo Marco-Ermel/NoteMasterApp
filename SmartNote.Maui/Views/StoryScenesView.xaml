@@ -44,12 +44,12 @@
                                     HorizontalOptions="Center">
                                 <VerticalStackLayout Spacing="12" HorizontalOptions="Center">
                                     <Label Text="{Binding Title}"
-                                           FontFamily="InterBold"
+                                           FontFamily="Arial"
                                            FontSize="26"
                                            HorizontalOptions="Center"
                                            TextColor="{Binding IsDarkTheme, Converter={StaticResource DarkThemeTextConverter}}" />
                                     <Label Text="{Binding Description}"
-                                           FontFamily="InterRegular"
+                                           FontFamily="Arial"
                                            FontSize="17"
                                            LineHeight="1.45"
                                            HorizontalOptions="Center"
@@ -73,7 +73,7 @@
                 <VerticalStackLayout Spacing="32">
                     
                     <Label Text="SmartNote Desktop Features"
-                           FontFamily="InterBold"
+                           FontFamily="Arial"
                            FontSize="32"
                            HorizontalOptions="Center"
                            TextColor="{StaticResource TextPrimary}" />
@@ -97,19 +97,19 @@
                                                 StrokeShape="RoundRectangle 24"
                                                 HorizontalOptions="Center">
                                             <Label Text="{Binding Number}"
-                                                   FontFamily="InterBold"
+                                                   FontFamily="Arial"
                                                    FontSize="20"
                                                    TextColor="{StaticResource TextOnDark}"
                                                    HorizontalOptions="Center"
                                                    VerticalOptions="Center" />
                                         </Border>
                                         <Label Text="{Binding Title}"
-                                               FontFamily="InterBold"
+                                               FontFamily="Arial"
                                                FontSize="18"
                                                HorizontalOptions="Center"
                                                TextColor="{StaticResource TextPrimary}" />
                                         <Label Text="{Binding Description}"
-                                               FontFamily="InterRegular"
+                                               FontFamily="Arial"
                                                FontSize="14"
                                                LineHeight="1.45"
                                                HorizontalOptions="Center"
@@ -128,3 +128,4 @@
     </ScrollView>
     
 </ContentView>
+

@@ -8,10 +8,49 @@ public partial class App : Application
 {
     public App()
     {
-        InitializeComponent();
-        
-        // Set the MainPage using Shell for navigation
-        MainPage = new AppShell();
+        try
+        {
+            // Setup global exception handler
+            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+            TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
+            
+            InitializeComponent();
+            
+            // Set the MainPage using Shell for navigation
+            MainPage = new AppShell();
+            
+            LogMessage("App initialized successfully");
+        }
+        catch (Exception ex)
+        {
+            LogMessage($"App initialization error: {ex.Message}\n{ex.StackTrace}");
+            throw;
+        }
+    }
+    
+    private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+    {
+        if (e.ExceptionObject is Exception ex)
+        {
+            LogMessage($"Unhandled exception: {ex.Message}\n{ex.StackTrace}");
+        }
+    }
+    
+    private void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
+    {
+        LogMessage($"Unobserved task exception: {e.Exception.Message}\n{e.Exception.StackTrace}");
+        e.SetObserved();
+    }
+    
+    private void LogMessage(string message)
+    {
+        try
+        {
+            var logPath = Path.Combine(AppContext.BaseDirectory, "error.log");
+            File.AppendAllText(logPath, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}\n\n");
+            System.Diagnostics.Debug.WriteLine(message);
+        }
+        catch { /* Ignore logging errors */ }
     }
     
     /// <summary>

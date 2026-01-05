@@ -19,7 +19,7 @@ public partial class MainViewModel : BaseViewModel
     private string _activeScreen = "dashboard";
     
     [ObservableProperty]
-    private ObservableCollection<MenuItem> _menuItems = new();
+    private ObservableCollection<Models.MenuItem> _menuItems = new();
     
     [ObservableProperty]
     private Note? _selectedNote;
@@ -41,16 +41,16 @@ public partial class MainViewModel : BaseViewModel
     
     private void InitializeMenuItems()
     {
-        MenuItems = new ObservableCollection<MenuItem>
+        MenuItems = new ObservableCollection<Models.MenuItem>
         {
-            new MenuItem { Id = "dashboard", Label = "Dashboard", Icon = "home.png", IsActive = true },
-            new MenuItem { Id = "notes", Label = "Notizen", Icon = "file_text.png", IsActive = false },
-            new MenuItem { Id = "tasks", Label = "Aufgaben", Icon = "check_square.png", IsActive = false },
-            new MenuItem { Id = "summary", Label = "Zusammenfassungen", Icon = "file_check.png", IsActive = false },
-            new MenuItem { Id = "cheatsheet", Label = "Spickzettel", Icon = "book_open.png", IsActive = false },
-            new MenuItem { Id = "studyplan", Label = "Lernpläne", Icon = "book_open.png", IsActive = false },
-            new MenuItem { Id = "archive", Label = "Archiv", Icon = "archive.png", IsActive = false },
-            new MenuItem { Id = "story", Label = "Story-Szenen", Icon = "presentation.png", IsActive = false }
+            new Models.MenuItem { Id = "dashboard", Label = "Dashboard", Icon = "home.png", IsActive = true },
+            new Models.MenuItem { Id = "notes", Label = "Notizen", Icon = "file_text.png", IsActive = false },
+            new Models.MenuItem { Id = "tasks", Label = "Aufgaben", Icon = "check_square.png", IsActive = false },
+            new Models.MenuItem { Id = "summary", Label = "Zusammenfassungen", Icon = "file_check.png", IsActive = false },
+            new Models.MenuItem { Id = "cheatsheet", Label = "Spickzettel", Icon = "book_open.png", IsActive = false },
+            new Models.MenuItem { Id = "studyplan", Label = "Lernpläne", Icon = "book_open.png", IsActive = false },
+            new Models.MenuItem { Id = "archive", Label = "Archiv", Icon = "archive.png", IsActive = false },
+            new Models.MenuItem { Id = "story", Label = "Story-Szenen", Icon = "presentation.png", IsActive = false }
         };
     }
     
@@ -74,7 +74,7 @@ public partial class MainViewModel : BaseViewModel
     /// Navigate to a menu item and update active state
     /// </summary>
     [RelayCommand]
-    private async Task SelectMenuItemAsync(MenuItem item)
+    private async Task SelectMenuItemAsync(Models.MenuItem item)
     {
         if (IsBusy) return;
         

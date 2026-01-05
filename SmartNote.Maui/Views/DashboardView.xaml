@@ -2,6 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:SmartNote.Maui.ViewModels"
+             xmlns:models="clr-namespace:SmartNote.Maui.Models"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="SmartNote.Maui.Views.DashboardView"
              x:DataType="vm:DashboardViewModel">
@@ -108,13 +109,17 @@
                     <CollectionView ItemsSource="{Binding RecentNotes}"
                                     SelectionMode="None">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="models:Note">
                                 <Border BackgroundColor="{StaticResource BackgroundLight}"
                                         Stroke="{StaticResource BorderLight}"
                                         StrokeThickness="1"
                                         StrokeShape="RoundRectangle 12"
                                         Padding="24"
                                         Margin="0,0,0,16">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:DashboardViewModel}}, Path=OpenNoteCommand}"
+                                                              CommandParameter="{Binding}" />
+                                    </Border.GestureRecognizers>
                                     <Grid ColumnDefinitions="*,Auto">
                                         <VerticalStackLayout Grid.Column="0" Spacing="8">
                                             <Label Text="{Binding Title}"
@@ -123,19 +128,13 @@
                                                    Style="{StaticResource SecondaryTextStyle}"
                                                    MaxLines="2"
                                                    LineBreakMode="TailTruncation" />
-                                            <Label Text="{Binding FormattedDate}"
-                                                   Style="{StaticResource CaptionStyle}" />
+                                            <HorizontalStackLayout Spacing="4">
+                                                <Label Text="🕐" FontSize="14" />
+                                                <Label Text="{Binding FormattedDate}"
+                                                       Style="{StaticResource CaptionStyle}" />
+                                            </HorizontalStackLayout>
                                         </VerticalStackLayout>
-                                        <Image Grid.Column="1"
-                                               Source="clock_icon.png"
-                                               WidthRequest="16"
-                                               HeightRequest="16"
-                                               VerticalOptions="Start" />
                                     </Grid>
-                                    <Border.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:DashboardViewModel}}, Path=OpenNoteCommand}"
-                                                              CommandParameter="{Binding}" />
-                                    </Border.GestureRecognizers>
                                 </Border>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
@@ -167,7 +166,7 @@
                                         HorizontalOptions="Start">
                                     <Label Text="Chemie"
                                            TextColor="{StaticResource TextOnDark}"
-                                           FontFamily="InterMedium"
+                                           FontFamily="Arial"
                                            FontSize="13" />
                                 </Border>
                                 <Label Text="Organische Chemie Zusammenfassung"
@@ -196,7 +195,7 @@
                                         HorizontalOptions="Start">
                                     <Label Text="Geschichte"
                                            TextColor="{StaticResource TextOnDark}"
-                                           FontFamily="InterMedium"
+                                           FontFamily="Arial"
                                            FontSize="13" />
                                 </Border>
                                 <Label Text="Weimarer Republik Spickzettel"
@@ -230,7 +229,7 @@
                         <CollectionView ItemsSource="{Binding TodaysTasks}"
                                         SelectionMode="None">
                             <CollectionView.ItemTemplate>
-                                <DataTemplate>
+                                <DataTemplate x:DataType="models:TaskItem">
                                     <Border BackgroundColor="{StaticResource BackgroundLight}"
                                             StrokeThickness="0"
                                             StrokeShape="RoundRectangle 8"
@@ -241,13 +240,13 @@
                                                 <CheckBox IsChecked="{Binding IsCompleted}"
                                                           Color="{StaticResource PrimaryMedium}" />
                                                 <Label Text="{Binding Title}"
-                                                       FontFamily="InterMedium"
+                                                       FontFamily="Arial"
                                                        FontSize="15"
                                                        TextColor="{StaticResource TextPrimary}"
                                                        VerticalOptions="Center" />
                                             </HorizontalStackLayout>
                                             <Label Text="{Binding Description}"
-                                                   FontFamily="InterRegular"
+                                                   FontFamily="Arial"
                                                    FontSize="13"
                                                    TextColor="{StaticResource TextSecondary}"
                                                    Margin="32,0,0,0" />
@@ -270,7 +269,7 @@
                                    Style="{StaticResource SecondaryTextStyle}" />
                             <Label Grid.Column="1"
                                    Text="{Binding NotesThisWeek}"
-                                   FontFamily="InterBold"
+                                   FontFamily="Arial"
                                    FontSize="15"
                                    TextColor="{StaticResource TextPrimary}" />
                         </Grid>
@@ -281,10 +280,16 @@
                                    Text="Erledigte Aufgaben"
                                    Style="{StaticResource SecondaryTextStyle}" />
                             <Label Grid.Column="1"
-                                   Text="{Binding CompletedTasks, StringFormat='{0}'}/{Binding TotalTasks}"
-                                   FontFamily="InterBold"
+                                   FontFamily="Arial"
                                    FontSize="15"
-                                   TextColor="{StaticResource TextPrimary}" />
+                                   TextColor="{StaticResource TextPrimary}">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}{0}/{1}">
+                                        <Binding Path="CompletedTasks" />
+                                        <Binding Path="TotalTasks" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
                         </Grid>
                         
                         <!-- Stat Row 3 -->
@@ -294,7 +299,7 @@
                                    Style="{StaticResource SecondaryTextStyle}" />
                             <Label Grid.Column="1"
                                    Text="{Binding StudyTimeToday}"
-                                   FontFamily="InterBold"
+                                   FontFamily="Arial"
                                    FontSize="15"
                                    TextColor="{StaticResource TextPrimary}" />
                         </Grid>
@@ -307,3 +312,4 @@
     </Grid>
     
 </ContentView>
+

@@ -14,7 +14,7 @@
     
     <!-- Large Title - 32px, Bold -->
     <Style x:Key="LargeTitleStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="InterBold" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="32" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
         <Setter Property="LineBreakMode" Value="WordWrap" />
@@ -22,7 +22,7 @@
     
     <!-- Section Title - 26px, Bold -->
     <Style x:Key="SectionTitleStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="InterBold" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="26" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
         <Setter Property="LineBreakMode" Value="WordWrap" />
@@ -30,21 +30,21 @@
     
     <!-- Card Title - 22px, Bold -->
     <Style x:Key="CardTitleStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="InterBold" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="22" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
     </Style>
     
     <!-- Subtitle - 18px, Bold -->
     <Style x:Key="SubtitleStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="InterBold" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
     </Style>
     
     <!-- Body Text - 16px, Regular -->
     <Style x:Key="BodyStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
         <Setter Property="LineBreakMode" Value="WordWrap" />
@@ -52,35 +52,35 @@
     
     <!-- Secondary Text - 15px, Regular -->
     <Style x:Key="SecondaryTextStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="15" />
         <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
     </Style>
     
     <!-- Caption - 14px, Regular -->
     <Style x:Key="CaptionStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
     </Style>
     
     <!-- Small Caption - 13px, Medium -->
     <Style x:Key="SmallCaptionStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="13" />
         <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
     </Style>
     
     <!-- Navigation Label (Sidebar) - 15px, Medium -->
     <Style x:Key="NavLabelStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="15" />
         <Setter Property="TextColor" Value="{StaticResource TextLight}" />
     </Style>
     
     <!-- Navigation Label Active -->
     <Style x:Key="NavLabelActiveStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="15" />
         <Setter Property="TextColor" Value="{StaticResource TextOnDark}" />
     </Style>
@@ -91,7 +91,7 @@
     <Style x:Key="PrimaryButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource ButtonPrimary}" />
         <Setter Property="TextColor" Value="{StaticResource TextOnDark}" />
-        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="24,16" />
@@ -103,7 +103,7 @@
     <Style x:Key="SecondaryButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource BackgroundLight}" />
         <Setter Property="TextColor" Value="{StaticResource ButtonPrimary}" />
-        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="24,16" />
@@ -116,7 +116,7 @@
     <Style x:Key="IconButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource PrimaryLightest}" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
-        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Padding" Value="12" />
         <Setter Property="HeightRequest" Value="44" />
@@ -128,7 +128,7 @@
     <Style x:Key="NavButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="TextColor" Value="{StaticResource TextLight}" />
-        <Setter Property="FontFamily" Value="InterMedium" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="15" />
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Padding" Value="20,16" />
@@ -171,7 +171,7 @@
         <Setter Property="BackgroundColor" Value="{StaticResource BackgroundLight}" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
         <Setter Property="PlaceholderColor" Value="{StaticResource TextMuted}" />
-        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="15" />
     </Style>
     
@@ -180,7 +180,7 @@
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
         <Setter Property="PlaceholderColor" Value="{StaticResource TextMuted}" />
-        <Setter Property="FontFamily" Value="InterRegular" />
+        <Setter Property="FontFamily" Value="Arial" />
         <Setter Property="FontSize" Value="16" />
     </Style>
     
@@ -226,3 +226,4 @@
     <!-- Note: Actual animations are applied via CommunityToolkit.Maui behaviors -->
     
 </ResourceDictionary>
+
