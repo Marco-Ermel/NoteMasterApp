@@ -1,11 +1,12 @@
 import { RotateCcw, Trash2, Search } from 'lucide-react';
+import React from 'react';
 
 interface ArchiveProps {
   onNavigate: (screen: string) => void;
 }
 
 export function Archive({ onNavigate }: ArchiveProps) {
-  const archivedNotes = [
+  const [archivedNotes, setArchivedNotes] = React.useState([
     {
       id: 1,
       title: 'Biologie - Fotosynthese',
@@ -46,7 +47,20 @@ export function Archive({ onNavigate }: ArchiveProps) {
       subject: 'Chemie',
       preview: 'Aufbau, Gruppen, Perioden und Elementeigenschaften...'
     },
-  ];
+  ]);
+
+  const handleRestore = (noteId: number) => {
+    setArchivedNotes(archivedNotes.filter(note => note.id !== noteId));
+    // In a real app, this would restore the note to the main list
+    alert('Notiz wurde wiederhergestellt');
+  };
+
+  const handleDelete = (noteId: number) => {
+    if (confirm('Möchten Sie diese Notiz wirklich endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden.')) {
+      setArchivedNotes(archivedNotes.filter(note => note.id !== noteId));
+      alert('Notiz wurde endgültig gelöscht');
+    }
+  };
 
   return (
     <div className="flex">
@@ -200,6 +214,7 @@ export function Archive({ onNavigate }: ArchiveProps) {
 
                 <div className="flex gap-2 ml-6">
                   <button
+                    onClick={() => handleRestore(note.id)}
                     className="flex items-center gap-2 px-5 py-3 rounded-lg transition-all hover:shadow"
                     style={{
                       backgroundColor: '#346C73',
@@ -214,6 +229,7 @@ export function Archive({ onNavigate }: ArchiveProps) {
                     Wiederherstellen
                   </button>
                   <button
+                    onClick={() => handleDelete(note.id)}
                     className="flex items-center gap-2 px-5 py-3 rounded-lg border-2 transition-all hover:shadow"
                     style={{
                       backgroundColor: '#FFFFFF',
