@@ -10,7 +10,6 @@ import { CheatSheet } from './components/CheatSheet';
 import { StudyPlan } from './components/StudyPlan';
 import { Tasks } from './components/Tasks';
 import { Archive } from './components/Archive';
-import { StoryScenes } from './components/StoryScenes';
 
 export default function App() {
   const [activeScreen, setActiveScreen] = useState('dashboard');
@@ -50,8 +49,6 @@ export default function App() {
         return <Tasks onNavigate={handleNavigate} />;
       case 'archive':
         return <Archive onNavigate={handleNavigate} />;
-      case 'story':
-        return <StoryScenes />;
       default:
         return <Dashboard onNavigate={handleNavigate} />;
     }
