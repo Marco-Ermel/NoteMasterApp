@@ -1,4 +1,5 @@
 import { Plus, Edit, Trash2, Clock, Tag } from 'lucide-react';
+import React from 'react';
 
 interface NotesListProps {
   onNavigate: (screen: string) => void;
@@ -49,6 +50,17 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
     },
   ];
 
+  const [selectedSubject, setSelectedSubject] = React.useState<string | null>(null);
+  const [selectedTag, setSelectedTag] = React.useState<string | null>(null);
+
+  const filteredNotes = React.useMemo(() => {
+    return notes.filter(note => {
+      if (selectedSubject && note.subject !== selectedSubject) return false;
+      if (selectedTag && !note.tags.includes(selectedTag)) return false;
+      return true;
+    });
+  }, [selectedSubject, selectedTag]);
+
   return (
     <div className="flex">
       {/* Main Content */}
@@ -76,7 +88,19 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
                 color: '#346C73'
               }}
             >
-              {notes.length} Notizen gespeichert
+              {filteredNotes.length} Notizen gespeichert
+              {(selectedSubject || selectedTag) && (
+                <button
+                  onClick={() => {
+                    setSelectedSubject(null);
+                    setSelectedTag(null);
+                  }}
+                  className="ml-2 text-sm underline"
+                  style={{ color: '#346C73' }}
+                >
+                  (Filter zurücksetzen)
+                </button>
+              )}
             </p>
           </div>
           
@@ -98,7 +122,7 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
 
         {/* Notes Grid */}
         <div className="grid gap-6">
-          {notes.map((note) => (
+          {filteredNotes.map((note) => (
             <div
               key={note.id}
               className="p-6 rounded-xl border-2 transition-all hover:shadow-lg"
@@ -166,19 +190,20 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
                     <Tag size={14} style={{ color: '#6A9BA6' }} />
                     <div className="flex gap-2">
                       {note.tags.map((tag) => (
-                        <span 
+                        <button
                           key={tag}
-                          className="px-2 py-1 rounded"
+                          onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
+                          className="px-2 py-1 rounded transition-all hover:shadow"
                           style={{
-                            backgroundColor: '#A3C9D9',
+                            backgroundColor: selectedTag === tag ? '#6A9BA6' : '#A3C9D9',
                             fontFamily: 'Inter, sans-serif',
                             fontWeight: 400,
                             fontSize: '13px',
-                            color: '#012326'
+                            color: selectedTag === tag ? '#FFFFFF' : '#012326'
                           }}
                         >
                           {tag}
-                        </span>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -200,6 +225,11 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
                     <Edit size={18} />
                   </button>
                   <button
+                    onClick={() => {
+                      if (confirm(`Möchten Sie die Notiz "${note.title}" wirklich löschen?`)) {
+                        alert('Notiz wurde gelöscht und ins Archiv verschoben.');
+                      }
+                    }}
                     className="p-3 rounded-lg transition-all hover:shadow"
                     style={{
                       backgroundColor: '#A3C9D9',
@@ -287,13 +317,14 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
           {['Chemie', 'Geschichte', 'Mathematik', 'Biologie', 'Physik'].map((subject) => (
             <button
               key={subject}
+              onClick={() => setSelectedSubject(selectedSubject === subject ? null : subject)}
               className="w-full p-3 rounded-lg text-left transition-all hover:shadow"
               style={{
-                backgroundColor: '#FFFFFF',
+                backgroundColor: selectedSubject === subject ? '#6A9BA6' : '#FFFFFF',
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: 500,
                 fontSize: '15px',
-                color: '#012326'
+                color: selectedSubject === subject ? '#FFFFFF' : '#012326'
               }}
             >
               {subject}
@@ -315,11 +346,12 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
         </h3>
         <div className="flex flex-wrap gap-2">
           {['Alkane', 'Weimar', 'Integral', 'Zelle', 'Elektrizität', 'Analysis', 'Organellen'].map((tag) => (
-            <span 
+            <button
               key={tag}
+              onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
               className="px-3 py-2 rounded-lg cursor-pointer transition-all hover:shadow"
               style={{
-                backgroundColor: '#6A9BA6',
+                backgroundColor: selectedTag === tag ? '#346C73' : '#6A9BA6',
                 color: '#FFFFFF',
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: 500,
@@ -327,7 +359,7 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
               }}
             >
               {tag}
-            </span>
+            </button>
           ))}
         </div>
       </div>

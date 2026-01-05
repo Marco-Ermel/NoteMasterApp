@@ -262,6 +262,7 @@ export function StudyPlan({ onNavigate }: StudyPlanProps) {
         {/* Action Buttons */}
         <div className="flex gap-4 mt-10">
           <button
+            onClick={() => alert('Lernplan gespeichert!\n\nDein Lernplan wurde erfolgreich gespeichert.')}
             className="flex items-center gap-2 px-8 py-4 rounded-xl transition-all hover:shadow-lg"
             style={{
               backgroundColor: '#346C73',
@@ -276,6 +277,7 @@ export function StudyPlan({ onNavigate }: StudyPlanProps) {
           </button>
 
           <button
+            onClick={() => alert('PDF Export wird vorbereitet...\n\nIn einer vollständigen Version würde hier der Lernplan als PDF heruntergeladen werden.')}
             className="flex items-center gap-2 px-8 py-4 rounded-xl border-2 transition-all"
             style={{
               backgroundColor: '#FFFFFF',

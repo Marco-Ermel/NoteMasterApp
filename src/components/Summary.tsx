@@ -233,6 +233,7 @@ export function Summary({ note, onNavigate }: SummaryProps) {
         {/* Action Buttons */}
         <div className="flex gap-4">
           <button
+            onClick={() => alert('PDF Export wird vorbereitet...\n\nIn einer vollständigen Version würde hier die Zusammenfassung als PDF heruntergeladen werden.')}
             className="flex items-center gap-2 px-8 py-4 rounded-xl transition-all hover:shadow-lg"
             style={{
               backgroundColor: '#346C73',
@@ -415,6 +416,7 @@ export function Summary({ note, onNavigate }: SummaryProps) {
           {['Alkene und Alkine', 'Isomerie bei Alkanen', 'Nomenklatur Kohlenwasserstoffe'].map((title) => (
             <button
               key={title}
+              onClick={() => onNavigate('notes')}
               className="w-full p-4 rounded-lg text-left transition-all hover:shadow"
               style={{
                 backgroundColor: '#FFFFFF',
