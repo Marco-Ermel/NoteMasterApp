@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { Dashboard } from './components/Dashboard';
+import { ScanNote } from './components/ScanNote';
+import { ScanResult } from './components/ScanResult';
 import { NotesList } from './components/NotesList';
 import { NoteEditor } from './components/NoteEditor';
 import { Summary } from './components/Summary';
@@ -13,35 +15,54 @@ import { StoryScenes } from './components/StoryScenes';
 export default function App() {
   const [activeScreen, setActiveScreen] = useState('dashboard');
   const [selectedNote, setSelectedNote] = useState<any>(null);
+  const [scanData, setScanData] = useState<any>(null);
+
+  const handleNavigate = (screen: string, data?: any) => {
+    if (data) {
+      if (screen === 'scan-result') {
+        setScanData(data);
+      } else if (screen === 'summary' || screen === 'cheatsheet' || screen === 'studyplan') {
+        setSelectedNote(data);
+      }
+    }
+    setActiveScreen(screen);
+  };
 
   const renderMainContent = () => {
     switch (activeScreen) {
       case 'dashboard':
-        return <Dashboard onNavigate={setActiveScreen} />;
+        return <Dashboard onNavigate={handleNavigate} />;
+      case 'scan':
+        return <ScanNote onNavigate={handleNavigate} />;
+      case 'scan-result':
+        return <ScanResult data={scanData} onNavigate={handleNavigate} />;
       case 'notes':
-        return <NotesList onNavigate={setActiveScreen} onNoteSelect={setSelectedNote} />;
+        return <NotesList onNavigate={handleNavigate} onNoteSelect={setSelectedNote} />;
       case 'editor':
-        return <NoteEditor note={selectedNote} onNavigate={setActiveScreen} />;
+        return <NoteEditor note={selectedNote} onNavigate={handleNavigate} />;
       case 'summary':
-        return <Summary note={selectedNote} onNavigate={setActiveScreen} />;
+        return <Summary note={selectedNote} onNavigate={handleNavigate} />;
       case 'cheatsheet':
-        return <CheatSheet note={selectedNote} onNavigate={setActiveScreen} />;
+        return <CheatSheet note={selectedNote} onNavigate={handleNavigate} />;
       case 'studyplan':
-        return <StudyPlan onNavigate={setActiveScreen} />;
+        return <StudyPlan onNavigate={handleNavigate} />;
       case 'tasks':
-        return <Tasks onNavigate={setActiveScreen} />;
+        return <Tasks onNavigate={handleNavigate} />;
       case 'archive':
-        return <Archive onNavigate={setActiveScreen} />;
+        return <Archive onNavigate={handleNavigate} />;
       case 'story':
         return <StoryScenes />;
       default:
-        return <Dashboard onNavigate={setActiveScreen} />;
+        return <Dashboard onNavigate={handleNavigate} />;
     }
   };
 
+  // Don't show sidebar on dashboard
+  const showSidebar = activeScreen !== 'dashboard';
+
   return (
     <div className="flex h-screen bg-white overflow-hidden">
-      <Sidebar activeScreen={activeScreen} onNavigate={setActiveScreen} />
+      {showSidebar && <Sidebar activeScreen={activeScreen} onNavigate={handleNavigate} />}
       <div className="flex-1 overflow-auto">
         {renderMainContent()}
       </div>

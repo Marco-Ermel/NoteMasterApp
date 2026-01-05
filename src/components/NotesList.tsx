@@ -1,4 +1,4 @@
-import { Plus, Edit, Trash2, Clock, Tag } from 'lucide-react';
+import { Plus, Edit, Trash2, Calendar } from 'lucide-react';
 import React from 'react';
 
 interface NotesListProps {
@@ -10,74 +10,68 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
   const notes = [
     {
       id: 1,
-      title: 'Organische Chemie - Alkane',
-      date: '22. Nov 2025',
-      preview: 'Definition, Eigenschaften und Reaktionen von gesättigten Kohlenwasserstoffen...',
-      subject: 'Chemie',
-      tags: ['Alkane', 'Kohlenwasserstoffe']
+      title: 'Photosynthese - Grundlagen',
+      date: '15. Januar 2025',
+      preview: 'Die Photosynthese ist der Prozess, bei dem Pflanzen Lichtene...',
+      subject: 'Biologie'
     },
     {
       id: 2,
-      title: 'Geschichte - Weimarer Republik',
-      date: '21. Nov 2025',
-      preview: 'Entstehung nach dem 1. Weltkrieg, politische Strukturen, Krisenjahre...',
-      subject: 'Geschichte',
-      tags: ['Weimar', 'Deutschland', '1920er']
+      title: 'Quadratische Gleichungen',
+      date: '14. Januar 2025',
+      preview: 'Eine quadratische Gleichung hat die allgemeine Form: ax² + bx...',
+      subject: 'Mathematik'
     },
     {
       id: 3,
-      title: 'Mathematik - Integralrechnung',
-      date: '20. Nov 2025',
-      preview: 'Stammfunktionen, bestimmte und unbestimmte Integrale, Flächenberechnung...',
-      subject: 'Mathematik',
-      tags: ['Integral', 'Analysis']
+      title: 'Französische Revolution',
+      date: '13. Januar 2025',
+      preview: 'Französische Revolution (1789-1799) - Ursachen: Finanzkrise...',
+      subject: 'Geschichte'
     },
     {
       id: 4,
-      title: 'Biologie - Zellbiologie',
-      date: '19. Nov 2025',
-      preview: 'Aufbau prokaryotischer und eukaryotischer Zellen, Organellen und ihre Funktionen...',
-      subject: 'Biologie',
-      tags: ['Zelle', 'Organellen']
+      title: 'Zellbiologie: Mitose & Meiose',
+      date: '12. Januar 2025',
+      preview: 'Zellbiologie: Mitose & Meiose - Mitose (Zellteilung): Propha...',
+      subject: 'Biologie'
     },
     {
       id: 5,
-      title: 'Physik - Elektrodynamik',
-      date: '18. Nov 2025',
-      preview: 'Elektrische Felder, Spannung, Stromstärke und Widerstand...',
-      subject: 'Physik',
-      tags: ['Elektrizität', 'Felder']
+      title: 'Newtonsche Gesetze',
+      date: '11. Januar 2025',
+      preview: 'Newtonsche Gesetze der Mechanik - 1. Trägheitsgesetz: Ein Kö...',
+      subject: 'Physik'
+    },
+    {
+      id: 6,
+      title: 'Proteinbiosynthese',
+      date: '10. Januar 2025',
+      preview: 'Proteinbiosynthese - Transkription (im Zellkern): DNA wird g...',
+      subject: 'Biologie'
     },
   ];
 
-  const [selectedSubject, setSelectedSubject] = React.useState<string | null>(null);
-  const [selectedTag, setSelectedTag] = React.useState<string | null>(null);
-
-  const filteredNotes = React.useMemo(() => {
-    return notes.filter(note => {
-      if (selectedSubject && note.subject !== selectedSubject) return false;
-      if (selectedTag && !note.tags.includes(selectedTag)) return false;
-      return true;
-    });
-  }, [selectedSubject, selectedTag]);
-
   return (
-    <div className="flex">
-      {/* Main Content */}
-      <div className="flex-1 p-12">
-        <div className="flex items-center justify-between mb-8">
+    <div 
+      className="min-h-screen"
+      style={{ backgroundColor: '#FFFFFF' }}
+    >
+      {/* Header */}
+      <div className="p-8 border-b" style={{ borderColor: '#E5E5E5' }}>
+        <div className="flex items-center justify-between">
           <div>
             <h1 
               className="mb-2"
               style={{ 
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: 700,
-                fontSize: '32px',
+                fontSize: '28px',
                 lineHeight: '140%',
                 color: '#012326'
               }}
             >
-              Meine Notizen
+              Notizen
             </h1>
             <p 
               style={{ 
@@ -85,33 +79,21 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
                 fontWeight: 400,
                 fontSize: '16px',
                 lineHeight: '145%',
-                color: '#346C73'
+                color: '#6A9BA6'
               }}
             >
-              {filteredNotes.length} Notizen gespeichert
-              {(selectedSubject || selectedTag) && (
-                <button
-                  onClick={() => {
-                    setSelectedSubject(null);
-                    setSelectedTag(null);
-                  }}
-                  className="ml-2 text-sm underline"
-                  style={{ color: '#346C73' }}
-                >
-                  (Filter zurücksetzen)
-                </button>
-              )}
+              {notes.length} Notizen gespeichert
             </p>
           </div>
           
           <button
-            onClick={() => onNavigate('editor')}
+            onClick={() => onNavigate('scan')}
             className="flex items-center gap-2 px-6 py-4 rounded-xl transition-all hover:shadow-lg"
             style={{
-              backgroundColor: '#346C73',
+              backgroundColor: '#6A9BA6',
               color: '#FFFFFF',
               fontFamily: 'Inter, sans-serif',
-              fontWeight: 500,
+              fontWeight: 600,
               fontSize: '16px',
             }}
           >
@@ -119,45 +101,34 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
             Neue Notiz hinzufügen
           </button>
         </div>
+      </div>
 
-        {/* Notes Grid */}
-        <div className="grid gap-6">
-          {filteredNotes.map((note) => (
+      {/* Notes List */}
+      <div className="p-8">
+        <div className="space-y-4">
+          {notes.map((note) => (
             <div
               key={note.id}
-              className="p-6 rounded-xl border-2 transition-all hover:shadow-lg"
+              className="p-6 rounded-xl border transition-all hover:shadow-lg cursor-pointer"
               style={{
                 backgroundColor: '#FFFFFF',
-                borderColor: '#A3C9D9',
+                borderColor: '#E5E5E5',
               }}
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
+                    <Calendar size={16} style={{ color: '#6A9BA6' }} />
                     <span 
-                      className="px-3 py-1 rounded"
-                      style={{
-                        backgroundColor: '#6A9BA6',
+                      style={{ 
                         fontFamily: 'Inter, sans-serif',
-                        fontWeight: 500,
-                        fontSize: '13px',
-                        color: '#FFFFFF'
+                        fontWeight: 400,
+                        fontSize: '14px',
+                        color: '#6A9BA6'
                       }}
                     >
-                      {note.subject}
+                      {note.date}
                     </span>
-                    <div className="flex items-center gap-1" style={{ color: '#6A9BA6' }}>
-                      <Clock size={14} />
-                      <span 
-                        style={{ 
-                          fontFamily: 'Inter, sans-serif',
-                          fontWeight: 400,
-                          fontSize: '14px',
-                        }}
-                      >
-                        {note.date}
-                      </span>
-                    </div>
                   </div>
                   
                   <h3 
@@ -165,7 +136,7 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
                     style={{ 
                       fontFamily: 'Inter, sans-serif',
                       fontWeight: 700,
-                      fontSize: '22px',
+                      fontSize: '20px',
                       lineHeight: '140%',
                       color: '#012326'
                     }}
@@ -174,7 +145,6 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
                   </h3>
                   
                   <p 
-                    className="mb-4"
                     style={{ 
                       fontFamily: 'Inter, sans-serif',
                       fontWeight: 400,
@@ -185,55 +155,35 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
                   >
                     {note.preview}
                   </p>
-
-                  <div className="flex items-center gap-2">
-                    <Tag size={14} style={{ color: '#6A9BA6' }} />
-                    <div className="flex gap-2">
-                      {note.tags.map((tag) => (
-                        <button
-                          key={tag}
-                          onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
-                          className="px-2 py-1 rounded transition-all hover:shadow"
-                          style={{
-                            backgroundColor: selectedTag === tag ? '#6A9BA6' : '#A3C9D9',
-                            fontFamily: 'Inter, sans-serif',
-                            fontWeight: 400,
-                            fontSize: '13px',
-                            color: selectedTag === tag ? '#FFFFFF' : '#012326'
-                          }}
-                        >
-                          {tag}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
                 </div>
 
-                <div className="flex gap-2 ml-4">
+                <div className="flex gap-2 ml-6">
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       onNoteSelect(note);
                       onNavigate('editor');
                     }}
                     className="p-3 rounded-lg transition-all hover:shadow"
                     style={{
-                      backgroundColor: '#A3C9D9',
-                      color: '#012326'
+                      backgroundColor: '#F5F5F5',
+                      color: '#346C73'
                     }}
                     title="Bearbeiten"
                   >
                     <Edit size={18} />
                   </button>
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       if (confirm(`Möchten Sie die Notiz "${note.title}" wirklich löschen?`)) {
-                        alert('Notiz wurde gelöscht und ins Archiv verschoben.');
+                        alert('Notiz wurde gelöscht.');
                       }
                     }}
                     className="p-3 rounded-lg transition-all hover:shadow"
                     style={{
-                      backgroundColor: '#A3C9D9',
-                      color: '#012326'
+                      backgroundColor: '#F5F5F5',
+                      color: '#346C73'
                     }}
                     title="Löschen"
                   >
@@ -241,125 +191,7 @@ export function NotesList({ onNavigate, onNoteSelect }: NotesListProps) {
                   </button>
                 </div>
               </div>
-
-              <div className="flex gap-3 pt-4 border-t" style={{ borderColor: '#A3C9D9' }}>
-                <button
-                  onClick={() => {
-                    onNoteSelect(note);
-                    onNavigate('editor');
-                  }}
-                  className="px-5 py-2 rounded-lg transition-all"
-                  style={{
-                    backgroundColor: '#346C73',
-                    color: '#FFFFFF',
-                    fontFamily: 'Inter, sans-serif',
-                    fontWeight: 500,
-                    fontSize: '14px',
-                  }}
-                >
-                  Öffnen
-                </button>
-                <button
-                  onClick={() => {
-                    onNoteSelect(note);
-                    onNavigate('summary');
-                  }}
-                  className="px-5 py-2 rounded-lg border transition-all"
-                  style={{
-                    backgroundColor: '#FFFFFF',
-                    borderColor: '#346C73',
-                    color: '#346C73',
-                    fontFamily: 'Inter, sans-serif',
-                    fontWeight: 500,
-                    fontSize: '14px',
-                  }}
-                >
-                  Zusammenfassung
-                </button>
-                <button
-                  onClick={() => {
-                    onNoteSelect(note);
-                    onNavigate('cheatsheet');
-                  }}
-                  className="px-5 py-2 rounded-lg border transition-all"
-                  style={{
-                    backgroundColor: '#FFFFFF',
-                    borderColor: '#346C73',
-                    color: '#346C73',
-                    fontFamily: 'Inter, sans-serif',
-                    fontWeight: 500,
-                    fontSize: '14px',
-                  }}
-                >
-                  Spickzettel
-                </button>
-              </div>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Right Info Panel */}
-      <div className="w-80 p-8 border-l" style={{ backgroundColor: '#A3C9D9', borderColor: '#6A9BA6' }}>
-        <h3 
-          className="mb-6"
-          style={{ 
-            fontFamily: 'Inter, sans-serif',
-            fontWeight: 700,
-            fontSize: '20px',
-            lineHeight: '140%',
-            color: '#012326'
-          }}
-        >
-          Fächer
-        </h3>
-        <div className="space-y-3 mb-8">
-          {['Chemie', 'Geschichte', 'Mathematik', 'Biologie', 'Physik'].map((subject) => (
-            <button
-              key={subject}
-              onClick={() => setSelectedSubject(selectedSubject === subject ? null : subject)}
-              className="w-full p-3 rounded-lg text-left transition-all hover:shadow"
-              style={{
-                backgroundColor: selectedSubject === subject ? '#6A9BA6' : '#FFFFFF',
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 500,
-                fontSize: '15px',
-                color: selectedSubject === subject ? '#FFFFFF' : '#012326'
-              }}
-            >
-              {subject}
-            </button>
-          ))}
-        </div>
-
-        <h3 
-          className="mb-4"
-          style={{ 
-            fontFamily: 'Inter, sans-serif',
-            fontWeight: 700,
-            fontSize: '20px',
-            lineHeight: '140%',
-            color: '#012326'
-          }}
-        >
-          Häufige Tags
-        </h3>
-        <div className="flex flex-wrap gap-2">
-          {['Alkane', 'Weimar', 'Integral', 'Zelle', 'Elektrizität', 'Analysis', 'Organellen'].map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
-              className="px-3 py-2 rounded-lg cursor-pointer transition-all hover:shadow"
-              style={{
-                backgroundColor: selectedTag === tag ? '#346C73' : '#6A9BA6',
-                color: '#FFFFFF',
-                fontFamily: 'Inter, sans-serif',
-                fontWeight: 500,
-                fontSize: '13px',
-              }}
-            >
-              {tag}
-            </button>
           ))}
         </div>
       </div>

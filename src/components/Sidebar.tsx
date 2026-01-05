@@ -1,4 +1,4 @@
-import { Home, ScanLine, FileText, CheckSquare, FileCheck, BookOpen, Archive, Star, Presentation } from 'lucide-react';
+import { Home, FileText, CheckSquare, FileCheck, Layers, Calendar, Archive as ArchiveIcon } from 'lucide-react';
 
 interface SidebarProps {
   activeScreen: string;
@@ -9,42 +9,47 @@ export function Sidebar({ activeScreen, onNavigate }: SidebarProps) {
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Home },
     { id: 'notes', label: 'Notizen', icon: FileText },
+    { id: 'summary', label: 'Zusammenfassungen', icon: FileCheck },
+    { id: 'cheatsheet', label: 'Spickzettel', icon: Layers },
+    { id: 'studyplan', label: 'Lernpläne', icon: Calendar },
     { id: 'tasks', label: 'Aufgaben', icon: CheckSquare },
-    { id: 'summary', label: 'Zusammenfassungen', icon: FileCheck, requiresNote: true },
-    { id: 'cheatsheet', label: 'Spickzettel', icon: BookOpen, requiresNote: true },
-    { id: 'studyplan', label: 'Lernpläne', icon: BookOpen },
-    { id: 'archive', label: 'Archiv', icon: Archive },
-    { id: 'story', label: 'Story-Szenen', icon: Presentation },
   ];
-  
-  const handleNavigation = (itemId: string, requiresNote?: boolean) => {
-    // For items that require a note, navigate to notes first to select one
-    if (requiresNote && !['summary', 'cheatsheet'].includes(activeScreen)) {
-      onNavigate('notes');
-    } else {
-      onNavigate(itemId);
-    }
-  };
 
   return (
     <div 
       className="w-72 flex flex-col border-r"
-      style={{ backgroundColor: '#103B40' }}
+      style={{ backgroundColor: '#103B40', borderColor: '#346C73' }}
     >
-      <div className="p-8 border-b" style={{ borderColor: '#346C73' }}>
-        <h1 
-          className="flex items-center gap-3"
-          style={{ 
-            fontFamily: 'Inter, sans-serif',
-            fontWeight: 700,
-            fontSize: '28px',
-            lineHeight: '140%',
-            color: '#FFFFFF'
-          }}
+      <div className="p-8">
+        <button
+          onClick={() => onNavigate('dashboard')}
+          className="w-full"
         >
-          <ScanLine size={32} />
-          SmartNote
-        </h1>
+          <h1 
+            className="flex items-center gap-3"
+            style={{ 
+              fontFamily: 'Inter, sans-serif',
+              fontWeight: 700,
+              fontSize: '24px',
+              lineHeight: '140%',
+              color: '#FFFFFF'
+            }}
+          >
+            SmartNote
+          </h1>
+          <p 
+            style={{ 
+              fontFamily: 'Inter, sans-serif',
+              fontWeight: 400,
+              fontSize: '14px',
+              lineHeight: '140%',
+              color: '#A3C9D9',
+              marginTop: '4px'
+            }}
+          >
+            Dein Lernassistent
+          </p>
+        </button>
       </div>
 
       <nav className="flex-1 p-6">
@@ -56,13 +61,13 @@ export function Sidebar({ activeScreen, onNavigate }: SidebarProps) {
           return (
             <button
               key={item.id}
-              onClick={() => handleNavigation(item.id, item.requiresNote)}
+              onClick={() => onNavigate(item.id)}
               className="w-full flex items-center gap-4 px-5 py-4 rounded-lg mb-2 transition-all"
               style={{
                 backgroundColor: isActive ? '#346C73' : 'transparent',
                 color: isActive ? '#FFFFFF' : '#A3C9D9',
                 fontFamily: 'Inter, sans-serif',
-                fontWeight: 500,
+                fontWeight: isActive ? 600 : 500,
                 fontSize: '15px',
                 lineHeight: '140%',
               }}
@@ -76,18 +81,18 @@ export function Sidebar({ activeScreen, onNavigate }: SidebarProps) {
 
       <div className="p-6 border-t" style={{ borderColor: '#346C73' }}>
         <button
-          onClick={() => onNavigate('editor')}
-          className="w-full px-6 py-4 rounded-lg transition-all"
+          onClick={() => onNavigate('scan')}
+          className="w-full px-6 py-4 rounded-lg transition-all hover:shadow-lg"
           style={{
             backgroundColor: '#6A9BA6',
             color: '#FFFFFF',
             fontFamily: 'Inter, sans-serif',
-            fontWeight: 500,
+            fontWeight: 600,
             fontSize: '15px',
             lineHeight: '140%',
           }}
         >
-          + Neue Notiz erstellen
+          + Neue Notiz hinzufügen
         </button>
       </div>
     </div>
