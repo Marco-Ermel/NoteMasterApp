@@ -1,7 +1,17 @@
 import { Save, Sparkles, Layers, Calendar, Image as ImageIcon } from 'lucide-react';
 
+interface ScanData {
+  title: string;
+  recognizedText: string;
+}
+
+interface RecognizedSection {
+  type: string;
+  label: string;
+}
+
 interface ScanResultProps {
-  data?: any;
+  data?: ScanData;
   onNavigate: (screen: string, data?: any) => void;
 }
 
@@ -9,36 +19,30 @@ export function ScanResult({ data, onNavigate }: ScanResultProps) {
   const noteTitle = data?.title || 'Photosynthese - Grundlagen';
   const recognizedText = data?.recognizedText || '';
   
-  // Parse sections from recognized text
-  const sections = [
+  // Mock sections for demonstration - in production this would parse the recognized text
+  const sections: RecognizedSection[] = [
     {
       type: 'Überschrift',
-      title: 'Photosynthese - Grundlagen',
       label: 'Photosynthese - Grundlagen'
     },
     {
       type: 'Absatz',
-      title: 'Definition und Prozess',
       label: 'Definition und Prozess'
     },
     {
       type: 'Liste',
-      title: '4 wichtige Komponenten',
       label: '4 wichtige Komponenten'
     },
     {
       type: 'Formel',
-      title: 'Reaktionsgleichung',
       label: 'Reaktionsgleichung'
     },
     {
       type: 'Liste',
-      title: '2 Hauptphasen',
       label: '2 Hauptphasen'
     },
     {
       type: 'Absatz',
-      title: 'Bedeutung',
       label: 'Bedeutung'
     }
   ];

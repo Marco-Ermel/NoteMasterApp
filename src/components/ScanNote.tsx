@@ -1,7 +1,12 @@
 import { Camera, Smartphone } from 'lucide-react';
 
+interface ScanData {
+  title: string;
+  recognizedText: string;
+}
+
 interface ScanNoteProps {
-  onNavigate: (screen: string, data?: any) => void;
+  onNavigate: (screen: string, data?: ScanData) => void;
 }
 
 export function ScanNote({ onNavigate }: ScanNoteProps) {
