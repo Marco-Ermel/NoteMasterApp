@@ -31,21 +31,39 @@ All services and ViewModels are registered in `MauiProgram.cs` for proper depend
 
 ## 🎨 Design
 
-The UI matches the original React/TypeScript implementation with:
+The UI follows the SmartNote design specification with:
 
-- **Color Palette**: Teal-based professional color scheme
-- **Typography**: Inter font family with consistent sizing
-- **Layout**: Responsive grid with sidebar navigation
-- **Animations**: Smooth transitions using CommunityToolkit.Maui
+- **Color System**: 5-color teal-based professional palette with defined roles
+- **Typography**: Poppins font family (Regular, Medium, SemiBold, Bold)
+- **Layout**: Responsive grid with sidebar navigation (288px fixed)
+- **Design Principles**: Light, fresh, calm, modern, professional, learning-friendly
 
-### Color Scheme
-```
-Primary Dark:     #012326
-Primary:          #103B40
-Primary Medium:   #346C73
-Primary Light:    #6A9BA6
-Primary Lightest: #A3C9D9
-```
+### 5-Color Design System
+
+The application uses a strict 5-color system where each color has a specific role:
+
+1. **Farbe 1** (#A3C9D9) - Light, fresh, airy
+   - Usage: Highlights, info boxes, hover effects, small visual accents
+
+2. **Farbe 2** (#6A9BA6) - Friendly, harmonious, calming
+   - Usage: Large surfaces, panels, cards, container backgrounds
+
+3. **Farbe 3** (#346C73) - Elegant, dark, high contrast
+   - Usage: Icons on light surfaces, small UI details
+
+4. **Farbe 4** (#103B40) - Stable, trustworthy, profound
+   - Usage: Header, navigation, sidebar background, basic app structure
+
+5. **Farbe 5** (#346C73) - Serious, modern, calm
+   - Usage: Accents, buttons, important actions (Save, Create, Export)
+
+### Typography Scale
+
+- **Titles & Main headings**: 24-28px, SemiBold/Bold
+- **Section headings**: 18-22px, Medium/SemiBold
+- **Standard text/Body**: 14-16px, Regular
+- **Small hints/Secondary text**: 12-13px, Regular
+- **Buttons/Navigation**: 15-17px, Medium
 
 ## 📱 Platforms
 
@@ -121,10 +139,14 @@ SmartNote.Maui/
 ├── Converters/             # Value converters for bindings
 ├── Resources/
 │   ├── Fonts/
+│   │   ├── Poppins-Regular.ttf
+│   │   ├── Poppins-Medium.ttf
+│   │   ├── Poppins-SemiBold.ttf
+│   │   └── Poppins-Bold.ttf
 │   ├── Images/
 │   └── Styles/
-│       ├── Colors.xaml     # Color palette
-│       └── Styles.xaml     # Global styles
+│       ├── Colors.xaml     # 5-color design system
+│       └── Styles.xaml     # Typography and component styles
 └── Platforms/              # Platform-specific code
     ├── Android/
     ├── iOS/

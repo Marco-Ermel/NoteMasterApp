@@ -22,7 +22,7 @@
                         Command="{Binding BackToNotesCommand}"
                         BackgroundColor="Transparent"
                         TextColor="{StaticResource PrimaryMedium}"
-                        FontFamily="Arial"
+                        FontFamily="PoppinsRegular"
                         FontSize="15"
                         HorizontalOptions="Start" />
                 
@@ -35,7 +35,7 @@
                                 Padding="16,8">
                             <Label Text="{Binding Subject}"
                                    TextColor="{StaticResource TextOnDark}"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="14" />
                         </Border>
                         <Label Text="{Binding Date}"
@@ -58,7 +58,7 @@
                         <Label Text="📝 Kurzfassung"
                                Style="{StaticResource SectionTitleStyle}" />
                         <Label Text="{Binding ShortSummary}"
-                               FontFamily="Arial"
+                               FontFamily="PoppinsRegular"
                                FontSize="16"
                                LineHeight="1.6"
                                TextColor="{StaticResource TextPrimary}" />
@@ -88,7 +88,7 @@
                                                 StrokeShape="RoundRectangle 16">
                                             <Label Text="✓"
                                                    TextColor="{StaticResource TextOnDark}"
-                                                   FontFamily="Arial"
+                                                   FontFamily="PoppinsRegular"
                                                    FontSize="14"
                                                    HorizontalOptions="Center"
                                                    VerticalOptions="Center" />
@@ -122,7 +122,7 @@
                                         WidthRequest="280">
                                     <VerticalStackLayout Spacing="8">
                                         <Label Text="{Binding Term}"
-                                               FontFamily="Arial"
+                                               FontFamily="PoppinsRegular"
                                                FontSize="16"
                                                TextColor="{StaticResource TextPrimary}" />
                                         <Label Text="{Binding Definition}"
@@ -170,11 +170,11 @@
                                 Padding="16">
                             <VerticalStackLayout Spacing="4">
                                 <Label Text="Umfang"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="14"
                                        TextColor="{StaticResource TextMuted}" />
                                 <Label Text="{Binding CompressionPercent, StringFormat='{0}% komprimiert'}"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="16"
                                        TextColor="{StaticResource TextPrimary}" />
                             </VerticalStackLayout>
@@ -186,11 +186,11 @@
                                 Padding="16">
                             <VerticalStackLayout Spacing="4">
                                 <Label Text="Lesezeit"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="14"
                                        TextColor="{StaticResource TextMuted}" />
                                 <Label Text="{Binding ReadingTimeMinutes, StringFormat='{0} Minuten'}"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="16"
                                        TextColor="{StaticResource TextPrimary}" />
                             </VerticalStackLayout>
@@ -202,11 +202,11 @@
                                 Padding="16">
                             <VerticalStackLayout Spacing="4">
                                 <Label Text="Wichtige Begriffe"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="14"
                                        TextColor="{StaticResource TextMuted}" />
                                 <Label Text="{Binding TermsCount, StringFormat='{0} identifiziert'}"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="16"
                                        TextColor="{StaticResource TextPrimary}" />
                             </VerticalStackLayout>
@@ -223,12 +223,12 @@
                                 <Label Text="💡"
                                        FontSize="20" />
                                 <Label Text="KI-Tipp"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="16"
                                        TextColor="{StaticResource TextOnDark}" />
                             </HorizontalStackLayout>
                             <Label Text="Diese Zusammenfassung deckt die Grundlagen ab. Für Prüfungen solltest du auch Isomerie und Nomenklatur lernen."
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="14"
                                    LineHeight="1.45"
                                    TextColor="{StaticResource TextOnDark}" />
@@ -254,7 +254,7 @@
                                                                   CommandParameter="{Binding}" />
                                         </Border.GestureRecognizers>
                                         <Label Text="{Binding}"
-                                               FontFamily="Arial"
+                                               FontFamily="PoppinsRegular"
                                                FontSize="14"
                                                TextColor="{StaticResource TextPrimary}" />
                                     </Border>

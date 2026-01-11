@@ -43,7 +43,7 @@
                         StrokeShape="RoundRectangle 12"
                         Padding="20">
                     <Label Text="💡 Archivierte Notizen werden nicht gelöscht und können jederzeit wiederhergestellt werden. Sie erscheinen nicht mehr in deiner Hauptliste."
-                           FontFamily="Arial"
+                           FontFamily="PoppinsRegular"
                            FontSize="15"
                            LineHeight="1.45"
                            TextColor="{StaticResource TextPrimary}" />
@@ -68,14 +68,14 @@
                                                     Padding="12,4">
                                                 <Label Text="{Binding Subject}"
                                                        TextColor="{StaticResource TextOnDark}"
-                                                       FontFamily="Arial"
+                                                       FontFamily="PoppinsRegular"
                                                        FontSize="13" />
                                             </Border>
                                             <Label Text="{Binding FormattedArchivedDate, StringFormat='Archiviert: {0}'}"
                                                    Style="{StaticResource CaptionStyle}" />
                                         </HorizontalStackLayout>
                                         <Label Text="{Binding Title}"
-                                               FontFamily="Arial"
+                                               FontFamily="PoppinsRegular"
                                                FontSize="22"
                                                TextColor="{StaticResource TextPrimary}" />
                                         <Label Text="{Binding Preview}"
@@ -91,7 +91,7 @@
                                                 CommandParameter="{Binding}"
                                                 BackgroundColor="{StaticResource PrimaryMedium}"
                                                 TextColor="{StaticResource TextOnDark}"
-                                                FontFamily="Arial"
+                                                FontFamily="PoppinsRegular"
                                                 FontSize="14"
                                                 CornerRadius="8"
                                                 Padding="20,12" />
@@ -102,7 +102,7 @@
                                                 TextColor="{StaticResource PrimaryMedium}"
                                                 BorderColor="{StaticResource PrimaryMedium}"
                                                 BorderWidth="2"
-                                                FontFamily="Arial"
+                                                FontFamily="PoppinsRegular"
                                                 FontSize="14"
                                                 CornerRadius="8"
                                                 Padding="20,12" />
@@ -123,11 +123,11 @@
                         <Label Text="🗑️" FontSize="24" VerticalOptions="Start" />
                         <VerticalStackLayout Spacing="8">
                             <Label Text="Achtung beim Löschen"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="18"
                                    TextColor="{StaticResource TextPrimary}" />
                             <Label Text="Das endgültige Löschen einer Notiz kann nicht rückgängig gemacht werden. Stelle sicher, dass du die Notiz wirklich nicht mehr benötigst."
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="15"
                                    LineHeight="1.45"
                                    TextColor="{StaticResource TextMuted}" />
@@ -157,11 +157,11 @@
                                 Padding="16">
                             <VerticalStackLayout Spacing="4">
                                 <Label Text="Gesamt archiviert"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="14"
                                        TextColor="{StaticResource TextMuted}" />
                                 <Label Text="{Binding ArchivedCount}"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="24"
                                        TextColor="{StaticResource TextPrimary}" />
                             </VerticalStackLayout>
@@ -173,11 +173,11 @@
                                 Padding="16">
                             <VerticalStackLayout Spacing="4">
                                 <Label Text="Diesen Monat"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="14"
                                        TextColor="{StaticResource TextMuted}" />
                                 <Label Text="{Binding ArchivedThisMonth}"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="24"
                                        TextColor="{StaticResource TextPrimary}" />
                             </VerticalStackLayout>
@@ -189,11 +189,11 @@
                                 Padding="16">
                             <VerticalStackLayout Spacing="4">
                                 <Label Text="Speicherplatz"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="14"
                                        TextColor="{StaticResource TextMuted}" />
                                 <Label Text="{Binding StorageUsed}"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="24"
                                        TextColor="{StaticResource TextPrimary}" />
                             </VerticalStackLayout>
@@ -216,7 +216,7 @@
                                         <Grid ColumnDefinitions="*,Auto">
                                             <Label Grid.Column="0"
                                                    Text="{Binding Subject}"
-                                                   FontFamily="Arial"
+                                                   FontFamily="PoppinsRegular"
                                                    FontSize="15"
                                                    TextColor="{StaticResource TextPrimary}" />
                                             <Border Grid.Column="1"
@@ -227,7 +227,7 @@
                                                     StrokeShape="RoundRectangle 14">
                                                 <Label Text="{Binding Count}"
                                                        TextColor="{StaticResource TextOnDark}"
-                                                       FontFamily="Arial"
+                                                       FontFamily="PoppinsRegular"
                                                        FontSize="13"
                                                        HorizontalOptions="Center"
                                                        VerticalOptions="Center" />
@@ -246,11 +246,11 @@
                             Padding="20">
                         <VerticalStackLayout Spacing="8">
                             <Label Text="Tipp"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="16"
                                    TextColor="{StaticResource TextOnDark}" />
                             <Label Text="Archiviere alte Notizen regelmäßig, um deine Hauptliste übersichtlich zu halten. Du kannst sie jederzeit wiederherstellen."
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="14"
                                    LineHeight="1.45"
                                    TextColor="{StaticResource TextOnDark}" />

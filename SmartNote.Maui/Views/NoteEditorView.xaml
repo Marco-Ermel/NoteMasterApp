@@ -22,15 +22,15 @@
                             Command="{Binding CancelCommand}"
                             BackgroundColor="Transparent"
                             TextColor="{StaticResource PrimaryMedium}"
-                            FontFamily="Arial"
+                            FontFamily="PoppinsRegular"
                             FontSize="15" />
                 </HorizontalStackLayout>
                 
                 <!-- Title Input -->
                 <Entry Text="{Binding NoteTitle}"
                        Placeholder="Notiz Titel"
-                       FontFamily="Arial"
-                       FontSize="32"
+                       FontFamily="PoppinsSemiBold"
+                       FontSize="28"
                        TextColor="{StaticResource TextPrimary}"
                        BackgroundColor="Transparent" />
                 
@@ -111,7 +111,7 @@
                     <!-- Date -->
                     <VerticalStackLayout Spacing="8">
                         <Label Text="📅 Datum"
-                               FontFamily="Arial"
+                               FontFamily="PoppinsRegular"
                                FontSize="14"
                                TextColor="{StaticResource TextPrimary}" />
                         <DatePicker Date="{Binding NoteDate}"
@@ -121,7 +121,7 @@
                     <!-- Category -->
                     <VerticalStackLayout Spacing="8">
                         <Label Text="Kategorie / Fach"
-                               FontFamily="Arial"
+                               FontFamily="PoppinsRegular"
                                FontSize="14"
                                TextColor="{StaticResource TextPrimary}" />
                         <Picker ItemsSource="{Binding AvailableSubjects}"
@@ -132,7 +132,7 @@
                     <!-- Tags -->
                     <VerticalStackLayout Spacing="8">
                         <Label Text="🏷️ Tags"
-                               FontFamily="Arial"
+                               FontFamily="PoppinsRegular"
                                FontSize="14"
                                TextColor="{StaticResource TextPrimary}" />
                         <Grid ColumnDefinitions="*,Auto">
@@ -158,7 +158,7 @@
                                         <HorizontalStackLayout Spacing="8">
                                             <Label Text="{Binding}"
                                                    TextColor="{StaticResource TextOnDark}"
-                                                   FontFamily="Arial"
+                                                   FontFamily="PoppinsRegular"
                                                    FontSize="13" />
                                             <Label Text="×"
                                                    TextColor="{StaticResource TextOnDark}"
@@ -178,7 +178,7 @@
                     <!-- Priority -->
                     <VerticalStackLayout Spacing="8">
                         <Label Text="Priorität"
-                               FontFamily="Arial"
+                               FontFamily="PoppinsRegular"
                                FontSize="14"
                                TextColor="{StaticResource TextPrimary}" />
                         <Picker BackgroundColor="{StaticResource BackgroundLight}">
@@ -199,28 +199,28 @@
                             Padding="20">
                         <VerticalStackLayout Spacing="8">
                             <Label Text="Schnellaktionen"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsMedium"
                                    FontSize="16"
                                    TextColor="{StaticResource TextOnDark}" />
                             <Button Text="Zusammenfassung erstellen"
                                     Command="{Binding GenerateSummaryCommand}"
                                     BackgroundColor="{StaticResource BackgroundLight}"
                                     TextColor="{StaticResource TextPrimary}"
-                                    FontFamily="Arial"
+                                    FontFamily="PoppinsRegular"
                                     FontSize="14"
                                     CornerRadius="8" />
                             <Button Text="Spickzettel generieren"
                                     Command="{Binding GenerateCheatSheetCommand}"
                                     BackgroundColor="{StaticResource BackgroundLight}"
                                     TextColor="{StaticResource TextPrimary}"
-                                    FontFamily="Arial"
+                                    FontFamily="PoppinsRegular"
                                     FontSize="14"
                                     CornerRadius="8" />
                             <Button Text="Lernplan erstellen"
                                     Command="{Binding CreateStudyPlanCommand}"
                                     BackgroundColor="{StaticResource BackgroundLight}"
                                     TextColor="{StaticResource TextPrimary}"
-                                    FontFamily="Arial"
+                                    FontFamily="PoppinsRegular"
                                     FontSize="14"
                                     CornerRadius="8" />
                         </VerticalStackLayout>

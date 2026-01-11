@@ -22,12 +22,11 @@ public static class MauiProgram
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
-                // Use Inter font family to match original design
-                fonts.AddFont("Inter-Regular.ttf", "InterRegular");
-                fonts.AddFont("Inter-Medium.ttf", "InterMedium");
-                fonts.AddFont("Inter-Bold.ttf", "InterBold");
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                // Use Poppins font family as per design specification
+                fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
+                fonts.AddFont("Poppins-Medium.ttf", "PoppinsMedium");
+                fonts.AddFont("Poppins-SemiBold.ttf", "PoppinsSemiBold");
+                fonts.AddFont("Poppins-Bold.ttf", "PoppinsBold");
             });
 
 #if DEBUG
@@ -50,7 +49,6 @@ public static class MauiProgram
         builder.Services.AddTransient<StudyPlanViewModel>();
         builder.Services.AddTransient<TasksViewModel>();
         builder.Services.AddTransient<ArchiveViewModel>();
-        builder.Services.AddTransient<StoryScenesViewModel>();
 
         // Register Views with ViewModel injection
         // MainPage requires IServiceProvider for creating child views with DI
@@ -76,8 +74,6 @@ public static class MauiProgram
             sp.GetRequiredService<TasksViewModel>()));
         builder.Services.AddTransient<ArchiveView>(sp => new ArchiveView(
             sp.GetRequiredService<ArchiveViewModel>()));
-        builder.Services.AddTransient<StoryScenesView>(sp => new StoryScenesView(
-            sp.GetRequiredService<StoryScenesViewModel>()));
 
         return builder.Build();
     }

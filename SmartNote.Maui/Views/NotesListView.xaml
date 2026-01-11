@@ -55,7 +55,7 @@
                                                     Padding="12,4">
                                                 <Label Text="{Binding Subject}"
                                                        TextColor="{StaticResource TextOnDark}"
-                                                       FontFamily="Arial"
+                                                       FontFamily="PoppinsRegular"
                                                        FontSize="13" />
                                             </Border>
                                             <!-- Date -->
@@ -101,7 +101,7 @@
                                                             StrokeShape="RoundRectangle 4"
                                                             Padding="8,4">
                                                         <Label Text="{Binding}"
-                                                               FontFamily="Arial"
+                                                               FontFamily="PoppinsRegular"
                                                                FontSize="13"
                                                                TextColor="{StaticResource TextPrimary}" />
                                                     </Border>
@@ -173,7 +173,7 @@
                                                                   CommandParameter="{Binding}" />
                                         </Border.GestureRecognizers>
                                         <Label Text="{Binding}"
-                                               FontFamily="Arial"
+                                               FontFamily="PoppinsRegular"
                                                FontSize="15"
                                                TextColor="{StaticResource TextPrimary}" />
                                     </Border>
@@ -203,7 +203,7 @@
                                         </Border.GestureRecognizers>
                                         <Label Text="{Binding}"
                                                TextColor="{StaticResource TextOnDark}"
-                                               FontFamily="Arial"
+                                               FontFamily="PoppinsRegular"
                                                FontSize="13" />
                                     </Border>
                                 </DataTemplate>

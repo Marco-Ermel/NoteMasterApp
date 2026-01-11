@@ -27,14 +27,14 @@
                     StrokeThickness="0,0,0,1"
                     Stroke="{StaticResource SidebarBorder}">
                 <HorizontalStackLayout Spacing="12">
-                    <!-- App Icon -->
+                    <!-- App Icon - Modern minimal icon -->
                     <Label Text="📝"
-                           FontSize="32"
+                           FontSize="28"
                            VerticalOptions="Center" />
                     <Label Text="SmartNote"
                            TextColor="{StaticResource TextOnDark}"
-                           FontFamily="Arial"
-                           FontSize="28"
+                           FontFamily="PoppinsSemiBold"
+                           FontSize="24"
                            VerticalOptions="Center" />
                 </HorizontalStackLayout>
             </Border>
@@ -74,8 +74,8 @@
                             CommandParameter="{Binding MenuItems[4]}"
                             Style="{StaticResource NavButtonStyle}" />
                     
-                    <!-- Lernpläne -->
-                    <Button Text="Lernpläne"
+                    <!-- Statistik -->
+                    <Button Text="Statistik"
                             Command="{Binding SelectMenuItemCommand}"
                             CommandParameter="{Binding MenuItems[5]}"
                             Style="{StaticResource NavButtonStyle}" />
@@ -84,12 +84,6 @@
                     <Button Text="Archiv"
                             Command="{Binding SelectMenuItemCommand}"
                             CommandParameter="{Binding MenuItems[6]}"
-                            Style="{StaticResource NavButtonStyle}" />
-                    
-                    <!-- Story-Szenen -->
-                    <Button Text="Story-Szenen"
-                            Command="{Binding SelectMenuItemCommand}"
-                            CommandParameter="{Binding MenuItems[7]}"
                             Style="{StaticResource NavButtonStyle}" />
                     
                 </VerticalStackLayout>
@@ -104,8 +98,8 @@
                         Command="{Binding CreateNewNoteCommand}"
                         BackgroundColor="{StaticResource PrimaryLight}"
                         TextColor="{StaticResource TextOnDark}"
-                        FontFamily="Arial"
-                        FontSize="15"
+                        FontFamily="PoppinsMedium"
+                        FontSize="16"
                         CornerRadius="8"
                         Padding="24,16" />
             </Border>
