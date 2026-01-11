@@ -74,8 +74,8 @@
                             CommandParameter="{Binding MenuItems[4]}"
                             Style="{StaticResource NavButtonStyle}" />
                     
-                    <!-- Lernpläne -->
-                    <Button Text="Lernpläne"
+                    <!-- Statistik -->
+                    <Button Text="Statistik"
                             Command="{Binding SelectMenuItemCommand}"
                             CommandParameter="{Binding MenuItems[5]}"
                             Style="{StaticResource NavButtonStyle}" />
@@ -84,12 +84,6 @@
                     <Button Text="Archiv"
                             Command="{Binding SelectMenuItemCommand}"
                             CommandParameter="{Binding MenuItems[6]}"
-                            Style="{StaticResource NavButtonStyle}" />
-                    
-                    <!-- Story-Szenen -->
-                    <Button Text="Story-Szenen"
-                            Command="{Binding SelectMenuItemCommand}"
-                            CommandParameter="{Binding MenuItems[7]}"
                             Style="{StaticResource NavButtonStyle}" />
                     
                 </VerticalStackLayout>

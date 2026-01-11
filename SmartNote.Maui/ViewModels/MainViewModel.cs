@@ -48,9 +48,8 @@ public partial class MainViewModel : BaseViewModel
             new Models.MenuItem { Id = "tasks", Label = "Aufgaben", Icon = "check_square.png", IsActive = false },
             new Models.MenuItem { Id = "summary", Label = "Zusammenfassungen", Icon = "file_check.png", IsActive = false },
             new Models.MenuItem { Id = "cheatsheet", Label = "Spickzettel", Icon = "book_open.png", IsActive = false },
-            new Models.MenuItem { Id = "studyplan", Label = "Lernpläne", Icon = "book_open.png", IsActive = false },
-            new Models.MenuItem { Id = "archive", Label = "Archiv", Icon = "archive.png", IsActive = false },
-            new Models.MenuItem { Id = "story", Label = "Story-Szenen", Icon = "presentation.png", IsActive = false }
+            new Models.MenuItem { Id = "studyplan", Label = "Statistik", Icon = "chart.png", IsActive = false },
+            new Models.MenuItem { Id = "archive", Label = "Archiv", Icon = "archive.png", IsActive = false }
         };
     }
     

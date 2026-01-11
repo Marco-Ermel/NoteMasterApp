@@ -49,7 +49,6 @@ public static class MauiProgram
         builder.Services.AddTransient<StudyPlanViewModel>();
         builder.Services.AddTransient<TasksViewModel>();
         builder.Services.AddTransient<ArchiveViewModel>();
-        builder.Services.AddTransient<StoryScenesViewModel>();
 
         // Register Views with ViewModel injection
         // MainPage requires IServiceProvider for creating child views with DI
@@ -75,8 +74,6 @@ public static class MauiProgram
             sp.GetRequiredService<TasksViewModel>()));
         builder.Services.AddTransient<ArchiveView>(sp => new ArchiveView(
             sp.GetRequiredService<ArchiveViewModel>()));
-        builder.Services.AddTransient<StoryScenesView>(sp => new StoryScenesView(
-            sp.GetRequiredService<StoryScenesViewModel>()));
 
         return builder.Build();
     }

@@ -59,7 +59,6 @@ public partial class MainPage : ContentPage
                 "studyplan" => CreateView<StudyPlanView, StudyPlanViewModel>(),
                 "tasks" => CreateView<TasksView, TasksViewModel>(),
                 "archive" => CreateView<ArchiveView, ArchiveViewModel>(),
-                "story" => CreateView<StoryScenesView, StoryScenesViewModel>(),
                 _ => CreateView<DashboardView, DashboardViewModel>()
             };
             
