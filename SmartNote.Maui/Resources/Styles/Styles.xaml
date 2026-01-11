@@ -6,92 +6,92 @@
     
     <!-- 
         SmartNote Global Styles
-        Modern MAUI styling matching original React design
-        Uses Inter font family with consistent sizing and weights
+        Modern MAUI styling with Poppins font family
+        Typography follows design specification for clarity and professionalism
     -->
     
-    <!-- Typography Styles (matching original Inter font specs) -->
+    <!-- Typography Styles (Poppins font as per specification) -->
     
-    <!-- Large Title - 32px, Bold -->
+    <!-- Large Title - 28px, SemiBold/Bold (Titel & Hauptüberschriften 24-28px) -->
     <Style x:Key="LargeTitleStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="Arial" />
-        <Setter Property="FontSize" Value="32" />
+        <Setter Property="FontFamily" Value="PoppinsSemiBold" />
+        <Setter Property="FontSize" Value="28" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
         <Setter Property="LineBreakMode" Value="WordWrap" />
     </Style>
     
-    <!-- Section Title - 26px, Bold -->
+    <!-- Section Title - 26px, SemiBold (Titel & Hauptüberschriften 24-28px) -->
     <Style x:Key="SectionTitleStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsSemiBold" />
         <Setter Property="FontSize" Value="26" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
         <Setter Property="LineBreakMode" Value="WordWrap" />
     </Style>
     
-    <!-- Card Title - 22px, Bold -->
+    <!-- Card Title - 22px, SemiBold (Abschnitts-Überschriften 18-22px) -->
     <Style x:Key="CardTitleStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsSemiBold" />
         <Setter Property="FontSize" Value="22" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
     </Style>
     
-    <!-- Subtitle - 18px, Bold -->
+    <!-- Subtitle - 18px, Medium (Abschnitts-Überschriften 18-22px) -->
     <Style x:Key="SubtitleStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsMedium" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
     </Style>
     
-    <!-- Body Text - 16px, Regular -->
+    <!-- Body Text - 16px, Regular (Standard-Text 14-16px) -->
     <Style x:Key="BodyStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
         <Setter Property="LineBreakMode" Value="WordWrap" />
     </Style>
     
-    <!-- Secondary Text - 15px, Regular -->
+    <!-- Secondary Text - 15px, Regular (Standard-Text 14-16px) -->
     <Style x:Key="SecondaryTextStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
         <Setter Property="FontSize" Value="15" />
         <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
     </Style>
     
-    <!-- Caption - 14px, Regular -->
+    <!-- Caption - 14px, Regular (Standard-Text 14-16px) -->
     <Style x:Key="CaptionStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
     </Style>
     
-    <!-- Small Caption - 13px, Medium -->
+    <!-- Small Caption - 13px, Regular (Kleine Hinweise 12-13px) -->
     <Style x:Key="SmallCaptionStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
         <Setter Property="FontSize" Value="13" />
         <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
     </Style>
     
-    <!-- Navigation Label (Sidebar) - 15px, Medium -->
+    <!-- Navigation Label (Sidebar) - 16px, Medium (Buttons/Navigation 15-17px) -->
     <Style x:Key="NavLabelStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="Arial" />
-        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="PoppinsMedium" />
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="TextColor" Value="{StaticResource TextLight}" />
     </Style>
     
-    <!-- Navigation Label Active -->
+    <!-- Navigation Label Active - 16px, Medium (Buttons/Navigation 15-17px) -->
     <Style x:Key="NavLabelActiveStyle" TargetType="Label">
-        <Setter Property="FontFamily" Value="Arial" />
-        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="PoppinsMedium" />
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="TextColor" Value="{StaticResource TextOnDark}" />
     </Style>
     
     <!-- Button Styles -->
     
-    <!-- Primary Button (filled teal) -->
+    <!-- Primary Button (filled teal) - 16px, Medium (Buttons/Navigation 15-17px) -->
     <Style x:Key="PrimaryButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource ButtonPrimary}" />
         <Setter Property="TextColor" Value="{StaticResource TextOnDark}" />
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsMedium" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="24,16" />
@@ -99,11 +99,11 @@
         <Setter Property="BorderWidth" Value="0" />
     </Style>
     
-    <!-- Secondary Button (outlined) -->
+    <!-- Secondary Button (outlined) - 16px, Medium -->
     <Style x:Key="SecondaryButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource BackgroundLight}" />
         <Setter Property="TextColor" Value="{StaticResource ButtonPrimary}" />
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsMedium" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Padding" Value="24,16" />
@@ -116,7 +116,7 @@
     <Style x:Key="IconButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource PrimaryLightest}" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsMedium" />
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Padding" Value="12" />
         <Setter Property="HeightRequest" Value="44" />
@@ -124,12 +124,12 @@
         <Setter Property="BorderWidth" Value="0" />
     </Style>
     
-    <!-- Navigation Button (sidebar) -->
+    <!-- Navigation Button (sidebar) - 16px, Medium -->
     <Style x:Key="NavButtonStyle" TargetType="Button">
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="TextColor" Value="{StaticResource TextLight}" />
-        <Setter Property="FontFamily" Value="Arial" />
-        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="PoppinsMedium" />
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="CornerRadius" Value="8" />
         <Setter Property="Padding" Value="20,16" />
         <Setter Property="HorizontalOptions" Value="Fill" />
@@ -166,21 +166,21 @@
     
     <!-- Input Styles -->
     
-    <!-- Standard Entry -->
+    <!-- Standard Entry (14-16px Regular) -->
     <Style x:Key="EntryStyle" TargetType="Entry">
         <Setter Property="BackgroundColor" Value="{StaticResource BackgroundLight}" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
         <Setter Property="PlaceholderColor" Value="{StaticResource TextMuted}" />
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
         <Setter Property="FontSize" Value="15" />
     </Style>
     
-    <!-- Standard Editor (multiline text) -->
+    <!-- Standard Editor (multiline text, 14-16px Regular) -->
     <Style x:Key="EditorStyle" TargetType="Editor">
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
         <Setter Property="PlaceholderColor" Value="{StaticResource TextMuted}" />
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
         <Setter Property="FontSize" Value="16" />
     </Style>
     

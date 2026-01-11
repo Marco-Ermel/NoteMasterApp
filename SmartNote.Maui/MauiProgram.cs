@@ -22,12 +22,11 @@ public static class MauiProgram
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
-                // Use Inter font family to match original design
-                fonts.AddFont("Inter-Regular.ttf", "InterRegular");
-                fonts.AddFont("Inter-Medium.ttf", "InterMedium");
-                fonts.AddFont("Inter-Bold.ttf", "InterBold");
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                // Use Poppins font family as per design specification
+                fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
+                fonts.AddFont("Poppins-Medium.ttf", "PoppinsMedium");
+                fonts.AddFont("Poppins-SemiBold.ttf", "PoppinsSemiBold");
+                fonts.AddFont("Poppins-Bold.ttf", "PoppinsBold");
             });
 
 #if DEBUG
