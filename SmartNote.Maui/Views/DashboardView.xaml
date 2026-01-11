@@ -166,7 +166,7 @@
                                         HorizontalOptions="Start">
                                     <Label Text="Chemie"
                                            TextColor="{StaticResource TextOnDark}"
-                                           FontFamily="Arial"
+                                           FontFamily="PoppinsRegular"
                                            FontSize="13" />
                                 </Border>
                                 <Label Text="Organische Chemie Zusammenfassung"
@@ -195,7 +195,7 @@
                                         HorizontalOptions="Start">
                                     <Label Text="Geschichte"
                                            TextColor="{StaticResource TextOnDark}"
-                                           FontFamily="Arial"
+                                           FontFamily="PoppinsRegular"
                                            FontSize="13" />
                                 </Border>
                                 <Label Text="Weimarer Republik Spickzettel"
@@ -240,13 +240,13 @@
                                                 <CheckBox IsChecked="{Binding IsCompleted}"
                                                           Color="{StaticResource PrimaryMedium}" />
                                                 <Label Text="{Binding Title}"
-                                                       FontFamily="Arial"
+                                                       FontFamily="PoppinsRegular"
                                                        FontSize="15"
                                                        TextColor="{StaticResource TextPrimary}"
                                                        VerticalOptions="Center" />
                                             </HorizontalStackLayout>
                                             <Label Text="{Binding Description}"
-                                                   FontFamily="Arial"
+                                                   FontFamily="PoppinsRegular"
                                                    FontSize="13"
                                                    TextColor="{StaticResource TextSecondary}"
                                                    Margin="32,0,0,0" />
@@ -269,7 +269,7 @@
                                    Style="{StaticResource SecondaryTextStyle}" />
                             <Label Grid.Column="1"
                                    Text="{Binding NotesThisWeek}"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="15"
                                    TextColor="{StaticResource TextPrimary}" />
                         </Grid>
@@ -280,7 +280,7 @@
                                    Text="Erledigte Aufgaben"
                                    Style="{StaticResource SecondaryTextStyle}" />
                             <Label Grid.Column="1"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="15"
                                    TextColor="{StaticResource TextPrimary}">
                                 <Label.Text>
@@ -299,7 +299,7 @@
                                    Style="{StaticResource SecondaryTextStyle}" />
                             <Label Grid.Column="1"
                                    Text="{Binding StudyTimeToday}"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="15"
                                    TextColor="{StaticResource TextPrimary}" />
                         </Grid>

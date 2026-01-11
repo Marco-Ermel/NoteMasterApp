@@ -18,7 +18,7 @@
                         Command="{Binding BackToDashboardCommand}"
                         BackgroundColor="Transparent"
                         TextColor="{StaticResource PrimaryMedium}"
-                        FontFamily="Arial"
+                        FontFamily="PoppinsRegular"
                         FontSize="15"
                         HorizontalOptions="Start" />
                 
@@ -41,11 +41,11 @@
                         <VerticalStackLayout Spacing="8">
                             <Label Text="📅" FontSize="32" />
                             <Label Text="Zeitraum"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="14"
                                    TextColor="{StaticResource TextMuted}" />
                             <Label Text="{Binding TotalDays, StringFormat='{0} Tage'}"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="20"
                                    TextColor="{StaticResource TextPrimary}" />
                         </VerticalStackLayout>
@@ -60,11 +60,11 @@
                         <VerticalStackLayout Spacing="8">
                             <Label Text="⏱️" FontSize="32" />
                             <Label Text="Gesamt-Lernzeit"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="14"
                                    TextColor="{StaticResource TextMuted}" />
                             <Label Text="{Binding TotalStudyTime}"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="20"
                                    TextColor="{StaticResource TextPrimary}" />
                         </VerticalStackLayout>
@@ -79,10 +79,10 @@
                         <VerticalStackLayout Spacing="8">
                             <Label Text="✅" FontSize="32" />
                             <Label Text="Aufgaben"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="14"
                                    TextColor="{StaticResource TextMuted}" />
-                            <Label FontFamily="Arial"
+                            <Label FontFamily="PoppinsRegular"
                                    FontSize="20"
                                    TextColor="{StaticResource TextPrimary}">
                                 <Label.Text>
@@ -102,7 +102,7 @@
                         <DataTemplate x:DataType="models:StudyDay">
                             <VerticalStackLayout Spacing="16" Margin="0,0,0,32">
                                 <Label Text="{Binding FormattedDayName}"
-                                       FontFamily="Arial"
+                                       FontFamily="PoppinsRegular"
                                        FontSize="24"
                                        TextColor="{StaticResource TextPrimary}" />
                                 
@@ -126,7 +126,7 @@
                                                                 <Label Text="🕐"
                                                                        FontSize="14" />
                                                                 <Label Text="{Binding TimeSlot}"
-                                                                       FontFamily="Arial"
+                                                                       FontFamily="PoppinsRegular"
                                                                        FontSize="14"
                                                                        TextColor="{StaticResource TextMuted}" />
                                                             </HorizontalStackLayout>
@@ -136,12 +136,12 @@
                                                                     Padding="12,4">
                                                                 <Label Text="{Binding Subject}"
                                                                        TextColor="{StaticResource TextOnDark}"
-                                                                       FontFamily="Arial"
+                                                                       FontFamily="PoppinsRegular"
                                                                        FontSize="13" />
                                                             </Border>
                                                         </HorizontalStackLayout>
                                                         <Label Text="{Binding Topic}"
-                                                               FontFamily="Arial"
+                                                               FontFamily="PoppinsRegular"
                                                                FontSize="17"
                                                                TextColor="{StaticResource TextPrimary}" />
                                                     </VerticalStackLayout>
@@ -192,18 +192,18 @@
                                         <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
                                             <Label Grid.Column="0"
                                                    Text="{Binding Subject}"
-                                                   FontFamily="Arial"
+                                                   FontFamily="PoppinsRegular"
                                                    FontSize="15"
                                                    TextColor="{StaticResource TextPrimary}" />
                                             <Label Grid.Column="1"
                                                    Text="{Binding Hours}"
-                                                   FontFamily="Arial"
+                                                   FontFamily="PoppinsRegular"
                                                    FontSize="15"
                                                    TextColor="{StaticResource PrimaryMedium}" />
                                         </Grid>
                                         <Label Grid.Row="1"
                                                Text="{Binding Sessions, StringFormat='{0} Lernsessions'}"
-                                               FontFamily="Arial"
+                                               FontFamily="PoppinsRegular"
                                                FontSize="13"
                                                TextColor="{StaticResource TextMuted}" />
                                     </Grid>
@@ -219,7 +219,7 @@
                             Padding="20">
                         <VerticalStackLayout Spacing="12">
                             <Label Text="KI-Empfehlungen"
-                                   FontFamily="Arial"
+                                   FontFamily="PoppinsRegular"
                                    FontSize="16"
                                    TextColor="{StaticResource TextOnDark}" />
                             <VerticalStackLayout BindableLayout.ItemsSource="{Binding AiTips}" Spacing="8">
@@ -230,7 +230,7 @@
                                                    TextColor="{StaticResource TextOnDark}" />
                                             <Label Text="{Binding}"
                                                    TextColor="{StaticResource TextOnDark}"
-                                                   FontFamily="Arial"
+                                                   FontFamily="PoppinsRegular"
                                                    FontSize="14"
                                                    LineHeight="1.45" />
                                         </HorizontalStackLayout>
@@ -255,11 +255,11 @@
                                             Margin="0,0,0,8">
                                         <VerticalStackLayout Spacing="4">
                                             <Label Text="{Binding Subject}"
-                                                   FontFamily="Arial"
+                                                   FontFamily="PoppinsRegular"
                                                    FontSize="14"
                                                    TextColor="{StaticResource TextPrimary}" />
                                             <Label Text="{Binding Date}"
-                                                   FontFamily="Arial"
+                                                   FontFamily="PoppinsRegular"
                                                    FontSize="13"
                                                    TextColor="{StaticResource TextMuted}" />
                                         </VerticalStackLayout>
