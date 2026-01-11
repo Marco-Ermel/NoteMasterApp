@@ -5,21 +5,55 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     
     <!-- 
-        SmartNote Color Palette
-        Extracted from original React/TypeScript implementation
-        Teal-based color scheme for modern, professional appearance
+        SmartNote Color Palette - Design Specification
+        5-color system with defined roles (colors must not be arbitrarily swapped)
+        Modern, professional appearance with teal-based color scheme
+        
+        Design Principles:
+        - Light, fresh, calm, modern, professional, structured, learning-friendly
+        - No playful elements, no overload
+        - Colors serve only for orientation, structure, and overview
     -->
     
-    <!-- Primary Brand Colors (from original design) -->
+    <!-- 
+        FARBE 1: Light, Fresh, Airy (#A3C9D9)
+        Usage: Highlights, info boxes, hover effects, small visual accents
+    -->
+    <Color x:Key="Color1Highlight">#A3C9D9</Color>
+    
+    <!-- 
+        FARBE 2: Friendly, Harmonious, Calming (#6A9BA6)
+        Usage: Large surfaces, panels, cards, container backgrounds
+    -->
+    <Color x:Key="Color2Surface">#6A9BA6</Color>
+    
+    <!-- 
+        FARBE 3: Elegant, Dark, High Contrast (#346C73)
+        Usage: Icons on light surfaces, small UI details
+    -->
+    <Color x:Key="Color3Detail">#346C73</Color>
+    
+    <!-- 
+        FARBE 4: Stable, Trustworthy, Profound (#103B40)
+        Usage: Header, navigation, sidebar background, basic app structure
+    -->
+    <Color x:Key="Color4Foundation">#103B40</Color>
+    
+    <!-- 
+        FARBE 5: Serious, Modern, Calm (#346C73)
+        Usage: Accents, buttons, important actions (Save, Create, Export)
+    -->
+    <Color x:Key="Color5Action">#346C73</Color>
+    
+    <!-- Supporting Colors -->
     <Color x:Key="PrimaryDark">#012326</Color>
-    <Color x:Key="Primary">#103B40</Color>
-    <Color x:Key="PrimaryMedium">#346C73</Color>
-    <Color x:Key="PrimaryLight">#6A9BA6</Color>
-    <Color x:Key="PrimaryLightest">#A3C9D9</Color>
+    <Color x:Key="White">#FFFFFF</Color>
+    <Color x:Key="BackgroundMuted">#F5F5F5</Color>
+    
+    <!-- Semantic Color Mappings (based on 5-color system) -->
     
     <!-- Background Colors -->
     <Color x:Key="BackgroundLight">#FFFFFF</Color>
-    <Color x:Key="BackgroundMuted">#F5F5F5</Color>
     <Color x:Key="SidebarBackground">#103B40</Color>
     <Color x:Key="SidebarBorder">#346C73</Color>
     <Color x:Key="InfoPanelBackground">#A3C9D9</Color>
@@ -31,7 +65,7 @@
     <Color x:Key="TextLight">#A3C9D9</Color>
     <Color x:Key="TextOnDark">#FFFFFF</Color>
     
-    <!-- Button Colors -->
+    <!-- Button Colors (using Farbe 5 for action buttons) -->
     <Color x:Key="ButtonPrimary">#346C73</Color>
     <Color x:Key="ButtonSecondary">#6A9BA6</Color>
     <Color x:Key="ButtonAccent">#A3C9D9</Color>
@@ -46,23 +80,34 @@
     <Color x:Key="PriorityMedium">#6A9BA6</Color>
     <Color x:Key="PriorityLow">#A3C9D9</Color>
     
-    <!-- Status Colors -->
+    <!-- Card & Surface Colors (using Farbe 2 for panels) -->
+    <Color x:Key="PageBackground">#FFFFFF</Color>
+    <Color x:Key="CardBackground">#FFFFFF</Color>
+    <Color x:Key="CardSurface">#6A9BA6</Color>
+    <Color x:Key="SeparatorColor">#A3C9D9</Color>
+    
+    <!-- Highlight & Accent Colors (using Farbe 1) -->
+    <Color x:Key="HoverEffect">#A3C9D9</Color>
+    <Color x:Key="InfoBoxBackground">#A3C9D9</Color>
+    
+    <!-- Legacy Support (for backward compatibility during transition) -->
+    <Color x:Key="Primary">#103B40</Color>
+    <Color x:Key="PrimaryMedium">#346C73</Color>
+    <Color x:Key="PrimaryLight">#6A9BA6</Color>
+    <Color x:Key="PrimaryLightest">#A3C9D9</Color>
+    
+    <!-- Status Colors (for success, warning, error states) -->
     <Color x:Key="SuccessColor">#2E7D32</Color>
     <Color x:Key="WarningColor">#ED6C02</Color>
     <Color x:Key="ErrorColor">#D32F2F</Color>
     
-    <!-- Semantic Colors for Light Mode -->
-    <Color x:Key="PageBackground">#FFFFFF</Color>
-    <Color x:Key="CardBackground">#FFFFFF</Color>
-    <Color x:Key="SeparatorColor">#A3C9D9</Color>
-    
     <!-- Brushes for gradient and complex fills -->
-    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
-    <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource PrimaryLightest}" />
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Color4Foundation}" />
+    <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource Color1Highlight}" />
     <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimary}" />
     <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundLight}" />
     
-    <!-- Sidebar Gradient (for premium feel) -->
+    <!-- Sidebar Gradient (using Farbe 4 for stable foundation) -->
     <LinearGradientBrush x:Key="SidebarGradientBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientStop Color="#103B40" Offset="0.0" />
         <GradientStop Color="#0D3035" Offset="1.0" />
