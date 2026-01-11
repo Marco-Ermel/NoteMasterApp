@@ -42,6 +42,8 @@
     <!-- 
         FARBE 5: Serious, Modern, Calm (#346C73)
         Usage: Accents, buttons, important actions (Save, Create, Export)
+        Note: Same hex value as Farbe 3, differentiated by usage context
+        (Farbe 3 = decorative details, Farbe 5 = interactive elements)
     -->
     <Color x:Key="Color5Action">#346C73</Color>
     

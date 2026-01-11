@@ -59,6 +59,7 @@ January 11, 2026
 5. **Farbe 5** (#346C73) - *Serious, modern, calm*
    - **Usage**: Accents, buttons, important actions (Save, Create, Export)
    - **Purpose**: Highlights important interactive elements
+   - **Note**: Shares the same hex value as Farbe 3, but used in different contexts (interactive elements vs. decorative details)
 
 **Where Changed:**
 - `Resources/Styles/Colors.xaml` - Comprehensive documentation of color roles
